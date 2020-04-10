@@ -1,0 +1,15 @@
+{
+  "name": "hooky",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/devjmetivier/hooky.git",
+  "author": "Devin Metivier <devinmetivier@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.13.1"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.34",
+    "eslint-config-devjmetivier": "^2.1.3"
+  }
+}
