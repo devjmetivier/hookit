@@ -1,6 +1,10 @@
-import * as React from "react";
+import * as React from 'react';
 
-export function useWindowEventListener(eventName: string, handler) {
+type EventName = keyof WindowEventMap;
+type Handler = (event: Event) => any;
+type Return = void;
+
+export function useWindowEventListener(eventName: EventName, handler: Handler): Return {
   // create a ref that stores handler
   const savedHandler = React.useRef<typeof handler>();
 
@@ -18,7 +22,7 @@ export function useWindowEventListener(eventName: string, handler) {
     if (!isSupported) return;
 
     // create event listener that calls handler function stored in ref
-    const eventListener = (event) => savedHandler.current(event);
+    const eventListener = (event: Event) => savedHandler.current(event);
 
     // add event listener
     window.addEventListener(eventName, eventListener);

@@ -1,0 +1,10 @@
+{
+  "name": "@hooky/window-event-listener",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prebuild": "rm -rf dist/",
+    "build": "tsc"
+  }
+}
