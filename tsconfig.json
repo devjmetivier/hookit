@@ -8,7 +8,8 @@
     "moduleResolution": "node",
     "noImplicitAny": true,
     "removeComments": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "target": "ES6"
   },
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

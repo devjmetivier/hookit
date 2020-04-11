@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "prepublishOnly": "yarn build",
     "prebuild": "rm -rf dist/",
     "build": "tsc"
   }

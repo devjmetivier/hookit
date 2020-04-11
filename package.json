@@ -7,7 +7,7 @@
   "author": "Devin Metivier <devinmetivier@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "publish": "lerna run build && lerna publish",
+    "publish": "lerna run build && lerna publish from-package",
     "build": "lerna run build"
   },
   "devDependencies": {
