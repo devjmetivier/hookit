@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useWindowEventListener } from '../../window-event-listener/src/useWindowEventListener';
+import useWindowEventListener from '@hooky/window-event-listener';
 
 type State = {
   status: boolean;
@@ -25,7 +25,7 @@ const networkStatusReducer: React.Reducer<State, ReducerAction> = (_, action) =>
   }
 };
 
-export const useNetworkStatus = () => {
+function useNetworkStatus() {
   // grab current online status (null check) and use to intialize state
   const [state, dispatch] = React.useReducer(networkStatusReducer, {
     status: typeof window !== 'undefined' ? window?.navigator?.onLine : undefined,
@@ -40,4 +40,6 @@ export const useNetworkStatus = () => {
   useWindowEventListener(Action.ONLINE, offlineHandler);
 
   return state;
-};
+}
+
+export default useNetworkStatus;

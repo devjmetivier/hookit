@@ -4,7 +4,7 @@ type EventName = keyof WindowEventMap;
 type Handler = (event: Event) => any;
 type Return = void;
 
-export function useWindowEventListener(eventName: EventName, handler: Handler): Return {
+function useWindowEventListener(eventName: EventName, handler: Handler): Return {
   // create a ref that stores handler
   const savedHandler = React.useRef<typeof handler>();
 
@@ -31,3 +31,5 @@ export function useWindowEventListener(eventName: EventName, handler: Handler): 
     return () => window.removeEventListener(eventName, eventListener);
   }, [eventName]);
 }
+
+export default useWindowEventListener;

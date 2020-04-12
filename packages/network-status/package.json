@@ -1,11 +1,37 @@
 {
   "name": "@hooky/network-status",
+  "description": "React hook - return network status",
   "version": "0.0.1",
-  "main": "index.js",
   "license": "MIT",
+  "author": "Devin Metivier (https://devinmetivier.com)",
+  "repository": "https://github.com/devjmetivier/hooky.git",
+  "keywords": [
+    "react",
+    "hooks",
+    "useNetworkStatus",
+    "network",
+    "status"
+  ],
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "typings"
+  ],
   "scripts": {
     "prepublishOnly": "yarn build",
-    "prebuild": "rm -rf dist/",
-    "build": "tsc"
+    "prebuild": "rm -rf esm/ && rm -rf cjs/ && rm -rf types/ && rm -rf dist/",
+    "build": "yarn build:esm && yarn build:cjs && yarn build:types",
+    "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
+    "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
+    "build:types": "tsc --declaration --declarationDir types"
+  },
+  "devDependencies": {
+    "@hooky/window-event-listener": "*"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
   }
 }

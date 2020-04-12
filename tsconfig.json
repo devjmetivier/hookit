@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
-    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "module": "esnext",
+    "jsx": "react",
+    "lib": ["esnext", "dom"],
+    "module": "commonjs",
     "moduleResolution": "node",
+    "noEmitOnError": true,
     "noImplicitAny": true,
     "removeComments": true,
     "sourceMap": true,
-    "target": "ES6"
+    "target": "es6"
   },
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

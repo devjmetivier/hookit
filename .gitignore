@@ -1,4 +1,7 @@
 dist/
+cjs/
+esm/
+types/
 .DS_Store
 
 # Logs
