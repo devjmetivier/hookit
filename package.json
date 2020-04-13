@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "publish": "yarn build && lerna publish from-package",
+    "bootstrap": "yarn lerna bootstrap",
     "build": "lerna run build",
     "test": "jest"
   },
