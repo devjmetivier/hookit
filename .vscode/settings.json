@@ -4,5 +4,6 @@
     "javascriptreact",
     "typescript",
     "typescriptreact"
-  ]
+  ],
+  "eslint.enable": true
 }

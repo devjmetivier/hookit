@@ -1,10 +1,17 @@
 {
   "name": "@hooky/window-event-listener",
-  "description": "React hook - easily add/remove window events",
+  "description": "Easily add/remove window event listeners",
   "version": "0.0.1",
   "license": "MIT",
-  "author": "Devin Metivier (https://devinmetivier.com)",
-  "repository": "https://github.com/devjmetivier/hooky.git",
+  "author": "Devin Metivier @devjmetivier",
+  "homepage": "https://github.com/devjmetivier/hooky/tree/master/packages/window-event-listener",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devjmetivier/hooky.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devjmetivier/hooky/issues"
+  },
   "keywords": [
     "react",
     "hooks",
