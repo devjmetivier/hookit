@@ -20,15 +20,13 @@ const networkStatusReducer: React.Reducer<State, ReducerAction> = (_, action) =>
       return { status: true };
     case Action.OFFLINE:
       return { status: false };
-    default:
-      return { status: true };
   }
 };
 
 function useNetworkStatus() {
   // grab current online status (null check) and use to intialize state
   const [state, dispatch] = React.useReducer(networkStatusReducer, {
-    status: typeof window !== 'undefined' ? window?.navigator?.onLine : undefined,
+    status: typeof window !== 'undefined' ? window.navigator.onLine : undefined,
   });
 
   // memoize callbacks
@@ -37,7 +35,7 @@ function useNetworkStatus() {
 
   // use event listeners
   useWindowEventListener(Action.ONLINE, onlineHandler);
-  useWindowEventListener(Action.ONLINE, offlineHandler);
+  useWindowEventListener(Action.OFFLINE, offlineHandler);
 
   return state;
 }
