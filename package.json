@@ -10,6 +10,7 @@
     "publish": "yarn build && lerna publish from-package",
     "bootstrap": "yarn lerna bootstrap",
     "build": "lerna run build",
+    "clean": "lerna run prebuild",
     "test": "jest"
   },
   "devDependencies": {

@@ -17,10 +17,6 @@ function useWindowEventListener(eventName: EventName, handler: Handler): Return 
   }, [handler]);
 
   React.useEffect(() => {
-    // make sure element supports addEventListener
-    const isSupported = window && window.addEventListener;
-    if (!isSupported) return;
-
     // create event listener that calls handler function stored in ref
     const eventListener = (event: Event) => savedHandler.current(event);
 

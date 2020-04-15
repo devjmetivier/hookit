@@ -1,6 +1,6 @@
-<h1 style="text-align: center;">🪝 Hooky 🪝</h1>
+<h1 align="center">🪝 Hooky 🪝</h1>
 
-<p style="text-align: center;">
+<p align="center">
   <a aria-label="License" href="https://github.com/devjmetivier/hooky/issues?q=is%3Aissue+is%3Aopen+">
     <img src="https://img.shields.io/github/issues-raw/devjmetivier/hooky" />
   </a>

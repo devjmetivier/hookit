@@ -14,7 +14,7 @@ describe('useNetworkStatus CSR', () => {
     removeEventListener.mockClear();
   });
 
-  test('online === undefined', () => {
+  it('onLine === undefined', () => {
     Object.defineProperty(window.navigator, 'onLine', { value: undefined, writable: true });
 
     const { result } = renderHook(() => useNetworkStatus());
@@ -22,7 +22,7 @@ describe('useNetworkStatus CSR', () => {
     expect(result.current).toEqual({ status: undefined });
   });
 
-  test('online === true', () => {
+  it('onLine === true', () => {
     Object.defineProperty(window.navigator, 'onLine', { value: true, writable: true });
 
     const { result } = renderHook(() => useNetworkStatus());
@@ -30,7 +30,7 @@ describe('useNetworkStatus CSR', () => {
     expect(result.current).toEqual({ status: true });
   });
 
-  test('online === false', () => {
+  it('onLine === false', () => {
     Object.defineProperty(window.navigator, 'onLine', { value: false, writable: true });
 
     const { result } = renderHook(() => useNetworkStatus());
@@ -38,7 +38,7 @@ describe('useNetworkStatus CSR', () => {
     expect(result.current).toEqual({ status: false });
   });
 
-  test('add listeners', () => {
+  it('adds listeners', () => {
     renderHook(() => useNetworkStatus());
 
     const onlineEvents = addEventListener.mock.calls.filter(([call]) => call === 'online');
@@ -48,7 +48,7 @@ describe('useNetworkStatus CSR', () => {
     expect(offlineEvents.length).toBe(1);
   });
 
-  test('remove listeners', () => {
+  it('removes listeners', () => {
     const { unmount } = renderHook(() => useNetworkStatus());
 
     unmount();
@@ -60,7 +60,7 @@ describe('useNetworkStatus CSR', () => {
     expect(offlineEvents.length).toBe(1);
   });
 
-  test('status changes', () => {
+  it('changes status', () => {
     Object.defineProperty(window.navigator, 'onLine', { value: true, writable: true });
 
     const { result } = renderHook(() => useNetworkStatus());
