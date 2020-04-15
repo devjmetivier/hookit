@@ -26,6 +26,7 @@ const networkStatusReducer: React.Reducer<State, ReducerAction> = (_, action) =>
 function useNetworkStatus() {
   // grab current online status (null check) and use to intialize state
   const [state, dispatch] = React.useReducer(networkStatusReducer, {
+    // can reasonably expect to have window.navigator.onLine value if window is present
     status: typeof window !== 'undefined' ? window.navigator.onLine : undefined,
   });
 

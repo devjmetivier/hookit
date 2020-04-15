@@ -16,6 +16,7 @@ module.exports = {
       statements: 95,
     },
   },
+  collectCoverageFrom: ['packages/*/src/**/*.{js,ts,tsx}', '!packages/*/src/**/index.{js,ts,tsx}'],
   coveragePathIgnorePatterns: ['/node_modules/', '/utils', '/cjs', '/esm', '/types'],
   reporters: [
     'default',
