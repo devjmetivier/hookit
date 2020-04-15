@@ -21,3 +21,10 @@ jobs:
       - run: yarn build
       - run: yarn lerna bootstrap
       - run: yarn test
+
+      - uses: codecov/codecov-action@v1
+        name: Codecov
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
+          name: hooky
