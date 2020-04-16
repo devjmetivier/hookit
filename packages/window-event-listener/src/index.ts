@@ -1,3 +1,1 @@
-import useWindowEventListener from './useWindowEventListener';
-
-export default useWindowEventListener;
+export { default } from './useWindowEventListener';

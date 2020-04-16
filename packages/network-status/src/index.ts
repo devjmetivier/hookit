@@ -1,3 +1,1 @@
-import useNetworkStatus from './useNetworkStatus';
-
-export default useNetworkStatus;
+export { default } from './useNetworkStatus';
