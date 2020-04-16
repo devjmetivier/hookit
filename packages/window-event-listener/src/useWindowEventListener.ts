@@ -4,6 +4,11 @@ type EventName = keyof WindowEventMap;
 type Handler = (event: Event) => any;
 type Return = void;
 
+/**
+ * @param {EventName} eventName One of the events supported by `window`
+ * @param {Handler} handler Callback that is executed when event is triggered. The Event data is accessible as a default param in the callback.
+ * @returns {Return} nothing
+ */
 function useWindowEventListener(eventName: EventName, handler: Handler): Return {
   // create a ref that stores handler
   const savedHandler = React.useRef<typeof handler>();
