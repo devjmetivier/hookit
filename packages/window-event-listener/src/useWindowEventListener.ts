@@ -1,7 +1,5 @@
 import * as React from 'react';
 
-type EventName = keyof WindowEventMap;
-type Handler = (event: Event) => any;
 type Return = void;
 
 /**
@@ -9,7 +7,10 @@ type Return = void;
  * @param {Handler} handler Callback that is executed when event is triggered. The Event data is accessible as a default param in the callback.
  * @returns {Return} nothing
  */
-function useWindowEventListener(eventName: EventName, handler: Handler): Return {
+function useWindowEventListener<K extends keyof WindowEventMap>(
+  eventName: K,
+  handler: (event: WindowEventMap[K]) => any,
+): Return {
   // create a ref that stores handler
   const savedHandler = React.useRef<typeof handler>();
 
@@ -23,7 +24,7 @@ function useWindowEventListener(eventName: EventName, handler: Handler): Return 
 
   React.useEffect(() => {
     // create event listener that calls handler function stored in ref
-    const eventListener = (event: Event) => savedHandler.current(event);
+    const eventListener = (event: any) => savedHandler.current(event);
 
     // add event listener
     window.addEventListener(eventName, eventListener);
