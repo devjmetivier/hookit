@@ -2,6 +2,7 @@ dist/
 cjs/
 esm/
 types/
+storybook/
 .DS_Store
 
 # Logs
