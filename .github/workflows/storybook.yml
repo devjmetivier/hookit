@@ -1,12 +1,14 @@
-name: CI
+name: Storybook Dev
 
 on:
   pull_request:
-    branches: [master, feature/*]
+    branches: [master]
     types: [opened, edited, reopened, synchronize]
+  # push:
+  #   branches: [master]
 
 jobs:
-  ci:
+  storybook_dev_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -16,14 +18,16 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: "13.x"
-          registry-url: "https://registry.npmjs.org"
 
       - name: Build Packages
         run: |
           yarn
           yarn build
 
-      - name: Test Packages
+      - name: Storybook Build
         run: |
           yarn lerna bootstrap
-          yarn test
+          yarn storybook:build
+
+      - name: Deploy to Now
+        run: npx now ./hooky-storybook --token ${{ secrets.NOW_TOKEN }} --confirm
