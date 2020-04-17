@@ -13,7 +13,7 @@
     "clean": "lerna run prebuild",
     "test": "jest",
     "storybook": "start-storybook",
-    "storybook:build": "build-storybook -o ./storybook"
+    "storybook:build": "build-storybook -o ./hooky-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
