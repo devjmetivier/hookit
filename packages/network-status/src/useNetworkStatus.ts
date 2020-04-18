@@ -1,6 +1,8 @@
 import * as React from 'react';
 import useWindowEventListener from '@hooky/window-event-listener';
 
+import isClient from '../../../utils/isClient';
+
 type State = {
   status: boolean;
 };
@@ -30,7 +32,7 @@ function useNetworkStatus(): State {
   // grab current online status (null check) and use to intialize state
   const [state, dispatch] = React.useReducer(networkStatusReducer, {
     // can reasonably expect to have window.navigator.onLine value if window is present
-    status: typeof window !== 'undefined' ? window.navigator.onLine : undefined,
+    status: isClient ? window.navigator.onLine : undefined,
   });
 
   // memoize callbacks
