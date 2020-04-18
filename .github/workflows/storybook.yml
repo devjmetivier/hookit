@@ -4,8 +4,8 @@ on:
   pull_request:
     branches: [master]
     types: [opened, edited, reopened, synchronize]
-  # push:
-  #   branches: [master]
+  push:
+    branches: [master]
 
 jobs:
   storybook_dev_deploy:
@@ -29,5 +29,10 @@ jobs:
           yarn lerna bootstrap
           yarn storybook:build
 
-      - name: Deploy to Now
+      - name: Deploy to Now (Dev)
+        if: github.event_name == 'pull_request'
         run: npx now ./hooky-storybook --token ${{ secrets.NOW_TOKEN }} --confirm
+
+      - name: Deploy to Now (Prod)
+        if: github.event_name == 'push' && github.base_ref == 'master'
+        run: npx now ./hooky-storybook --prod --token ${{ secrets.NOW_TOKEN }} --confirm
