@@ -12,7 +12,7 @@
     "build": "lerna run build",
     "clean": "lerna run prebuild",
     "test": "jest",
-    "storybook": "start-storybook",
+    "storybook": "start-storybook --ci -p 8001",
     "storybook:build": "build-storybook -o ./hooky-storybook"
   },
   "devDependencies": {
