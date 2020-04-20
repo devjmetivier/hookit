@@ -3,9 +3,9 @@ import * as React from 'react';
 type Return = void;
 
 /**
+ * @template K extension of one of the keys of the `WindowEventMap` type
  * @param {EventName} eventName One of the events supported by `window`
  * @param {Handler} handler Callback that is executed when event is triggered. The Event data is accessible as a default param in the callback.
- * @returns {Return} nothing
  */
 function useWindowEventListener<K extends keyof WindowEventMap>(
   eventName: K,
