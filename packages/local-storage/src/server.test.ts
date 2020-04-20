@@ -4,7 +4,7 @@
 
 import renderHookServer from '../../../utils/renderHookServer';
 import useLocalStorage from './useLocalStorage';
-import { consoleError } from '../../../utils/mocks/console';
+import { consoleError } from '../../../mocks/console';
 
 const key = 'key';
 const initialValue = 'Hello, Moto!';
