@@ -1,4 +1,4 @@
-const { readDirAsync, writeFileAsync } = require('./utils');
+import { readDirAsync, writeFileAsync } from './utils';
 
 const cwd = process.cwd();
 
