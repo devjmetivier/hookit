@@ -1,10 +1,10 @@
 {
-  "name": "@hooky/dark-mode",
-  "description": "Implement dark mode in your UI with React hooks",
+  "name": "@hooky/prefers-dark-mode",
+  "description": "Determines your user's light/dark mode preferences",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
-  "homepage": "https://github.com/devjmetivier/hooky/tree/master/packages/dark-mode#readme",
+  "homepage": "https://github.com/devjmetivier/hooky/tree/master/packages/prefers-dark-mode#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devjmetivier/hooky.git"
@@ -15,7 +15,8 @@
   "keywords": [
     "react",
     "hooks",
-    "useDarMode",
+    "usePrefersDarkMode",
+    "prefers",
     "dark",
     "mode"
   ],
@@ -34,10 +35,6 @@
     "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
     "build:types": "tsc --d --declarationMap --declarationDir types"
-  },
-  "devDependencies": {
-    "@hooky/local-storage": "*",
-    "@hooky/prefers-dark-mode": "*"
   },
   "peerDependencies": {
     "react": ">=16.8"
