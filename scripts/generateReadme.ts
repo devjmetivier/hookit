@@ -20,11 +20,9 @@ A collection of react hooks.
 
 It features:
 
-- TypeScript support
+- Firt-class TypeScript support
 - Testing
 - Server rendering compatibility
-
-...and hooks 😎
 
 ## Packages
 
