@@ -107,6 +107,9 @@ const script = createScript({
                       if (fileName.includes('use')) {
                         return writeFileAsync(`${packagePath}/src/${hookName}.ts`, content);
                       }
+                      if (fileName.includes('story')) {
+                        return writeFileAsync(`${packagePath}/src/${hookName}.story.tsx`, content);
+                      }
                       return writeFileAsync(`${packagePath}/${filePath}`, content);
                     },
                   }));
