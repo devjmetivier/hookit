@@ -2,21 +2,21 @@ import * as React from 'react';
 import usePrefersDarkMode from '@hooky/prefers-dark-mode';
 import useLocalStorage from '@hooky/local-storage';
 
-const useDarkMode = (className: string) => {
-  const [darkMode, setDarkMode] = useLocalStorage('dark-mode');
-  const prefersDarkMode = usePrefersDarkMode();
+type StorageValue = 'dark' | 'light';
+
+const defaultClassName = 'dark-mode';
+
+const useDarkMode = () => {
+  const [darkMode, setDarkMode] = useLocalStorage<StorageValue>(defaultClassName);
+  const prefersDarkMode = usePrefersDarkMode(setDarkMode);
 
   const enabled = typeof darkMode !== 'undefined' ? darkMode : prefersDarkMode;
 
   React.useEffect(() => {
     const { body } = window.document;
 
-    if (enabled) {
-      body.classList.add(className);
-    } else {
-      body.classList.remove(className);
-    }
-  }, [enabled, className]);
+    enabled === 'dark' ? body.classList.add(defaultClassName) : body.classList.remove(defaultClassName);
+  }, [enabled]);
 
   return [darkMode, setDarkMode];
 };
