@@ -9,14 +9,6 @@
   "testRegex": "(\\.(test|spec))\\.(ts|tsx)$",
   "testPathIgnorePatterns": ["/node_modules/", "/cjs", "/esm", "/types"],
   "collectCoverage": true,
-  "coverageThreshold": {
-    "global": {
-      "branches": 90,
-      "functions": 95,
-      "lines": 95,
-      "statements": 95
-    }
-  },
   "collectCoverageFrom": [
     "packages/*/src/**/*.{js,ts,tsx}",
     "!packages/*/src/**/index.{js,ts,tsx}",
