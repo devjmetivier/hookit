@@ -17,10 +17,8 @@ A collection of react hooks.
 It features:
 
 - TypeScript support
-- Testing
-- Server rendering compatibility
-
-...and hooks 😎
+- Fully tested
+- Server render compatibility
 
 ## Packages
 
@@ -28,7 +26,10 @@ See [packages](packages) for individual package details.
 
 | Package | Version | Description |
 | ------- | ------- | ----------- |
+| [@hooky/dark-mode](packages/dark-mode) | ![@hooky/dark-mode npm badge](https://img.shields.io/npm/v/@hooky/dark-mode) | Implement dark mode in your UI with React hooks |
 | [@hooky/interval](packages/interval) | ![@hooky/interval npm badge](https://img.shields.io/npm/v/@hooky/interval) | React hook to execute code on an interval |
 | [@hooky/local-storage](packages/local-storage) | ![@hooky/local-storage npm badge](https://img.shields.io/npm/v/@hooky/local-storage) | React hook to set and get items from local storage |
 | [@hooky/network-status](packages/network-status) | ![@hooky/network-status npm badge](https://img.shields.io/npm/v/@hooky/network-status) | Returns network status |
+| [@hooky/prefers-dark-mode](packages/prefers-dark-mode) | ![@hooky/prefers-dark-mode npm badge](https://img.shields.io/npm/v/@hooky/prefers-dark-mode) | Determines your user's light/dark mode preferences |
+| [@hooky/verification-inputs](packages/verification-inputs) | ![@hooky/verification-inputs npm badge](https://img.shields.io/npm/v/@hooky/verification-inputs) | React hook that helps with verification input features |
 | [@hooky/window-event-listener](packages/window-event-listener) | ![@hooky/window-event-listener npm badge](https://img.shields.io/npm/v/@hooky/window-event-listener) | Easily add/remove window event listeners |
