@@ -3,8 +3,18 @@ import * as React from 'react';
 type DarkOrLight = 'dark' | 'light';
 
 function usePrefersDarkMode(callback?: any) {
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
-  const getUserPreference = React.useCallback<() => DarkOrLight>(() => (mq.matches ? 'dark' : 'light'), [mq]);
+  let mq: MediaQueryList;
+
+  if (typeof window !== 'undefined') {
+    mq = window.matchMedia('(prefers-color-scheme: dark)');
+  } else {
+    mq = undefined;
+  }
+
+  const getUserPreference = React.useCallback<() => DarkOrLight>(
+    () => (mq ? (mq.matches ? 'dark' : 'light') : 'light'),
+    [mq],
+  );
 
   const [state, setState] = React.useState(getUserPreference);
 
