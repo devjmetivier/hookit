@@ -6,7 +6,7 @@
   "author": "Devin Metivier @devjmetivier",
   "license": "MIT",
   "scripts": {
-    "publish-packages": "yarn build && lerna publish from-package",
+    "publish-packages": "yarn build && lerna publish from-package --yes",
     "clean": "lerna run prebuild",
     "build": "lerna run build",
     "test": "jest",
