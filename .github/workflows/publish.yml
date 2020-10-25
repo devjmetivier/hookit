@@ -36,8 +36,9 @@ jobs:
 
       - name: Publish
         run: |
-          npm install --ignore-scripts
-          npm run publish-packages
+          npm i -g yarn
+          yarn
+          yarn publish-packages
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
