@@ -9,6 +9,6 @@ describe('useNetworkStatus SSR', () => {
   test('returns undefined', () => {
     const result = renderHookServer(() => useNetworkStatus());
 
-    expect(result).toEqual({ status: undefined });
+    expect(result).toEqual(undefined);
   });
 });

@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooky/useInterval/Docs" />
+
+# useInterval
+
+Executes a callback on an interval
+
+`useInterval(callback, interval)`
+
+### Usage
+
+```tsx
+const Component = () => {
+  const [state, setState] = React.useState(0);
+
+  useInterval(() => setState((prev) => prev + 1), 1000);
+
+  return <p>{state}</p>;
+};
+```
+
+### Arguments
+
+| Name     | Type         | Required? |
+| -------- | ------------ | --------- |
+| callback | `() => void` | Yes       |
+| inerval  | `number`     | Yes       |
+
+### Returns
+
+Nothin 🤪

@@ -36,17 +36,24 @@ function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Return<T>
   });
 
   // Return a wrapped version of useState's setter function that persists the new value to localStorage.
-  const setValue = (value: typeof initialValue) => {
-    try {
-      // Save state
-      setStoredValue(value);
+  const setValue = React.useCallback(
+    (value: typeof initialValue) => {
+      try {
+        // Save state
+        setStoredValue(value);
 
-      // Save to local storage
-      window.localStorage.setItem(key, JSON.stringify(value));
-    } catch (error) {
-      console.error(error);
-    }
-  };
+        // Save to local storage
+        if (typeof value === 'object') {
+          window.localStorage.setItem(key, JSON.stringify(value));
+        } else {
+          window.localStorage.setItem(key, (value as unknown) as string);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    [key],
+  );
 
   return [storedValue, setValue];
 }
