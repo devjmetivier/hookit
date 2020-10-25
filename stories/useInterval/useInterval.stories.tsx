@@ -1,13 +1,12 @@
 import * as React from 'react';
-import { withKnobs, number } from '@storybook/addon-knobs';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import useInterval from '@hooky/interval';
 
 export default {
-  title: 'useInterval',
-  decorators: [withKnobs],
-};
+  title: 'Hooky/useInterval',
+} as Meta;
 
-export const Default: React.FC = () => {
+export const Default: Story = () => {
   const [state, setState] = React.useState<number | null>(0);
 
   useInterval(() => setState((prev) => prev + 1), 1000);
@@ -15,7 +14,7 @@ export const Default: React.FC = () => {
   return <p>{state}</p>;
 };
 
-export const PauseInterval: React.FC = () => {
+export const PauseInterval: Story = () => {
   const [state, setState] = React.useState<number | null>(0);
   const [interval, setInterval] = React.useState<boolean | null>(true);
 
@@ -29,18 +28,23 @@ export const PauseInterval: React.FC = () => {
   );
 };
 
-export const CustomInterval: React.FC = () => {
+const CustomIntervalTemplate: Story<{ customInterval: number }> = ({ customInterval }) => {
   const [state, setState] = React.useState<number | null>(0);
-  const [interval, setInterval] = React.useState<number | null>(number('Interval', 1000));
+  const [interval, setInterval] = React.useState<number | null>(customInterval);
 
   useInterval(() => setState((prev) => prev + 1), interval);
 
   return (
     <>
       <p>{state}</p>
-      <button onClick={() => setInterval((prev) => (prev > 0 ? null : number('Interval', 1000)))}>
+      <button onClick={() => setInterval((prev) => (prev > 0 ? null : customInterval))}>
         {interval ? 'Stop' : 'Start'}
       </button>
     </>
   );
+};
+
+export const CustomInterval = CustomIntervalTemplate.bind({});
+CustomInterval.args = {
+  customInterval: 1000,
 };

@@ -97,7 +97,7 @@ const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInpu
       inputs[0].removeEventListener('paste', handlePaste);
       inputs[inputs.length - 1].removeEventListener('input', handleLastInput);
     };
-  }, [options.focusAfter, options.lastInputCallback]);
+  }, [options]);
 
   return [inputRefs, getValues];
 };

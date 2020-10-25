@@ -1,14 +1,15 @@
 import * as React from 'react';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import useLocalStorage from '@hooky/local-storage';
 
 export default {
-  title: 'useLocalStorage',
-};
+  title: 'Hooky/useLocalStorage',
+} as Meta;
 
-const key = 'key';
+const key = 'useLocalStorage';
 const initalValue = 'Hello, Moto!';
 
-export const Default = () => {
+export const Default: Story = () => {
   const [storageItem] = useLocalStorage(key);
 
   return (
@@ -23,7 +24,7 @@ export const Default = () => {
   );
 };
 
-export const WithDefaultValue = () => {
+export const WithDefaultValue: Story = () => {
   const [storageItem] = useLocalStorage(key, initalValue);
 
   React.useEffect(() => {
@@ -44,7 +45,8 @@ export const WithDefaultValue = () => {
   );
 };
 
-export const SetItem = () => {
+export const SetItem: Story = () => {
+  const [state, setState] = React.useState('');
   const [storageItem, setStorageItem] = useLocalStorage(key, initalValue);
 
   return (
@@ -56,8 +58,17 @@ export const SetItem = () => {
       <p>
         {key}: {storageItem ? storageItem : '¯_(ツ)_/¯'}
       </p>
-      <div id='ls'>Local Storage Value</div>
+
+      <div id='ls' style={{ marginTop: '2rem' }}>
+        Set local storage value:
+      </div>
       <input aria-labelledby='ls' onChange={({ target }) => setStorageItem(target.value)} type='text' />
+
+      <div style={{ marginTop: '2rem' }}>Get local storage value:</div>
+      <button onClick={() => setState(window.localStorage.getItem(key))} type='button'>
+        Click Me
+      </button>
+      <div>Result: {state}</div>
     </>
   );
 };

@@ -1,11 +1,12 @@
 import * as React from 'react';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import useWindowEventListener from '@hooky/window-event-listener';
 
 export default {
-  title: 'useWindowEventListener',
-};
+  title: 'Hooky/useWindowEventListener',
+} as Meta;
 
-export const MouseMove: React.FC = () => {
+export const MouseMove: Story = () => {
   const [type, setType] = React.useState<string>('');
   const [x, setX] = React.useState<number>(0);
   const [y, setY] = React.useState<number>(0);
@@ -18,14 +19,16 @@ export const MouseMove: React.FC = () => {
 
   return (
     <>
-      <div>event type: {type}</div>
+      <p>Try moving your mouse around</p>
+
+      <div>Event type: {type}</div>
       <div>x: {x}</div>
       <div>y: {y}</div>
     </>
   );
 };
 
-export const Click: React.FC = () => {
+export const Click: Story = () => {
   const [type, setType] = React.useState<string>('');
   const [x, setX] = React.useState<number>(0);
   const [y, setY] = React.useState<number>(0);
@@ -44,31 +47,35 @@ export const Click: React.FC = () => {
 
   return (
     <>
-      <div>event type: {type}</div>
+      <p>Try clicking on the screen</p>
+
+      <div>Event type: {type}</div>
       <div>x: {x}</div>
       <div>y: {y}</div>
     </>
   );
 };
 
-export const Keyboard: React.FC = () => {
+export const Keyboard: Story = () => {
   const [type, setType] = React.useState<string>('');
   const [key, setKey] = React.useState<string>('');
 
   useWindowEventListener('keydown', (e) => {
     setType(e.type);
-    setKey(e.code);
+    setKey(e.key);
   });
 
   useWindowEventListener('keyup', (e) => {
     setType(e.type);
-    setKey(e.code);
+    setKey(e.key);
   });
 
   return (
     <>
-      <div>event type: {type}</div>
-      <div>code: {key}</div>
+      <p>Try typing on your keyboard</p>
+
+      <div>Event type: {type}</div>
+      <div>key: {key}</div>
     </>
   );
 };

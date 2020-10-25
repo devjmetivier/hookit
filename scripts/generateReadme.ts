@@ -8,17 +8,19 @@ const template = `<h1 align="center">🪝 Hooky 🪝</h1>
   <a aria-label="License" href="https://github.com/devjmetivier/hooky/issues?q=is%3Aissue+is%3Aopen+">
     <img src="https://img.shields.io/github/issues-raw/devjmetivier/hooky" />
   </a>
+
   <a aria-label="License" href="https://github.com/devjmetivier/hooky/pulls?q=is%3Apr+is%3Aopen+">
     <img src="https://img.shields.io/github/issues-pr-raw/devjmetivier/hooky" />
   </a>
+  
   <a aria-label="License" href="https://github.com/devjmetivier/hooky/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/devjmetivier/hooky" />
   </a>
 <p>
 
-A collection of react hooks.
+A collection of useful react hooks.
 
-It features:
+Features:
 
 - TypeScript support
 - Fully tested

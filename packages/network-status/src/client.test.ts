@@ -19,7 +19,7 @@ describe('useNetworkStatus CSR', () => {
 
     const { result } = renderHook(() => useNetworkStatus());
 
-    expect(result.current).toEqual({ status: undefined });
+    expect(result.current).toEqual(undefined);
   });
 
   it('onLine === true', () => {
@@ -27,7 +27,7 @@ describe('useNetworkStatus CSR', () => {
 
     const { result } = renderHook(() => useNetworkStatus());
 
-    expect(result.current).toEqual({ status: true });
+    expect(result.current).toEqual(true);
   });
 
   it('onLine === false', () => {
@@ -35,7 +35,7 @@ describe('useNetworkStatus CSR', () => {
 
     const { result } = renderHook(() => useNetworkStatus());
 
-    expect(result.current).toEqual({ status: false });
+    expect(result.current).toEqual(false);
   });
 
   it('adds listeners', () => {
@@ -65,18 +65,18 @@ describe('useNetworkStatus CSR', () => {
 
     const { result } = renderHook(() => useNetworkStatus());
 
-    expect(result.current).toEqual({ status: true });
+    expect(result.current).toEqual(true);
 
     act(() => {
       fireOffline();
     });
 
-    expect(result.current).toEqual({ status: false });
+    expect(result.current).toEqual(false);
 
     act(() => {
       fireOnline();
     });
 
-    expect(result.current).toEqual({ status: true });
+    expect(result.current).toEqual(true);
   });
 });

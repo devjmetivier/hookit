@@ -1,0 +1,32 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooky/useNetworkStatus/Docs" />
+
+# useNetworkStatus
+
+Returns network status
+
+`const status = useNetworkStatus();`
+
+### Usage
+
+```tsx
+const Component = () => {
+  const networkStatus = useNetworkStatus();
+
+  return (
+    <>
+      <p>Try disabling/enabling your network connection.</p>
+      <p>{networkStatus ? "Online ✅" : "Offline 🚫"}</p>
+    </>
+  );
+};
+```
+
+### Arguments
+
+Nothin 🤪
+
+### Returns
+
+`boolean`

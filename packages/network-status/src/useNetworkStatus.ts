@@ -1,9 +1,7 @@
 import * as React from 'react';
 import useWindowEventListener from '@hooky/window-event-listener';
 
-type State = {
-  status: boolean;
-};
+type State = boolean;
 
 enum Action {
   ONLINE = 'online',
@@ -17,21 +15,19 @@ type ReducerAction = {
 const networkStatusReducer: React.Reducer<State, ReducerAction> = (_, action) => {
   switch (action.type) {
     case Action.ONLINE:
-      return { status: true };
+      return true;
     case Action.OFFLINE:
-      return { status: false };
+      return false;
   }
 };
 
-/**
- * @returns {State}
- */
 function useNetworkStatus(): State {
   // grab current online status (null check) and use to intialize state
-  const [state, dispatch] = React.useReducer(networkStatusReducer, {
+  const [state, dispatch] = React.useReducer(
+    networkStatusReducer,
     // can reasonably expect to have window.navigator.onLine value if window is present
-    status: typeof window === 'object' ? window.navigator.onLine : undefined,
-  });
+    typeof window !== 'undefined' ? window.navigator.onLine : undefined,
+  );
 
   // memoize callbacks
   const onlineHandler = React.useCallback(() => dispatch({ type: Action.ONLINE }), [dispatch]);

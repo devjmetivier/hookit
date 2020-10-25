@@ -1,0 +1,61 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Hooky/useVerificationInputs/Docs" />
+
+# useVerificationInputs
+
+Helps with verification input features
+
+`const [inputRefs, getValues] = useVerificationInputs(options)`
+
+### Usage
+
+```tsx
+const Component = () => {
+  const focusRef = React.useRef();
+
+  const [inputRefs, getValues] = useVerificationInputs({
+    focusAfter: focusRef,
+    lastInputCallback: () => {
+      console.log("lastInputCallback executed");
+    },
+  });
+
+  return (
+    <>
+      {Array.from({ length: 6 }, (_, i) => `item-${i}`).map((item, i) => (
+        <input
+          key={item}
+          ref={(input) => (inputRefs.current[i] = input)}
+          style={defaultStyles}
+          type="text"
+        />
+      ))}
+
+      <button
+        onClick={() => console.log(getValues())}
+        ref={focusRef}
+        type="button"
+      >
+        Get Values
+      </button>
+    </>
+  );
+};
+```
+
+### Arguments
+
+Accepts an object of `options`
+
+| Name              | Type                     | Required? |
+| ----------------- | ------------------------ | --------- |
+| focusAfter        | `React.MutableRefObject` | No        |
+| lastInputCallback | `() => void`             | No        |
+
+### Returns
+
+| Index | Description                                                    | Type                                         |
+| ----- | -------------------------------------------------------------- | -------------------------------------------- |
+| 0     | A single `ref` defaulted to an empty array                     | `React.MutableRefObject<HTMLInputElement[]>` |
+| 1     | A function that gets all the values from the referenced inputs | `() => [string]`                             |

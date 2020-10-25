@@ -9,7 +9,7 @@ type Return = void;
  * @param {Interval} interval? Length of time (milliseconds) before the `callback` is executed. Providing `null` will clear the interval.
  * @returns {Return} nothing
  */
-function useInterval(callback: Callback, interval?: Interval): Return {
+function useInterval(callback: Callback, interval: Interval): Return {
   const savedCallback = React.useRef<Callback>();
 
   // Remember the latest callback.
