@@ -31,8 +31,8 @@ jobs:
 
       - name: Deploy to Now (Dev)
         if: github.event_name == 'pull_request'
-        run: npx now ./hooky-storybook --token ${{ secrets.NOW_TOKEN }} --confirm
+        run: npx vercel ./hooky-storybook --token ${{ secrets.VERCEL_TOKEN }} --confirm
 
       - name: Deploy to Now (Prod)
         if: github.event_name == 'push' && github.base_ref == 'master'
-        run: npx now ./hooky-storybook --prod --token ${{ secrets.NOW_TOKEN }} --confirm
+        run: npx vercel ./hooky-storybook --prod --token ${{ secrets.VERCEL_TOKEN }} --confirm
