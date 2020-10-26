@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useInterval from '@hooky/interval';
+import useInterval from '@hookit/interval';
 
 export default {
-  title: 'Hooky/useInterval',
+  title: 'hookit/useInterval',
 } as Meta;
 
 export const Default: Story = () => {

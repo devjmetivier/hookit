@@ -2,19 +2,19 @@ import { readDirAsync, writeFileAsync } from './utils';
 
 const cwd = process.cwd();
 
-const template = `<h1 align="center">🪝 Hooky 🪝</h1>
+const template = `<h1 align="center">🪝 hookit 🪝</h1>
 
 <p align="center">
-  <a aria-label="License" href="https://github.com/devjmetivier/hooky/issues?q=is%3Aissue+is%3Aopen+">
-    <img src="https://img.shields.io/github/issues-raw/devjmetivier/hooky" />
+  <a aria-label="License" href="https://github.com/devjmetivier/hookit/issues?q=is%3Aissue+is%3Aopen+">
+    <img src="https://img.shields.io/github/issues-raw/devjmetivier/hookit" />
   </a>
 
-  <a aria-label="License" href="https://github.com/devjmetivier/hooky/pulls?q=is%3Apr+is%3Aopen+">
-    <img src="https://img.shields.io/github/issues-pr-raw/devjmetivier/hooky" />
+  <a aria-label="License" href="https://github.com/devjmetivier/hookit/pulls?q=is%3Apr+is%3Aopen+">
+    <img src="https://img.shields.io/github/issues-pr-raw/devjmetivier/hookit" />
   </a>
   
-  <a aria-label="License" href="https://github.com/devjmetivier/hooky/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/devjmetivier/hooky" />
+  <a aria-label="License" href="https://github.com/devjmetivier/hookit/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/devjmetivier/hookit" />
   </a>
 <p>
 

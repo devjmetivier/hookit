@@ -1,18 +1,18 @@
 import { ICliArgs } from '../newPackage';
 
 export default ({ packageDir, keywords, description }: ICliArgs) => `{
-  "name": "@hooky/${packageDir}",
+  "name": "@hookit/${packageDir}",
   "description": "${description}",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
-  "homepage": "https://github.com/devjmetivier/hooky/tree/master/packages/${packageDir}#readme",
+  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/${packageDir}#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devjmetivier/hooky.git"
+    "url": "git+https://github.com/devjmetivier/hookit.git"
   },
   "bugs": {
-    "url": "https://github.com/devjmetivier/hooky/issues"
+    "url": "https://github.com/devjmetivier/hookit/issues"
   },
   "keywords": [
 ${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}

@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useLocalStorage from '@hooky/local-storage';
+import useLocalStorage from '@hookit/local-storage';
 
 export default {
-  title: 'Hooky/useLocalStorage',
+  title: 'hookit/useLocalStorage',
 } as Meta;
 
 const key = 'useLocalStorage';

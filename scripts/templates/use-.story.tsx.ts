@@ -1,7 +1,7 @@
 import { ICliArgs } from '../newPackage';
 
 export default ({ hookName, packageDir }: ICliArgs) => `import * as React from 'react';
-import ${hookName} from '@hooky/${packageDir}';
+import ${hookName} from '@hookit/${packageDir}';
 
 export default {
   title: '${hookName}',

@@ -1,16 +1,16 @@
 {
-  "name": "@hooky/local-storage",
+  "name": "@hookit/local-storage",
   "description": "React hook to set and get items from local storage",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
-  "homepage": "https://github.com/devjmetivier/hooky/tree/master/packages/local-storage#readme",
+  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/local-storage#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devjmetivier/hooky.git"
+    "url": "git+https://github.com/devjmetivier/hookit.git"
   },
   "bugs": {
-    "url": "https://github.com/devjmetivier/hooky/issues"
+    "url": "https://github.com/devjmetivier/hookit/issues"
   },
   "keywords": [
     "react",

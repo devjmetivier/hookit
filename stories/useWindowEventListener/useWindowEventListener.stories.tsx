@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useWindowEventListener from '@hooky/window-event-listener';
+import useWindowEventListener from '@hookit/window-event-listener';
 
 export default {
-  title: 'Hooky/useWindowEventListener',
+  title: 'hookit/useWindowEventListener',
 } as Meta;
 
 export const MouseMove: Story = () => {

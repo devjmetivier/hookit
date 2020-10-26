@@ -8,7 +8,7 @@ export const writeFileAsync = promisify(fs.writeFile);
 const header = (title: string) => {
   console.clear();
 
-  console.log(`🪝 ${chalk.bold('Hooky')} ${title ? `${chalk.dim('>')} ${title}` : ''}\n`);
+  console.log(`🪝 ${chalk.bold('hookit')} ${title ? `${chalk.dim('>')} ${title}` : ''}\n`);
 };
 
 interface CreateScript {

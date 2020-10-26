@@ -1,16 +1,16 @@
 {
-  "name": "@hooky/verification-inputs",
+  "name": "@hookit/verification-inputs",
   "description": "React hook that helps with verification input features",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
-  "homepage": "https://github.com/devjmetivier/hooky/tree/master/packages/verification-inputs#readme",
+  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/verification-inputs#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devjmetivier/hooky.git"
+    "url": "git+https://github.com/devjmetivier/hookit.git"
   },
   "bugs": {
-    "url": "https://github.com/devjmetivier/hooky/issues"
+    "url": "https://github.com/devjmetivier/hookit/issues"
   },
   "keywords": [
     "react",
