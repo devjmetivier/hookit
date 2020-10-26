@@ -23,7 +23,7 @@ ${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}
   "files": [
     "cjs",
     "esm",
-    "typings"
+    "types"
   ],
   "scripts": {
     "prepublishOnly": "yarn build",

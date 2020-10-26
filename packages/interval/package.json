@@ -25,7 +25,7 @@
   "files": [
     "cjs",
     "esm",
-    "typings"
+    "types"
   ],
   "scripts": {
     "prepublishOnly": "yarn build",
