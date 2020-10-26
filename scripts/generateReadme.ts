@@ -2,7 +2,7 @@ import { readDirAsync, writeFileAsync } from './utils';
 
 const cwd = process.cwd();
 
-const template = `<h1 align="center">🪝 hookit 🪝</h1>
+const globalTemplate = `<h1 align="center">🪝 hookit 🪝</h1>
 
 <p align="center">
   <a aria-label="License" href="https://github.com/devjmetivier/hookit/issues?q=is%3Aissue+is%3Aopen+">
@@ -33,6 +33,12 @@ See [packages](packages) for individual package details.
 | Package | Version | Description |
 | ------- | ------- | ----------- |`;
 
+const packageTemplate = `
+### Documentation
+
+Please have a look at the documentation on [Storybook](hookit-storybook.vercel.app)
+`;
+
 async function run() {
   const packageNames = await readDirAsync('./packages', {
     withFileTypes: true,
@@ -48,7 +54,13 @@ async function run() {
     })
     .join('\n');
 
-  await writeFileAsync('README.md', `${template}\n${packages}\n`);
+  await writeFileAsync('README.md', `${globalTemplate}\n${packages}\n`);
+
+  packageNames.forEach(async (item) => {
+    const pkg = require(`${cwd}/packages/${item.name}/package.json`);
+
+    await writeFileAsync(`packages/${item.name}/README.md`, `# ${pkg.name}\n${packageTemplate}`);
+  });
 }
 
 run();
