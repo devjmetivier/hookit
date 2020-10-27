@@ -1,7 +1,7 @@
 {
   "name": "@hookit/network-status",
   "description": "Returns network status",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/network-status#readme",
@@ -37,7 +37,7 @@
     "build:types": "tsc --d --declarationMap --declarationDir types"
   },
   "devDependencies": {
-    "@hookit/window-event-listener": "^0.0.4"
+    "@hookit/window-event-listener": "^0.0.5"
   },
   "peerDependencies": {
     "react": ">=16.8"
