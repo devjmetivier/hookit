@@ -10,6 +10,8 @@ Helps with verification input features
 
 ### Usage
 
+Basic:
+
 ```tsx
 const Component = () => {
   const focusRef = React.useRef();
@@ -24,12 +26,64 @@ const Component = () => {
   return (
     <>
       {Array.from({ length: 6 }, (_, i) => `item-${i}`).map((item, i) => (
-        <input
-          key={item}
-          ref={(input) => (inputRefs.current[i] = input)}
-          style={defaultStyles}
-          type="text"
-        />
+        <>
+          <label htmlFor={item} style={srOnly}>
+            {item}
+          </label>
+          <input
+            id={item}
+            key={item}
+            ref={(input) => (inputRefs.current[i] = input)}
+            style={defaultStyles}
+            type="text"
+          />
+        </>
+      ))}
+
+      <button
+        onClick={() => console.log(getValues())}
+        ref={focusRef}
+        type="button"
+      >
+        Get Values
+      </button>
+    </>
+  );
+};
+```
+
+Forwarding `ref` to a component:
+
+```tsx
+const InputComponent = React.forwardRef((props, ref) => (
+  <input ref={ref} {...props} />
+));
+
+const Component = () => {
+  const focusRef = React.useRef();
+
+  const [inputRefs, getValues] = useVerificationInputs({
+    focusAfter: focusRef,
+    lastInputCallback: () => {
+      console.log("lastInputCallback executed");
+    },
+  });
+
+  return (
+    <>
+      {Array.from({ length: 6 }, (_, i) => `item-${i}`).map((item, i) => (
+        <>
+          <label htmlFor={item} style={srOnly}>
+            {item}
+          </label>
+          <InputComponent
+            id={item}
+            key={item}
+            ref={(input) => (inputRefs.current[i] = input)}
+            style={defaultStyles}
+            type="text"
+          />
+        </>
       ))}
 
       <button
