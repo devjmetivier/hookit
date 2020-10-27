@@ -7,7 +7,7 @@
     "test": "jest",
     "bootstrap": "yarn lerna bootstrap",
     "storybook": "start-storybook --ci -p 8001",
-    "storybook:build": "build-storybook -o ./hookit-storybook",
+    "storybook:build": "build-storybook -o ./hookit-storybook --no-dll",
     "new:package": "npx ts-node scripts/newPackage.ts",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
