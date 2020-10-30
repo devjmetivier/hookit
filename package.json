@@ -4,6 +4,7 @@
     "publish-packages": "yarn build && lerna publish from-package --yes",
     "clean": "lerna run prebuild",
     "build": "lerna run build",
+    "build:watch": "lerna run build:watch",
     "test": "jest",
     "bootstrap": "yarn lerna bootstrap",
     "storybook": "start-storybook --ci -p 8001",
