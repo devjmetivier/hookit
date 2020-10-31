@@ -36,6 +36,9 @@
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
     "build:types": "tsc --d --declarationMap --declarationDir types"
   },
+  "dependencies": {
+    "@hookit/window-event-listener": "^0.0.5"
+  },
   "devDependencies": {
     "@hookit/window-event-listener": "^0.0.5"
   },
