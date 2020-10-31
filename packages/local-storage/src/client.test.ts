@@ -10,6 +10,7 @@ const initialValue = 'Hello, Moto!';
 const number = '0';
 const string = 'value';
 const object = '{"key":"value"}';
+const realObject = { key: 'value' };
 const array = '[1,2,3,4,5]';
 
 describe('useLocalStorage CSR', () => {
@@ -86,16 +87,23 @@ describe('useLocalStorage CSR', () => {
     expect(localStorage.getItem(key)).toBeFalsy();
     expect(result.current[0]).toBe(initialValue);
 
-    act(() => {
-      result.current[1](first);
-    });
+    act(() => result.current[1](first));
 
     expect(result.current[0]).toBe(first);
 
-    act(() => {
-      result.current[1](second);
-    });
+    act(() => result.current[1](second));
 
     expect(result.current[0]).toBe(second);
+  });
+
+  it('sets real objects in storage', () => {
+    const { result } = renderHook(() => useLocalStorage(key, realObject));
+
+    expect(localStorage.getItem(key)).toBeFalsy();
+    expect(result.current[0]).toBe(realObject);
+
+    act(() => result.current[1]({ key: 'newValue' }));
+
+    expect(result.current[0]).toMatchObject({ key: 'newValue' });
   });
 });
