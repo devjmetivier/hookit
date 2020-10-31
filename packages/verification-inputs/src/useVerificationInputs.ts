@@ -15,12 +15,15 @@ function handleInput(e: Event, inputs: HTMLInputElement[]) {
   }
 
   if (prev && prev.localName === 'input' && currentInput.value === '') {
+    prev.focus();
     prev.select();
     return;
   }
 
   if (next && next.localName === 'input' && currentInput.value !== '') {
+    next.focus();
     next.select();
+    return;
   }
 }
 
@@ -31,12 +34,14 @@ function handleEmptyBackspace(e: KeyboardEvent, inputs: HTMLInputElement[]) {
   const prev = prevIndex < 0 ? null : inputs[prevIndex];
 
   if (e.key === 'Backspace' && currentInput.value === '' && prev) {
+    prev.focus();
     prev.select();
   }
 }
 
 function handleClick(e: MouseEvent) {
   const input = <HTMLInputElement>e.target;
+  input.focus();
   input.select();
 }
 
@@ -73,6 +78,7 @@ const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInpu
         lastInput(options.focusAfter, options.lastInputCallback);
       }
     };
+
     function handlePaste(e: ClipboardEvent) {
       e.preventDefault();
       const pasteData = e.clipboardData.getData('text').split('');

@@ -20,5 +20,6 @@
     "/esm",
     "/types"
   ],
-  "reporters": ["default"]
+  "reporters": ["default"],
+  "setupFilesAfterEnv": ["<rootDir>/setupTests.ts"]
 }
