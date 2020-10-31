@@ -1,6 +1,6 @@
 {
   "name": "@hookit/verification-inputs",
-  "description": "React hook that helps with verification input features",
+  "description": "Helps with verification input features",
   "version": "0.0.5",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",

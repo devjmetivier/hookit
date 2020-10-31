@@ -1,6 +1,6 @@
 {
   "name": "@hookit/interval",
-  "description": "React hook to execute code on an interval",
+  "description": "Execute code on an interval",
   "version": "0.0.5",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",

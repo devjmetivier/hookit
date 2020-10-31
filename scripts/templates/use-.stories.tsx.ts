@@ -1,14 +1,15 @@
 import { ICliArgs } from '../newPackage';
 
 export default ({ hookName, packageDir }: ICliArgs) => `import * as React from 'react';
+import { Meta, Story } from '@storybook/react/types-6-0';
 import ${hookName} from '@hookit/${packageDir}';
 
 export default {
-  title: '${hookName}',
-};
+  title: 'hookit/${hookName}',
+} as Meta;
 
-export const Default = () => {
-  const hookReturn = ${hookName}();
+export const Default: Story = () => {
+  // const hookReturn = ${hookName}();
 
   return (
     <>

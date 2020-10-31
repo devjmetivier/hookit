@@ -15,6 +15,7 @@ const script = createScript({
   name: 'Create new package',
   task: async () => {
     const packagesDir = './packages';
+    const storiesDir = './stories';
     const validatePackageName = /^[a-z-?]+$/g;
     const validateHookName = /^[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?/g;
 
@@ -68,13 +69,17 @@ const script = createScript({
     ]);
 
     const packagePath = `${packagesDir}/${packageDir}`;
+    const storyPath = `${storiesDir}/${hookName}`;
     const packageSrcPath = `${packagesDir}/${packageDir}/src`;
     const nonSrc = ['package', 'tsconfig'];
 
     const tasks = new Listr([
       {
-        title: 'Creating directory',
-        task: () => fs.mkdirSync(packageSrcPath, { recursive: true }),
+        title: 'Creating directories',
+        task: () => {
+          fs.mkdirSync(packageSrcPath, { recursive: true });
+          fs.mkdirSync(storyPath, { recursive: true });
+        },
       },
       {
         title: 'Creating files',
@@ -92,7 +97,7 @@ const script = createScript({
                 const fileName = name.replace(/.ts$/, '');
                 const filePath = isSrcFile ? `src/${fileName}` : fileName;
 
-                const content = import(`${__dirname}/templates/${name}`)
+                const content = await import(`${__dirname}/templates/${name}`)
                   .then((fn: { default: (args: ICliArgs) => void }) =>
                     fn.default({
                       packageDir,
@@ -104,11 +109,14 @@ const script = createScript({
                   .then((content) => ({
                     title: filePath,
                     task: () => {
+                      if (fileName.includes('stories') && fileName.includes('mdx')) {
+                        return writeFileAsync(`${storyPath}/${hookName}.stories.mdx`, content);
+                      }
+                      if (fileName.includes('stories')) {
+                        return writeFileAsync(`${storyPath}/${hookName}.stories.tsx`, content);
+                      }
                       if (fileName.includes('use')) {
                         return writeFileAsync(`${packagePath}/src/${hookName}.ts`, content);
-                      }
-                      if (fileName.includes('story')) {
-                        return writeFileAsync(`${packagePath}/src/${hookName}.story.tsx`, content);
                       }
                       return writeFileAsync(`${packagePath}/${filePath}`, content);
                     },

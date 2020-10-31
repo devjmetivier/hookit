@@ -1,10 +1,10 @@
 {
-  "name": "@hookit/local-storage",
-  "description": "Set and get items from local storage",
-  "version": "0.0.5",
+  "name": "@hookit/sarcasm",
+  "description": "sO yOu WaNnA uSe SoMe HoOkS hUh???",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
-  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/local-storage#readme",
+  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/sarcasm#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devjmetivier/hookit.git"
@@ -15,8 +15,9 @@
   "keywords": [
     "react",
     "hooks",
-    "useLocalStorage",
-    "localStorage"
+    "sarcasm",
+    "spongebob",
+    "meme"
   ],
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -33,7 +34,7 @@
     "build:watch": "tsc-watch -p ./tsconfig.json --onSuccess 'yarn build'",
     "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
-    "build:types": "tsc --declaration --declarationDir types"
+    "build:types": "tsc --d --declarationMap --declarationDir types"
   },
   "peerDependencies": {
     "react": ">=16.8"
