@@ -71,7 +71,7 @@ const script = createScript({
     const packagePath = `${packagesDir}/${packageDir}`;
     const storyPath = `${storiesDir}/${hookName}`;
     const packageSrcPath = `${packagesDir}/${packageDir}/src`;
-    const nonSrc = ['package', 'tsconfig'];
+    const nonSrc = ['package', 'tsconfig', 'README'];
 
     const tasks = new Listr([
       {
