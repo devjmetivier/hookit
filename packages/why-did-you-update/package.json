@@ -1,6 +1,6 @@
 {
   "name": "@hookit/why-did-you-update",
-  "description": "Helps you understand why react components are re-rendering",
+  "description": "Understand why react components are re-rendering",
   "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",

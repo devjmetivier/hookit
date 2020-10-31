@@ -1,6 +1,6 @@
 {
   "name": "@hookit/network-status",
-  "description": "Returns network status",
+  "description": "Get network status",
   "version": "0.0.5",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
