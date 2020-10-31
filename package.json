@@ -10,6 +10,7 @@
     "storybook": "start-storybook --ci -p 8001",
     "storybook:build": "build-storybook -o ./hookit-storybook --no-dll",
     "new:package": "npx ts-node scripts/newPackage.ts",
+    "generate:readme": "npx ts-node scripts/generateReadme.ts",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
     "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix"
   },
