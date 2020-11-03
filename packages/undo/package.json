@@ -1,7 +1,7 @@
 {
   "name": "@hookit/undo",
   "description": "Undo & redo state changes",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/undo#readme",

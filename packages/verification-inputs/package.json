@@ -1,7 +1,7 @@
 {
   "name": "@hookit/verification-inputs",
   "description": "Helps with verification input features",
-  "version": "0.0.9",
+  "version": "0.0.10",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/verification-inputs#readme",
