@@ -63,4 +63,14 @@ const Component = () => {
 
 ### Returns
 
-Nothin 🤪
+| Index | Name    | Description                                       | Type         |
+| ----- | ------- | ------------------------------------------------- | ------------ |
+| 0     | future  | future state(s) after undo                        | `any[]`      |
+| 0     | past    | previous state(s)                                 | `any[]`      |
+| 0     | present | current state                                     | `any`        |
+| 1     | canRedo | `boolean` to help understand if redo is available | `boolean`    |
+| 1     | canUndo | `boolean` to help understand if undo is available | `boolean`    |
+| 1     | redo    | sets state to first future state if available     | `() => void` |
+| 1     | reset   | resets state to initials state                    | `() => void` |
+| 1     | set     | sets new state and adds to past state             | `() => void` |
+| 1     | undo    | sets state to first past state if available       | `() => void` |
