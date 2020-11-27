@@ -40,27 +40,31 @@ Please have a look at the documentation on [Storybook](https://hookit-storybook.
 `;
 
 async function run() {
-  const packageNames = await readDirAsync('./packages', {
-    withFileTypes: true,
-  });
+  try {
+    const packageNames = await readDirAsync('./packages', {
+      withFileTypes: true,
+    });
 
-  const packages = packageNames
-    .filter((item: any) => item.isDirectory())
-    .map((item: any) => {
+    const packages = packageNames
+      .filter((item: any) => item.isDirectory())
+      .map((item: any) => {
+        const pkg = require(`${cwd}/packages/${item.name}/package.json`);
+        const npmBadge = `![${pkg.name} npm badge](https://img.shields.io/npm/v/${pkg.name})`;
+
+        return `| [${pkg.name}](packages/${item.name}) | ${npmBadge} | ${pkg.description} |`;
+      })
+      .join('\n');
+
+    await writeFileAsync('README.md', `${globalTemplate}\n${packages}\n`);
+
+    packageNames.forEach(async (item) => {
       const pkg = require(`${cwd}/packages/${item.name}/package.json`);
-      const npmBadge = `![${pkg.name} npm badge](https://img.shields.io/npm/v/${pkg.name})`;
 
-      return `| [${pkg.name}](packages/${item.name}) | ${npmBadge} | ${pkg.description} |`;
-    })
-    .join('\n');
-
-  await writeFileAsync('README.md', `${globalTemplate}\n${packages}\n`);
-
-  packageNames.forEach(async (item) => {
-    const pkg = require(`${cwd}/packages/${item.name}/package.json`);
-
-    await writeFileAsync(`packages/${item.name}/README.md`, `# ${pkg.name}\n${packageTemplate}`);
-  });
+      await writeFileAsync(`packages/${item.name}/README.md`, `# ${pkg.name}\n${packageTemplate}`);
+    });
+  } catch (e) {
+    throw new Error(e);
+  }
 }
 
 run();
