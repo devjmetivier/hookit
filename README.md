@@ -20,7 +20,7 @@ Features:
 
 - TypeScript support
 - Fully tested
-- Server render compatibility
+- SSR compatibility
 
 ## Packages
 
@@ -30,6 +30,7 @@ See [packages](packages) for individual package details.
 | ------- | ------- | ----------- |
 | [@hookit/interval](packages/interval) | ![@hookit/interval npm badge](https://img.shields.io/npm/v/@hookit/interval) | Execute code on an interval |
 | [@hookit/local-storage](packages/local-storage) | ![@hookit/local-storage npm badge](https://img.shields.io/npm/v/@hookit/local-storage) | Set and get items from local storage |
+| [@hookit/media](packages/media) | ![@hookit/media npm badge](https://img.shields.io/npm/v/@hookit/media) | Utilize media queries in components |
 | [@hookit/network-status](packages/network-status) | ![@hookit/network-status npm badge](https://img.shields.io/npm/v/@hookit/network-status) | Get network status |
 | [@hookit/sarcasm](packages/sarcasm) | ![@hookit/sarcasm npm badge](https://img.shields.io/npm/v/@hookit/sarcasm) | sO yOu WaNnA uSe SoMe HoOkS hUh??? |
 | [@hookit/toggle](packages/toggle) | ![@hookit/toggle npm badge](https://img.shields.io/npm/v/@hookit/toggle) | Toggle a boolean state |

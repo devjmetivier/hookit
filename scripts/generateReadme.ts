@@ -24,7 +24,7 @@ Features:
 
 - TypeScript support
 - Fully tested
-- Server render compatibility
+- SSR compatibility
 
 ## Packages
 
