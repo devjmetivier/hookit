@@ -1,12 +1,10 @@
-import { ICliArgs } from '../newPackage';
-
-export default ({ packageDir, keywords, description }: ICliArgs) => `{
-  "name": "@hookit/${packageDir}",
-  "description": "${description}",
+{
+  "name": "@hookit/geo-location",
+  "description": "Access users geolocation info with hooks",
   "version": "0.0.0",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
-  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/${packageDir}#readme",
+  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/geo-location#readme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/devjmetivier/hookit.git"
@@ -15,7 +13,10 @@ export default ({ packageDir, keywords, description }: ICliArgs) => `{
     "url": "https://github.com/devjmetivier/hookit/issues"
   },
   "keywords": [
-${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}
+    "react",
+    "hooks",
+    "location",
+    "geolocation"
   ],
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -38,4 +39,3 @@ ${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}
     "react": ">=16.8"
   }
 }
-`;
