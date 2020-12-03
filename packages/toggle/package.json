@@ -1,7 +1,7 @@
 {
   "name": "@hookit/toggle",
   "description": "Toggle a boolean state",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/toggle#readme",

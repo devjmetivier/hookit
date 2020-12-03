@@ -1,7 +1,7 @@
 {
   "name": "@hookit/geo-location",
   "description": "Access users geolocation info with hooks",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/geo-location#readme",
