@@ -1,4 +1,4 @@
-# @hookit/undo
+# @hookit/geo-location
 
 ### Documentation
 

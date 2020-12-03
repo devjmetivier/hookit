@@ -33,10 +33,13 @@ See [packages](packages) for individual package details.
 | Package | Version | Description |
 | ------- | ------- | ----------- |`;
 
+const otherLinks = (packageNames: string[]) => `### Other Links
+* [Charts](https://npmcharts.com/compare/${packageNames.join(',')}?interval=7&minimal=true)`;
+
 const packageTemplate = `
 ### Documentation
 
-Please have a look at the documentation on [Storybook](https://hookit-storybook.vercel.app/)
+Please have a look at the individual package documentation on [Storybook](https://hookit-storybook.vercel.app/)
 `;
 
 async function run() {
@@ -55,7 +58,12 @@ async function run() {
       })
       .join('\n');
 
-    await writeFileAsync('README.md', `${globalTemplate}\n${packages}\n`);
+    await writeFileAsync(
+      'README.md',
+      `${globalTemplate}\n${packages}\n${otherLinks(
+        packageNames.filter((item: any) => item.isDirectory()).map((pkg) => `@hookit/${pkg.name}`),
+      )}\n`,
+    );
 
     packageNames.forEach(async (item) => {
       const pkg = require(`${cwd}/packages/${item.name}/package.json`);
