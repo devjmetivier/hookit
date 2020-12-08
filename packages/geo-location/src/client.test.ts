@@ -3,9 +3,9 @@ import { act, renderHook } from '@testing-library/react-hooks';
 import useGeoLocation from './useGeoLocation';
 
 const positions: Position[] = [
-  [52.520007, 13.404954, 1559129501234],
-  [51.507351, -0.127758, 1559129601234],
-  [37.774929, -122.419416, 1559129701234],
+  [42.332365, -83.0471307, 1607393783000],
+  [28.5965603, -81.3035348, 1607393783000],
+  [36.2490021, -85.5707212, 1607393783000],
 ].map(([latitude, longitude, timestamp]) => ({
   coords: {
     accuracy: 1.1,
@@ -30,11 +30,17 @@ const watchPositionMock = jest.fn((handleSuccess: Function, handleError: Functio
   handleSuccess,
   options,
 }));
+const getCurrentPositionMock = jest.fn((handleSuccess: Function, handleError: Function, options: PositionOptions) => ({
+  handleError,
+  handleSuccess,
+  options,
+}));
 const clearWatchMock = jest.fn();
 
 Object.defineProperty(window.navigator, 'geolocation', {
   value: {
     clearWatch: clearWatchMock,
+    getCurrentPosition: getCurrentPositionMock,
     watchPosition: watchPositionMock,
   },
   writable: true,
@@ -42,44 +48,45 @@ Object.defineProperty(window.navigator, 'geolocation', {
 
 describe('useGeoLocation CSR', () => {
   beforeEach(() => {
-    watchPositionMock.mockClear();
     clearWatchMock.mockClear();
+    getCurrentPositionMock.mockClear();
+    watchPositionMock.mockClear();
   });
 
-  test('returns initial null state', () => {
-    const { result } = renderHook(() => useGeoLocation());
+  test('returns initial null state with watch', () => {
+    const { result } = renderHook(() => useGeoLocation(true));
 
-    expect(result.current[0]).toBeUndefined();
-    expect(result.current[1]).toBeUndefined();
+    expect(result.current.geoLocation).toBeUndefined();
+    expect(result.current.error).toBeUndefined();
   });
 
-  test('returns current location', () => {
-    const { result } = renderHook(() => useGeoLocation());
+  test('returns current location with watch', () => {
+    const { result } = renderHook(() => useGeoLocation(true));
     const { handleSuccess } = lastCallOf(watchPositionMock);
 
     act(() => {
       handleSuccess(positions[0]);
     });
 
-    expect(result.current[0]).toBe(positions[0]);
-    expect(result.current[1]).toBeUndefined();
+    expect(result.current.geoLocation).toBe(positions[0]);
+    expect(result.current.error).toBeUndefined();
   });
 
-  test('passes options to watch', () => {
+  test('passes options with watch', () => {
     const options = {
       enableHighAccuracy: true,
     };
 
-    renderHook(() => useGeoLocation(options));
+    renderHook(() => useGeoLocation(true, options));
 
     const { options: returnedOptions } = lastCallOf(watchPositionMock);
 
     expect(returnedOptions).toBe(options);
   });
 
-  test('option change should invalidate effect', () => {
+  test('option change should invalidate effect with watch', () => {
     const initialProps = { enableHighAccuracy: true };
-    const { rerender } = renderHook((options) => useGeoLocation(options), {
+    const { rerender } = renderHook((options) => useGeoLocation(true, options), {
       initialProps,
     });
 
@@ -92,28 +99,52 @@ describe('useGeoLocation CSR', () => {
     expect(clearWatchMock).toHaveBeenCalled();
   });
 
-  test('handles a new position', () => {
-    const { result } = renderHook(() => useGeoLocation());
+  test('handles a new position with watch', () => {
+    const { result } = renderHook(() => useGeoLocation(true));
     const { handleSuccess } = lastCallOf(watchPositionMock);
 
     act(() => handleSuccess(positions[0]));
 
-    expect(result.current[0]).toBe(positions[0]);
+    expect(result.current.geoLocation).toBe(positions[0]);
 
     act(() => handleSuccess(positions[1]));
 
-    expect(result.current[0]).toBe(positions[1]);
+    expect(result.current.geoLocation).toBe(positions[1]);
   });
 
-  test('handles error', () => {
+  test('handles a new position with call', () => {
     const { result } = renderHook(() => useGeoLocation());
+
+    act(() => {
+      result.current.getPosition();
+    });
+
+    const firstLastCall = lastCallOf(getCurrentPositionMock);
+
+    act(() => firstLastCall.handleSuccess(positions[0]));
+
+    expect(result.current.geoLocation).toBe(positions[0]);
+
+    act(() => {
+      result.current.getPosition();
+    });
+
+    const secondLastCall = lastCallOf(getCurrentPositionMock);
+
+    act(() => secondLastCall.handleSuccess(positions[1]));
+
+    expect(result.current.geoLocation).toBe(positions[1]);
+  });
+
+  test('handles error with watch', () => {
+    const { result } = renderHook(() => useGeoLocation(true));
     const { handleError } = lastCallOf(watchPositionMock);
     const error = { code: 3, message: 'Timeout' };
 
-    expect(result.current[1]).toBeUndefined();
+    expect(result.current.error).toBeUndefined();
 
     act(() => handleError(error));
 
-    expect(result.current[1]).toBe(error);
+    expect(result.current.error).toBe(error);
   });
 });
