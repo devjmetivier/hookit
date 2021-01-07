@@ -1,6 +1,6 @@
 {
   "name": "@hookit/permissions",
-  "description": "derp",
+  "description": "Layer user permissions into your application with hooks",
   "version": "0.0.0",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
@@ -15,6 +15,7 @@
   "keywords": [
     "react",
     "hooks",
+    "user",
     "permissions"
   ],
   "main": "cjs/index.js",

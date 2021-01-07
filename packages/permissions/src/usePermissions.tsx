@@ -4,7 +4,7 @@ export type PermissionsType<
   Permission extends string | number = string | number,
   Role extends string | number = string | number
 > = {
-  [key in Permission]: Role[] | (() => Role[]) | (() => Promise<Role[]>);
+  [key in Permission]: Role[] | (() => boolean) | (() => Promise<boolean>);
 };
 
 const PermissionsContext = React.createContext<PermissionsType>(undefined);
@@ -20,6 +20,7 @@ export const PermissionsProvider = <Rules extends PermissionsType>({
 };
 
 const errorMessages = {
+  missingRoleError: '`usePermissions` requires a role as an argument',
   returnTypeError:
     'Rules must be an array of type string | number, or an executable resolver that returns an array of type string | number.',
   ruleTypeError:
@@ -27,6 +28,10 @@ const errorMessages = {
 };
 
 export const usePermissions = <Permission extends string | number, Role extends string | number>(role: Role) => {
+  if (!role && role !== 0) {
+    console.warn(errorMessages.missingRoleError);
+  }
+
   const rules = React.useContext(PermissionsContext);
 
   const bools = React.useMemo<{ [K in Permission]: boolean }>(
@@ -51,7 +56,7 @@ export const usePermissions = <Permission extends string | number, Role extends 
         }
 
         if (typeof rules[rule] === 'object') {
-          return (rules[rule] as string[]).some((user) => user === role)
+          return (rules[rule] as Role[]).some((user) => user === role)
             ? {
                 ...permissions,
                 [rule]: true,
