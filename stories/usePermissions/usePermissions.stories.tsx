@@ -1,189 +1,109 @@
 import * as React from 'react';
-import { Meta, Story, ArgTypes } from '@storybook/react/types-6-0';
-import { PermissionsProvider, usePermissions, PermissionsType } from '@hookit/permissions';
+import { ArgTypes, Meta, Story } from '@storybook/react/types-6-0';
+import { PermissionsProviderV2, usePermissionsV2, TPermissions, TRules } from '@hookit/permissions';
 
-export default {
-  title: 'hookit/usePermissions',
-} as Meta;
+export default { title: 'hookit/usePermissionsV2' } as Meta;
 
-type PermissionsUnion = 'canDoThis' | 'canDoThat' | 'canGetThis' | 'canGetThat' | 'canViewThis' | 'canViewThat';
-type RolesUnion = 'admin' | 'normal' | 'free';
+enum MMPermissionsEnum {
+  DoThis = 'DoThis',
+  DoThat = 'DoThat',
+  GetThis = 'GetThis',
+  GetThat = 'GetThat',
+}
+enum MMRolesEnum {
+  admin = 'admin',
+  normal = 'normal',
+  free = 'free',
+}
 
-const PermissionsStringComponent: React.FC<{ userRole: RolesUnion }> = ({ userRole }) => {
-  const permissions = usePermissions<PermissionsUnion, RolesUnion>(userRole);
+type MMPermissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
+type MMRoles = 'admin' | 'normal' | 'free';
+
+const admin: TPermissions<MMPermissions> = {
+  DoThis: true,
+  DoThat: true,
+  GetThis: true,
+  GetThat: true,
+};
+
+type ARGS = { firstArg: number; secondArg: number };
+
+const normal: TPermissions<MMPermissions> = {
+  DoThis: true,
+  DoThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
+  GetThis: false,
+  GetThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
+};
+
+const rules: TRules<MMPermissions, MMRoles> = {
+  admin,
+  normal,
+};
+
+const PermissionsComponent: Story<{ role: MMRoles; firstArg: number; secondArg: number }> = ({
+  role,
+  firstArg,
+  secondArg,
+}) => {
+  const { canAccess } = usePermissionsV2<MMPermissions, MMRoles>(role);
+
+  const canDoThis = canAccess<ARGS>('DoThis', { firstArg, secondArg });
+  const canDoThat = canAccess<ARGS>('DoThat', { firstArg, secondArg });
+  const canGetThis = canAccess<ARGS>('GetThis', { firstArg, secondArg });
+  const canGetThat = canAccess<ARGS>('GetThat', { firstArg, secondArg });
 
   return (
     <>
-      <h3>Current User Role: {userRole}</h3>
-      <div style={{ border: '1px solid black', marginBottom: '2rem', padding: '1rem' }}>
-        {Object.keys(permissions).map((permission) => (
-          <p key={permission}>
-            {permission}: {permissions[permission] ? '✅' : '🚫'}
-          </p>
-        ))}
-      </div>
+      <h3>Current User Role: {role}</h3>
+      <p>canDoThis: {canDoThis ? '✅' : '🚫'}</p>
+      <p>canDoThat: {canDoThat ? '✅' : '🚫'}</p>
+      <p>canGetThis: {canGetThis ? '✅' : '🚫'}</p>
+      <p>canGetThat: {canGetThat ? '✅' : '🚫'}</p>
 
       <p>
-        Use the controls to switch between different user roles. You can also use the permissions multi-select controls
-        to assign permissions to one or many user roles.
+        Rules:
+        <pre>
+          <code>
+            {JSON.stringify(
+              rules,
+              function (_, value) {
+                return typeof value === 'function' ? 'Function' : value;
+              },
+              2,
+            )}
+          </code>
+        </pre>
       </p>
     </>
   );
 };
 
-enum PermissionsEnum {
-  CAN_DO_THIS,
-  CAN_DO_THAT,
-  CAN_GET_THIS,
-  CAN_GET_THAT,
-  CAN_VIEW_THIS,
-  CAN_VIEW_THAT,
-}
-
-enum RolesEnum {
-  ADMIN,
-  NORMAL,
-  FREE,
-}
-
-const PermissionsNumberComponent: React.FC<{ userRole: RolesEnum }> = ({ userRole }) => {
-  const permissions = usePermissions<PermissionsEnum, RolesEnum>(userRole);
-
+export const String: Story = (args: any) => {
   return (
-    <>
-      <h3>Current User Role: {userRole}</h3>
-      <div style={{ border: '1px solid black', marginBottom: '2rem', padding: '1rem' }}>
-        {Object.keys(permissions).map((permission) => (
-          <p key={permission}>
-            {permission}: {permissions[permission] ? '✅' : '🚫'}
-          </p>
-        ))}
-      </div>
-
-      <p>
-        Use the controls to switch between different user roles. You can also use the permissions multi-select controls
-        to assign permissions to one or many user roles.
-      </p>
-    </>
-  );
-};
-
-export const String: Story = ({ userRole, ...args }) => {
-  return (
-    <PermissionsProvider rules={args}>
-      <PermissionsStringComponent userRole={userRole} />
-    </PermissionsProvider>
+    <PermissionsProviderV2 rules={rules}>
+      <PermissionsComponent {...args} />
+    </PermissionsProviderV2>
   );
 };
 
 String.argTypes = {
-  userRole: {
+  role: {
     defaultValue: 'admin',
     control: {
       type: 'select',
       options: ['admin', 'normal', 'free'],
     },
   },
-  canDoThis: {
-    defaultValue: ['admin'],
+  firstArg: {
+    defaultValue: 1,
     control: {
-      type: 'multi-select',
-      options: ['admin', 'normal', 'free'],
+      type: 'number',
     },
   },
-  canDoThat: {
-    defaultValue: ['admin'],
+  secondArg: {
+    defaultValue: 1,
     control: {
-      type: 'multi-select',
-      options: ['admin', 'normal', 'free'],
-    },
-  },
-  canGetThis: {
-    defaultValue: ['admin', 'normal'],
-    control: {
-      type: 'multi-select',
-      options: ['admin', 'normal', 'free'],
-    },
-  },
-  canGetThat: {
-    defaultValue: ['admin', 'normal'],
-    control: {
-      type: 'multi-select',
-      options: ['admin', 'normal', 'free'],
-    },
-  },
-  canViewThis: {
-    defaultValue: ['admin', 'normal', 'free'],
-    control: {
-      type: 'multi-select',
-      options: ['admin', 'normal', 'free'],
-    },
-  },
-  canViewThat: {
-    defaultValue: ['admin', 'normal', 'free'],
-    control: {
-      type: 'multi-select',
-      options: ['admin', 'normal', 'free'],
-    },
-  },
-} as ArgTypes;
-
-export const Number: Story = ({ userRole, ...args }) => {
-  return (
-    <PermissionsProvider rules={args}>
-      <PermissionsNumberComponent userRole={userRole} />
-    </PermissionsProvider>
-  );
-};
-
-Number.argTypes = {
-  userRole: {
-    defaultValue: 0,
-    control: {
-      type: 'select',
-      options: [0, 1, 2],
-    },
-  },
-  '0': {
-    defaultValue: [0],
-    control: {
-      type: 'multi-select',
-      options: [0, 1, 2],
-    },
-  },
-  '1': {
-    defaultValue: [0],
-    control: {
-      type: 'multi-select',
-      options: [0, 1, 2],
-    },
-  },
-  '2': {
-    defaultValue: [0, 1],
-    control: {
-      type: 'multi-select',
-      options: [0, 1, 2],
-    },
-  },
-  '3': {
-    defaultValue: [0, 1],
-    control: {
-      type: 'multi-select',
-      options: [0, 1, 2],
-    },
-  },
-  '4': {
-    defaultValue: [0, 1, 2],
-    control: {
-      type: 'multi-select',
-      options: [0, 1, 2],
-    },
-  },
-  '5': {
-    defaultValue: [0, 1, 2],
-    control: {
-      type: 'multi-select',
-      options: [0, 1, 2],
+      type: 'number',
     },
   },
 } as ArgTypes;
