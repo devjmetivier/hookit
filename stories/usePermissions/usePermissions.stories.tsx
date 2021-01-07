@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { ArgTypes, Meta, Story } from '@storybook/react/types-6-0';
-import { PermissionsProviderV2, usePermissionsV2, TPermissions, TRules } from '@hookit/permissions';
+import { PermissionsProvider, usePermissions, TPermissions, TRules } from '@hookit/permissions';
 
-export default { title: 'hookit/usePermissionsV2' } as Meta;
+export default { title: 'hookit/usePermissions' } as Meta;
 
 enum MMPermissionsEnum {
   DoThis = 'DoThis',
@@ -45,10 +45,10 @@ const PermissionsComponent: Story<{ role: MMRoles; firstArg: number; secondArg: 
   firstArg,
   secondArg,
 }) => {
-  const { canAccess } = usePermissionsV2<MMPermissions, MMRoles>(role);
+  const { canAccess } = usePermissions<MMPermissions, MMRoles>(role);
 
   const canDoThis = canAccess<ARGS>('DoThis', { firstArg, secondArg });
-  const canDoThat = canAccess<ARGS>('DoThat', { firstArg, secondArg });
+  const canDoThat = canAccess<ARGS>('DoThat');
   const canGetThis = canAccess<ARGS>('GetThis', { firstArg, secondArg });
   const canGetThat = canAccess<ARGS>('GetThat', { firstArg, secondArg });
 
@@ -78,15 +78,15 @@ const PermissionsComponent: Story<{ role: MMRoles; firstArg: number; secondArg: 
   );
 };
 
-export const String: Story = (args: any) => {
+export const Default: Story = (args: any) => {
   return (
-    <PermissionsProviderV2 rules={rules}>
+    <PermissionsProvider rules={rules}>
       <PermissionsComponent {...args} />
-    </PermissionsProviderV2>
+    </PermissionsProvider>
   );
 };
 
-String.argTypes = {
+Default.argTypes = {
   role: {
     defaultValue: 'admin',
     control: {

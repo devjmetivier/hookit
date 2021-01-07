@@ -6,10 +6,124 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 Layer user permissions into your application with hooks
 
-`const permissions = usePermissions(role)`
-
 ### Usage
 
 #### JavaScript
 
+```tsx
+const admin = {
+  DoThis: true,
+  DoThat: true,
+  GetThis: true,
+  GetThat: true,
+};
+
+const normal = {
+  DoThis: true,
+  DoThat: ({ firstArg, secondArg }) => firstArg === secondArg,
+  GetThis: false,
+  GetThat: ({ firstArg, secondArg }) => firstArg === secondArg,
+};
+
+const rules = {
+  admin,
+  normal,
+};
+
+// Set up PermissionsProvider to pass rules through context
+export const App = () => {
+  return (
+    <PermissionsProvider rules={rules}>
+      <Component role="admin" firstArg={1} secondArg={1} />
+    </PermissionsProvider>
+  );
+};
+
+// Use permissions hook to check if a user has permissions based on roles
+const Component = ({ role, firstArg, secondArg }) => {
+  const { canAccess } = usePermissions(role);
+
+  const canDoThis = canAccess("DoThis", { firstArg, secondArg });
+
+  return (
+    <>
+      <h3>Current User Role: {role}</h3>
+      <p>canDoThis: {canDoThis ? "✅" : "🚫"}</p>
+    </>
+  );
+};
+```
+
 #### TypeScript
+
+```tsx
+type Permissions = "DoThis" | "DoThat" | "GetThis" | "GetThat";
+type Roles = "admin" | "normal" | "free";
+
+const admin: TPermissions<Permissions> = {
+  DoThis: true,
+  DoThat: true,
+  GetThis: true,
+  GetThat: true,
+};
+
+type ARGS = { firstArg: number; secondArg: number };
+
+const normal: TPermissions<Permissions> = {
+  DoThis: true,
+  DoThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
+  GetThis: false,
+  GetThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
+};
+
+const rules: TRules<Permissions, Roles> = {
+  admin,
+  normal,
+};
+
+export const App: React.FC = () => {
+  return (
+    <PermissionsProvider rules={rules}>
+      <Component role="admin" />
+    </PermissionsProvider>
+  );
+};
+
+const Component: React.FC<{
+  role: Roles;
+  firstArg: number;
+  secondArg: number;
+}> = ({ role, firstArg, secondArg }) => {
+  const { canAccess } = usePermissions<Permissions, Roles>(role);
+
+  const canDoThis = canAccess<ARGS>("DoThis", { firstArg, secondArg });
+  const canDoThat = canAccess<ARGS>("DoThat", { firstArg, secondArg });
+  const canGetThis = canAccess<ARGS>("GetThis", { firstArg, secondArg });
+  const canGetThat = canAccess<ARGS>("GetThat", { firstArg, secondArg });
+
+  return (
+    <>
+      <h3>Current User Role: {role}</h3>
+      <p>canDoThis: {canDoThis ? "✅" : "🚫"}</p>
+      <p>canDoThat: {canDoThat ? "✅" : "🚫"}</p>
+      <p>canGetThis: {canGetThis ? "✅" : "🚫"}</p>
+      <p>canGetThat: {canGetThat ? "✅" : "🚫"}</p>
+
+      <p>
+        Rules:
+        <pre>
+          <code>
+            {JSON.stringify(
+              rules,
+              function (_, value) {
+                return typeof value === "function" ? "Function" : value;
+              },
+              2
+            )}
+          </code>
+        </pre>
+      </p>
+    </>
+  );
+};
+```
