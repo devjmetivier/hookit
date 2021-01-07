@@ -1,76 +1,66 @@
 import * as React from 'react';
 
-export type PermissionsType<
-  Permission extends string | number = string | number,
-  Role extends string | number = string | number
-> = {
-  [key in Permission]: Role[] | (() => boolean) | (() => Promise<boolean>);
+export type TPermissions<P extends string = string> = Partial<
+  { [K in P]: boolean | ((args: any) => boolean) | ((args: any) => Promise<boolean>) }
+>;
+
+export type TRules<P extends string = string, R extends string = string> = Partial<
+  {
+    [K in R]: TPermissions<P>;
+  }
+>;
+
+type TProvider<P extends string = string, R extends string = string> = {
+  rules: TRules<P, R>;
 };
 
-const PermissionsContext = React.createContext<PermissionsType>(undefined);
+const PermissionsContext = React.createContext(undefined);
 
-export const PermissionsProvider = <Rules extends PermissionsType>({
+export const PermissionsProviderV2 = <R extends TRules>({
   children,
   rules,
 }: {
   children: React.ReactNode;
-  rules: Rules;
+  rules: R;
 }) => {
-  return <PermissionsContext.Provider value={rules}>{children}</PermissionsContext.Provider>;
+  return <PermissionsContext.Provider value={{ rules }}>{children}</PermissionsContext.Provider>;
 };
 
-const errorMessages = {
-  missingRoleError: '`usePermissions` requires a role as an argument',
-  returnTypeError:
-    'Rules must be an array of type string | number, or an executable resolver that returns an array of type string | number.',
-  ruleTypeError:
-    'Rules must be an array of type string | number, or an executable resolver that returns an array of type string | number.',
-};
+export const usePermissionsV2 = <Permissions extends string = string, Roles extends string = string>(role: Roles) => {
+  const { rules } = React.useContext<TProvider<Permissions, Roles>>(PermissionsContext);
 
-export const usePermissions = <Permission extends string | number, Role extends string | number>(role: Role) => {
-  if (!role && role !== 0) {
-    console.warn(errorMessages.missingRoleError);
-  }
+  const canAccess = <PermissionData extends any = any>(
+    permission: Permissions,
+    permissionData?: PermissionData,
+  ): boolean => {
+    const currentRole = rules[role];
 
-  const rules = React.useContext(PermissionsContext);
+    if (!currentRole) {
+      return false;
+    }
 
-  const bools = React.useMemo<{ [K in Permission]: boolean }>(
-    () =>
-      Object.keys(rules).reduce((permissions, rule) => {
-        if (typeof rules[rule] === 'function') {
-          return ((rules[rule] as Function)() as Role[]).some((user) => {
-            if (typeof user !== 'string' || typeof user !== 'number') {
-              throw new Error(errorMessages.returnTypeError);
-            }
+    if (!currentRole[permission]) {
+      return false;
+    }
 
-            return user === role;
-          })
-            ? {
-                ...permissions,
-                [rule]: true,
-              }
-            : {
-                ...permissions,
-                [rule]: false,
-              };
-        }
+    if (typeof currentRole[permission] === 'function') {
+      let result = (currentRole[permission] as Function)(permissionData);
 
-        if (typeof rules[rule] === 'object') {
-          return (rules[rule] as Role[]).some((user) => user === role)
-            ? {
-                ...permissions,
-                [rule]: true,
-              }
-            : {
-                ...permissions,
-                [rule]: false,
-              };
-        }
+      if (typeof result !== 'boolean') {
+        console.error('Permissions in rules must be of type `boolean` or a function that returns a boolean');
+        return false;
+      }
 
-        throw new Error(errorMessages.ruleTypeError);
-      }, {} as { [K in Permission]: boolean }),
-    [role, rules],
-  );
+      return result;
+    }
 
-  return bools;
+    if (typeof currentRole[permission] !== 'boolean') {
+      console.error('Permissions in rules must be of type `boolean` or a function that returns a boolean');
+      return false;
+    }
+
+    return currentRole[permission] as boolean;
+  };
+
+  return { canAccess };
 };
