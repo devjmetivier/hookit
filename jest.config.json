@@ -1,17 +1,9 @@
 {
-  "verbose": true,
-  "roots": ["<rootDir>/packages"],
-  "timers": "fake",
-  "moduleFileExtensions": ["js", "json", "ts", "tsx"],
-  "transform": {
-    "^.+\\.tsx?$": "ts-jest"
-  },
-  "testRegex": "(\\.(test|spec))\\.(ts|tsx)$",
-  "testPathIgnorePatterns": ["/node_modules/", "/cjs", "/esm", "/types"],
   "collectCoverage": true,
   "collectCoverageFrom": [
     "packages/*/src/**/*.{js,ts,tsx}",
-    "!packages/*/src/**/index.{js,ts,tsx}"
+    "!packages/*/src/**/index.{js,ts,tsx}",
+    "!packages/*/src/**/messages.{js,ts,tsx}"
   ],
   "coveragePathIgnorePatterns": [
     "/node_modules/",
@@ -20,6 +12,15 @@
     "/esm",
     "/types"
   ],
+  "moduleFileExtensions": ["js", "json", "ts", "tsx"],
   "reporters": ["default"],
-  "setupFilesAfterEnv": ["<rootDir>/setupTests.ts"]
+  "roots": ["<rootDir>/packages"],
+  "setupFilesAfterEnv": ["<rootDir>/setupTests.ts"],
+  "testPathIgnorePatterns": ["/node_modules/", "/cjs", "/esm", "/types"],
+  "testRegex": "(\\.(test|spec))\\.(ts|tsx)$",
+  "timers": "fake",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "verbose": true
 }
