@@ -11,6 +11,8 @@ Layer user permissions into your application with hooks
 #### JavaScript
 
 ```tsx
+import { PermissionsProvider, usePermissions } from "@hookit/permissions";
+
 const admin = {
   DoThis: true,
   DoThat: true,
@@ -57,9 +59,17 @@ const Component = ({ role, firstArg, secondArg }) => {
 #### TypeScript
 
 ```tsx
+import {
+  PermissionsProvider,
+  usePermissions,
+  TPermissions,
+  TRules,
+} from "@hookit/permissions";
+
 type Permissions = "DoThis" | "DoThat" | "GetThis" | "GetThat";
 type Roles = "admin" | "normal" | "free";
 
+// Use types  to help construct permissions
 const admin: TPermissions<Permissions> = {
   DoThis: true,
   DoThat: true,
@@ -76,11 +86,13 @@ const normal: TPermissions<Permissions> = {
   GetThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
 };
 
+// Use types  to help construct rules
 const rules: TRules<Permissions, Roles> = {
   admin,
   normal,
 };
 
+// Set up PermissionsProvider to pass rules through context
 export const App: React.FC = () => {
   return (
     <PermissionsProvider rules={rules}>
@@ -89,6 +101,7 @@ export const App: React.FC = () => {
   );
 };
 
+// Use permissions hook to check if a user has permissions based on roles
 const Component: React.FC<{
   role: Roles;
   firstArg: number;
@@ -97,33 +110,81 @@ const Component: React.FC<{
   const { canAccess } = usePermissions<Permissions, Roles>(role);
 
   const canDoThis = canAccess<ARGS>("DoThis", { firstArg, secondArg });
-  const canDoThat = canAccess<ARGS>("DoThat", { firstArg, secondArg });
-  const canGetThis = canAccess<ARGS>("GetThis", { firstArg, secondArg });
-  const canGetThat = canAccess<ARGS>("GetThat", { firstArg, secondArg });
 
   return (
     <>
       <h3>Current User Role: {role}</h3>
       <p>canDoThis: {canDoThis ? "✅" : "🚫"}</p>
-      <p>canDoThat: {canDoThat ? "✅" : "🚫"}</p>
-      <p>canGetThis: {canGetThis ? "✅" : "🚫"}</p>
-      <p>canGetThat: {canGetThat ? "✅" : "🚫"}</p>
-
-      <p>
-        Rules:
-        <pre>
-          <code>
-            {JSON.stringify(
-              rules,
-              function (_, value) {
-                return typeof value === "function" ? "Function" : value;
-              },
-              2
-            )}
-          </code>
-        </pre>
-      </p>
     </>
   );
 };
 ```
+
+You can alternatively use `enums` instead of `unions` to help construct your types. Be aware that the pattern for typing components changes:
+
+```tsx
+// type MMPermissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
+// type MMRoles = 'admin' | 'normal' | 'free';
+
+enum MMPermissions {
+  DoThis = "DoThis",
+  DoThat = "DoThat",
+  GetThis = "GetThis",
+  GetThat = "GetThat",
+}
+enum MMRoles {
+  admin = "admin",
+  normal = "normal",
+  free = "free",
+}
+
+//...
+
+const { canAccess } = usePermissions<MMPermissions, MMRoles>(role); // role must also be a computed from `MMRoles`
+
+const Component: React.FC<{
+  role: Roles;
+  firstArg: number;
+  secondArg: number;
+}> = ({ role, firstArg, secondArg }) => {
+  const canDoThis = canAccess<ARGS>(MMPermissions.DoThis, {
+    firstArg,
+    secondArg,
+  });
+
+  //...
+};
+```
+
+### Arguments
+
+`PermissionsProvider`
+
+| Name  | Type                         | Required? |
+| ----- | ---------------------------- | --------- |
+| rules | `TRules<Permissions, Roles>` | Yes       |
+
+`usePermissions`
+
+| Name | Type                             | Required? |
+| ---- | -------------------------------- | --------- |
+| role | <code>Roles &#124; string</code> | Yes       |
+
+`canAccess()` from `usePermissions`
+
+| Name       | Type                                   | Required? |
+| ---------- | -------------------------------------- | --------- |
+| permission | <code>Permissions &#124; string</code> | Yes       |
+| args       | `any`                                  | No        |
+
+### Returns
+
+`PermissionsProvider`
+
+Just puts your `rules` into context for `usePermissions` to access.
+
+`usePermissions`
+
+| Name      | Description                                    | Return Type |
+| --------- | ---------------------------------------------- | ----------- |
+| canAccess | function that returns permissions from context | `boolean`   |
