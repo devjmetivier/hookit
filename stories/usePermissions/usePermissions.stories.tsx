@@ -48,7 +48,7 @@ const PermissionsComponent: Story<{ role: MMRoles; firstArg: number; secondArg: 
   const { canAccess } = usePermissions<MMPermissions, MMRoles>(role);
 
   const canDoThis = canAccess<ARGS>('DoThis', { firstArg, secondArg });
-  const canDoThat = canAccess<ARGS>('DoThat');
+  const canDoThat = canAccess<ARGS>('DoThat', { firstArg, secondArg });
   const canGetThis = canAccess<ARGS>('GetThis', { firstArg, secondArg });
   const canGetThat = canAccess<ARGS>('GetThat', { firstArg, secondArg });
 
