@@ -1,7 +1,7 @@
 {
   "name": "@hookit/permissions",
   "description": "Layer user permissions into your application with hooks",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/permissions#readme",
