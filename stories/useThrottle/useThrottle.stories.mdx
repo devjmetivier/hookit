@@ -1,0 +1,82 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="hookit/useThrottle/Docs" />
+
+# useThrottle
+
+Throttle fast-changing state
+
+### Usage
+
+```tsx
+import { useThrottle } from "@hookit/throttle";
+
+export const Component = () => {
+  const [state, setState] = React.useState("");
+  const throttledValue = useThrottle(state, 1000);
+
+  return (
+    <>
+      <input onChange={(e) => setState(e.target.value)} type="text" />
+
+      {/* updates immediately */}
+      <p>State: {state}</p>
+
+      {/* updates every second */}
+      <p>throttled Value: {throttledValue}</p>
+    </>
+  );
+};
+```
+
+### Arguments
+
+| Name  | Type     | Required? |
+| ----- | -------- | --------- |
+| value | `any`    | Yes       |
+| delay | `number` | Yes       |
+
+### Returns
+
+| Name           | Description                                   | Type  |
+| -------------- | --------------------------------------------- | ----- |
+| throttledValue | the throttled value from the `value` argument | `any` |
+
+---
+
+# useThrottledState
+
+```tsx
+import { useThrottledState } from "@hookit/throttle";
+
+export const Component = () => {
+  const [state, throttledValue, setState] = useThrottledState("", 1000);
+
+  return (
+    <>
+      <input onChange={(e) => setState(e.target.value)} type="text" />
+
+      {/* updates immediately */}
+      <p>State: {state}</p>
+
+      {/* updates every second */}
+      <p>throttled Value: {throttledValue}</p>
+    </>
+  );
+};
+```
+
+### Arguments
+
+| Name  | Type     | Required? |
+| ----- | -------- | --------- |
+| value | `any`    | Yes       |
+| delay | `number` | Yes       |
+
+### Returns
+
+| Index | Name           | Description                | Type                      |
+| ----- | -------------- | -------------------------- | ------------------------- |
+| 0     | state          | current state              | `any`                     |
+| 1     | throttledValue | throttled value from state | `any`                     |
+| 2     | setState       | sets new state             | `(prevState: any) => any` |
