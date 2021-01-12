@@ -25,8 +25,6 @@ describe('useDebounce CSR', () => {
   it('delays new values', async () => {
     const { result, rerender, waitForNextUpdate } = renderHook((newVal) => useDebounce(newVal || initValue, delay));
 
-    expect(result.current).toBe(initValue);
-
     rerender(nextVal);
     expect(result.current).toBe(initValue);
 
@@ -38,8 +36,6 @@ describe('useDebounce CSR', () => {
 
   it('delays series of new values', async () => {
     const { result, rerender, waitForNextUpdate } = renderHook((newVal) => useDebounce(newVal || initValue, delay));
-
-    expect(result.current).toBe(initValue);
 
     // first
     rerender(nextValArr[0]);
@@ -90,9 +86,6 @@ describe('useDebouncedState CSR', () => {
   it('delays new values', async () => {
     const { result, waitForNextUpdate } = renderHook((newVal) => useDebouncedState(newVal || initValue, delay));
 
-    expect(result.current[0]).toBe(initValue);
-    expect(result.current[1]).toBe(initValue);
-
     act(() => result.current[2](nextVal));
     expect(result.current[0]).toBe(nextVal);
     expect(result.current[1]).toBe(initValue);
@@ -106,9 +99,6 @@ describe('useDebouncedState CSR', () => {
 
   it('delays series of new values', async () => {
     const { result, waitForNextUpdate } = renderHook((newVal) => useDebouncedState(newVal || initValue, delay));
-
-    expect(result.current[0]).toBe(initValue);
-    expect(result.current[1]).toBe(initValue);
 
     // first
     act(() => result.current[2](nextValArr[0]));
