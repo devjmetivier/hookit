@@ -1,7 +1,7 @@
 {
   "name": "@hookit/debounce",
   "description": "Debounce fast-changing state",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/debounce#readme",
