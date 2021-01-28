@@ -1,1 +1,1 @@
-export { default } from './useWindowEventListener';
+export * from './useWindowEventListener';

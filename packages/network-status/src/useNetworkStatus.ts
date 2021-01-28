@@ -1,5 +1,5 @@
 import * as React from 'react';
-import useWindowEventListener from '@hookit/window-event-listener';
+import { useWindowEventListener } from '@hookit/window-event-listener';
 
 type State = boolean;
 
