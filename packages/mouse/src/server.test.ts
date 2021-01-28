@@ -4,7 +4,7 @@
 
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useMouseRegion from './useMouseRegion';
+// import useMouseRegion from './useMouseRegion';
 
 describe('useMouseRegion SSR', () => {
   it('does this', () => {

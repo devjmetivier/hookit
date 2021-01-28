@@ -2,7 +2,7 @@ import { act, renderHook } from '@testing-library/react-hooks';
 
 import useGeoLocation from './useGeoLocation';
 
-const positions: Position[] = [
+const positions: GeolocationPosition[] = [
   [42.332365, -83.0471307, 1607393783000],
   [28.5965603, -81.3035348, 1607393783000],
   [36.2490021, -85.5707212, 1607393783000],
