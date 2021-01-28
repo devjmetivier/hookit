@@ -1,5 +1,5 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useWindowEventListener from './useWindowEventListener';
+import { useWindowEventListener } from './useWindowEventListener';
 
 const addEventListener = jest.spyOn(window, 'addEventListener');
 const removeEventListener = jest.spyOn(window, 'removeEventListener');

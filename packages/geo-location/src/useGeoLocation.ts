@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 type State = {
-  geoLocation: Position;
-  error: PositionError;
+  geoLocation: GeolocationPosition;
+  error: GeolocationPositionError;
 };
 
 enum Action {
@@ -13,8 +13,8 @@ enum Action {
 type ReducerAction = {
   type: Action;
   payload: {
-    geoLocation?: Position;
-    error?: PositionError;
+    geoLocation?: GeolocationPosition;
+    error?: GeolocationPositionError;
   };
 };
 
@@ -33,8 +33,8 @@ const geoLocationReducer: React.Reducer<State, ReducerAction> = (_, { type, payl
 };
 
 type Return = {
-  error: PositionError;
-  geoLocation: Position;
+  error: GeolocationPositionError;
+  geoLocation: GeolocationPosition;
   getPosition: () => void;
 };
 
@@ -44,8 +44,9 @@ export const useGeoLocation = (watch: boolean = false, options?: PositionOptions
     error: undefined,
   });
 
-  const handleSuccess = (geoLocation: Position) => dispatch({ type: Action.LOCATION, payload: { geoLocation } });
-  const handleError = (error: PositionError) => dispatch({ type: Action.ERROR, payload: { error } });
+  const handleSuccess = (geoLocation: GeolocationPosition) =>
+    dispatch({ type: Action.LOCATION, payload: { geoLocation } });
+  const handleError = (error: GeolocationPositionError) => dispatch({ type: Action.ERROR, payload: { error } });
 
   const getPosition = React.useCallback(
     () => navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options),

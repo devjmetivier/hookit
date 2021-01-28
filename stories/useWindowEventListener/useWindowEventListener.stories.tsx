@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useWindowEventListener from '@hookit/window-event-listener';
+import { useWindowEventListener } from '@hookit/window-event-listener';
 
 export default {
   title: 'hookit/useWindowEventListener',
