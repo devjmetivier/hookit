@@ -1,7 +1,7 @@
 {
   "name": "@hookit/interval",
   "description": "Execute code on an interval",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/interval#readme",
