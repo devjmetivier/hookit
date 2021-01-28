@@ -1,0 +1,46 @@
+{
+  "name": "@hookit/mouse",
+  "description": "Determine cursor position",
+  "version": "0.0.0",
+  "license": "MIT",
+  "author": "Devin Metivier @devjmetivier",
+  "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/mouse#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devjmetivier/hookit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devjmetivier/hookit/issues"
+  },
+  "keywords": [
+    "react",
+    "hooks",
+    "mouse",
+    "region"
+  ],
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "types": "types/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "types"
+  ],
+  "scripts": {
+    "prepublishOnly": "yarn build",
+    "prebuild": "rm -rf esm/ && rm -rf cjs/ && rm -rf types/ && rm -rf dist/",
+    "build": "yarn build:esm && yarn build:cjs && yarn build:types",
+    "build:watch": "tsc-watch -p ./tsconfig.json --onSuccess 'yarn build'",
+    "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
+    "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
+    "build:types": "tsc --d --declarationMap --declarationDir types"
+  },
+  "dependencies": {
+    "@hookit/element-event-listener": "latest",
+    "@hookit/window-event-listener": "latest",
+    "@hookit/throttle": "latest"
+  },
+  "peerDependencies": {
+    "react": ">=16.8"
+  }
+}
