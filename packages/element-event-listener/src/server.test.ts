@@ -2,14 +2,20 @@
  * @jest-environment node
  */
 
+import * as React from 'react';
 import renderHookServer from '../../../utils/renderHookServer';
 
 import { useElementEventListener } from './useElementEventListener';
 
-describe('useElementEventListener SSR', () => {
-  it('does this', () => {
-    // const renderedHook = renderHookServer(() => useElementEventListener());
+const event = 'click';
+const handler = () => true;
 
-    expect(true).toBeTruthy();
+describe('useElementEventListener SSR', () => {
+  test('returns undefined', () => {
+    const result = renderHookServer(() =>
+      useElementEventListener((0 as unknown) as React.MutableRefObject<HTMLDivElement>, event, handler),
+    );
+
+    expect(result).toBe(undefined);
   });
 });

@@ -122,9 +122,9 @@ const MouseNearComp = () => {
   );
 };
 
-const arr = Array.from(new Array(100), (_, i) => `arr=${i}`);
+export const StressTest: Story = ({ elements }) => {
+  const arr = React.useMemo(() => Array.from(new Array(elements), (_, i) => `arr=${i}`), [elements]);
 
-export const StressTest: Story = () => {
   return (
     <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
       {arr.map((item) => (
@@ -133,3 +133,12 @@ export const StressTest: Story = () => {
     </div>
   );
 };
+
+StressTest.argTypes = {
+  elements: {
+    defaultValue: 100,
+    control: {
+      type: 'number',
+    },
+  },
+} as ArgTypes;
