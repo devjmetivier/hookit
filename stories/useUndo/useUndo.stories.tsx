@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useUndo from '@hookit/undo';
+import { useUndo } from '@hookit/undo';
 
 export default {
   title: 'hookit/useUndo',

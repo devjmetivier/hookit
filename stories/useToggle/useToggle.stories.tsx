@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useToggle from '@hookit/toggle';
+import { useToggle } from '@hookit/toggle';
 
 export default {
   title: 'hookit/useToggle',

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useNetworkStatus from '@hookit/network-status';
+import { useNetworkStatus } from '@hookit/network-status';
 
 export default {
   title: 'hookit/useNetworkStatus',

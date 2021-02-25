@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useInterval from '@hookit/interval';
+import { useInterval } from '@hookit/interval';
 
 export default {
   title: 'hookit/useInterval',

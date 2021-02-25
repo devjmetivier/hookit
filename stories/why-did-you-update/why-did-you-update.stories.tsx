@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useWhyDidYouUpdate from '@hookit/why-did-you-update';
+import { useWhyDidYouUpdate } from '@hookit/why-did-you-update';
 
 export default {
   title: 'hookit/useWhyDidYouUpdate',

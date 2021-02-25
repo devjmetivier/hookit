@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useMedia from '@hookit/media';
+import { useMedia } from '@hookit/media';
 
 export default {
   title: 'hookit/useMedia',

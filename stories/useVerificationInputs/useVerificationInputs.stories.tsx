@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import * as React from 'react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import useVerificationInputs from '@hookit/verification-inputs';
+import { useVerificationInputs } from '@hookit/verification-inputs';
 
 export default {
   title: 'hookit/useVerificationInputs',
