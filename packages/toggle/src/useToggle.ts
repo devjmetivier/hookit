@@ -28,7 +28,7 @@ const toggleReducer: React.Reducer<State, ReducerAction> = ({ on }, { type }) =>
   }
 };
 
-const useToggle = (initialState: boolean = false) => {
+export const useToggle = (initialState: boolean = false) => {
   const [{ on }, dispatch] = React.useReducer(toggleReducer, { on: initialState });
 
   const toggle = () => dispatch({ type: Action.TOGGLE });
@@ -37,5 +37,3 @@ const useToggle = (initialState: boolean = false) => {
 
   return { on, toggle, setOn, setOff };
 };
-
-export default useToggle;

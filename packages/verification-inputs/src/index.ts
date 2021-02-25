@@ -1,1 +1,1 @@
-export { default } from './useVerificationInputs';
+export * from './useVerificationInputs';

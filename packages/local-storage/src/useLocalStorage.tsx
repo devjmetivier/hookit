@@ -10,7 +10,7 @@ type Return<T> = [T, (value: T) => void];
  * @param {InitialValue} initialValue The inital value you'd like to return from state. If the key/value exists in storage, it will default to that value over the initial value.
  * @returns {Return}
  */
-function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Return<T> {
+export function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Return<T> {
   // Pass function to useState to determine initial state - this way, logic is only executed once
   const [storedValue, setStoredValue] = React.useState<typeof initialValue>(() => {
     try {
@@ -57,5 +57,3 @@ function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Return<T>
 
   return [storedValue, setValue];
 }
-
-export default useLocalStorage;

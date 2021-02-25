@@ -73,5 +73,3 @@ export const useGeoLocation = (watch: boolean = false, options?: PositionOptions
     getPosition,
   };
 };
-
-export default useGeoLocation;

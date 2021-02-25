@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const useMedia = <T = any>(queries: string[], values: T[], defaultValue: T) => {
+export const useMedia = <T = any>(queries: string[], values: T[], defaultValue: T) => {
   const mediaQueryLists = queries.map((q) => (typeof window !== 'undefined' ? window.matchMedia(q) : undefined));
 
   const getValue = () => {
@@ -25,5 +25,3 @@ const useMedia = <T = any>(queries: string[], values: T[], defaultValue: T) => {
 
   return value;
 };
-
-export default useMedia;

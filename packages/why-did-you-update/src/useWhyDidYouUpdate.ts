@@ -3,7 +3,7 @@ import * as React from 'react';
 export type Name = string;
 export type Props = { [key: string]: any };
 
-const useWhyDidYouUpdate = (name: Name, props: { [key: string]: any }) => {
+export const useWhyDidYouUpdate = (name: Name, props: { [key: string]: any }) => {
   const prevProps = React.useRef<typeof props>();
 
   React.useEffect(() => {
@@ -30,4 +30,3 @@ const useWhyDidYouUpdate = (name: Name, props: { [key: string]: any }) => {
   }, [name, props]);
 };
 
-export default useWhyDidYouUpdate;

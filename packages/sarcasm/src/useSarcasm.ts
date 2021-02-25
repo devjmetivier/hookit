@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-const useSarcasm = () => {
+export const useSarcasm = () => {
   const sarcasm = React.useCallback((string: string) => {
     let lastAction: 'upper' | 'lower' = 'upper';
 
@@ -26,5 +26,3 @@ const useSarcasm = () => {
 
   return sarcasm;
 };
-
-export default useSarcasm;

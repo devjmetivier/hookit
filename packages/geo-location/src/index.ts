@@ -1,1 +1,1 @@
-export { default } from './useGeoLocation';
+export * from './useGeoLocation';

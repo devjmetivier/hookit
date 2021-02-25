@@ -21,7 +21,7 @@ const networkStatusReducer: React.Reducer<State, ReducerAction> = (_, action) =>
   }
 };
 
-function useNetworkStatus(): State {
+export const useNetworkStatus = (): State => {
   // grab current online status (null check) and use to intialize state
   const [state, dispatch] = React.useReducer(
     networkStatusReducer,
@@ -38,6 +38,4 @@ function useNetworkStatus(): State {
   useWindowEventListener(Action.OFFLINE, offlineHandler);
 
   return state;
-}
-
-export default useNetworkStatus;
+};

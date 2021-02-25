@@ -1,1 +1,1 @@
-export { default } from './useUndo';
+export * from './useUndo';

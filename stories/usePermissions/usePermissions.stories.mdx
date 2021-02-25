@@ -123,16 +123,16 @@ const Component: React.FC<{
 You can alternatively use `enums` instead of `unions` to help construct your types. Be aware that the pattern for typing components changes:
 
 ```tsx
-// type MMPermissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
-// type MMRoles = 'admin' | 'normal' | 'free';
+// type Permissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
+// type Roles = 'admin' | 'normal' | 'free';
 
-enum MMPermissions {
+enum Permissions {
   DoThis = "DoThis",
   DoThat = "DoThat",
   GetThis = "GetThis",
   GetThat = "GetThat",
 }
-enum MMRoles {
+enum Roles {
   admin = "admin",
   normal = "normal",
   free = "free",
@@ -140,14 +140,14 @@ enum MMRoles {
 
 //...
 
-const { canAccess } = usePermissions<MMPermissions, MMRoles>(role); // role must also be a computed from `MMRoles`
+const { canAccess } = usePermissions<Permissions, Roles>(role); // role must also be a computed from `Roles`
 
 const Component: React.FC<{
   role: Roles;
   firstArg: number;
   secondArg: number;
 }> = ({ role, firstArg, secondArg }) => {
-  const canDoThis = canAccess<ARGS>(MMPermissions.DoThis, {
+  const canDoThis = canAccess<ARGS>(Permissions.DoThis, {
     firstArg,
     secondArg,
   });

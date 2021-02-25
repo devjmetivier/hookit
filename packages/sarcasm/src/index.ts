@@ -1,1 +1,1 @@
-export { default } from './useSarcasm';
+export * from './useSarcasm';

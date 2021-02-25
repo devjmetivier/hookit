@@ -4,22 +4,22 @@ import { PermissionsProvider, usePermissions, TPermissions, TRules } from '@hook
 
 export default { title: 'hookit/usePermissions' } as Meta;
 
-enum MMPermissionsEnum {
+enum PermissionsEnum {
   DoThis = 'DoThis',
   DoThat = 'DoThat',
   GetThis = 'GetThis',
   GetThat = 'GetThat',
 }
-enum MMRolesEnum {
+enum RolesEnum {
   admin = 'admin',
   normal = 'normal',
   free = 'free',
 }
 
-type MMPermissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
-type MMRoles = 'admin' | 'normal' | 'free';
+type Permissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
+type Roles = 'admin' | 'normal' | 'free';
 
-const admin: TPermissions<MMPermissions> = {
+const admin: TPermissions<Permissions> = {
   DoThis: true,
   DoThat: true,
   GetThis: true,
@@ -28,24 +28,24 @@ const admin: TPermissions<MMPermissions> = {
 
 type ARGS = { firstArg: number; secondArg: number };
 
-const normal: TPermissions<MMPermissions> = {
+const normal: TPermissions<Permissions> = {
   DoThis: true,
   DoThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
   GetThis: false,
   GetThat: ({ firstArg, secondArg }: ARGS) => firstArg === secondArg,
 };
 
-const rules: TRules<MMPermissions, MMRoles> = {
+const rules: TRules<Permissions, Roles> = {
   admin,
   normal,
 };
 
-const PermissionsComponent: Story<{ role: MMRoles; firstArg: number; secondArg: number }> = ({
+const PermissionsComponent: Story<{ role: Roles; firstArg: number; secondArg: number }> = ({
   role,
   firstArg,
   secondArg,
 }) => {
-  const { canAccess } = usePermissions<MMPermissions, MMRoles>(role);
+  const { canAccess } = usePermissions<Permissions, Roles>(role);
 
   const canDoThis = canAccess<ARGS>('DoThis', { firstArg, secondArg });
   const canDoThat = canAccess<ARGS>('DoThat', { firstArg, secondArg });

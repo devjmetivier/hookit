@@ -58,7 +58,7 @@ type Args = {
   lastInputCallback?: () => void;
 };
 
-const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInputElement[]>, () => string[]] => {
+export const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInputElement[]>, () => string[]] => {
   const inputRefs = React.useRef<HTMLInputElement[]>([]);
 
   function getValues() {
@@ -122,5 +122,3 @@ const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInpu
 
   return [inputRefs, getValues];
 };
-
-export default useVerificationInputs;

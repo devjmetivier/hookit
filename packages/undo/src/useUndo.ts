@@ -20,7 +20,7 @@ type ReducerAction<T = any> = {
   };
 };
 
-const useUndo = <T = unknown>(
+export const useUndo = <T = unknown>(
   initialPresent?: T,
 ): [
   State<typeof initialPresent>,
@@ -112,5 +112,3 @@ const useUndo = <T = unknown>(
     },
   ];
 };
-
-export default useUndo;
