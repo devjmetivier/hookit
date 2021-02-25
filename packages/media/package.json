@@ -1,7 +1,7 @@
 {
   "name": "@hookit/media",
   "description": "Utilize media queries in components",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/media#readme",

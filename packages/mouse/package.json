@@ -1,7 +1,7 @@
 {
   "name": "@hookit/mouse",
   "description": "Determine cursor position",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/mouse#readme",

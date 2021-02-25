@@ -1,7 +1,7 @@
 {
   "name": "@hookit/element-event-listener",
   "description": "Listen to events on elements with hooks",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "license": "MIT",
   "author": "Devin Metivier @devjmetivier",
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/element-event-listener#readme",
