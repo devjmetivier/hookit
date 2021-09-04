@@ -20,7 +20,7 @@ jobs:
 
       - name: Build Packages
         run: |
-          yarn
+          yarn --frozen-lockfile
           yarn build
 
       - name: Test Packages

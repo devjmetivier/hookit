@@ -19,7 +19,7 @@ jobs:
 
       - name: Publish
         run: |
-          yarn
+          yarn --frozen-lockfile
           yarn config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
           yarn publish-packages
         env:
