@@ -4,7 +4,7 @@
 
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useGeoLocation from './useGeoLocation';
+import { useGeoLocation } from './useGeoLocation';
 
 describe('useGeoLocation SSR', () => {
   it('does this', () => {

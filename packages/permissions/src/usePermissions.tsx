@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import * as React from 'react';
+
 import { forgotArgs, mustBeBoolean, usePermissionsErrorLabel } from './messages';
 
 export type TPermissions<P extends string = string> = Partial<
@@ -40,7 +42,7 @@ export const usePermissions = <Permissions extends string = string, Roles extend
 
     if (typeof currentRole[permission] === 'function') {
       try {
-        let result = (currentRole[permission] as Function)(permissionData);
+        const result = (currentRole[permission] as Function)(permissionData);
 
         if (typeof result !== 'boolean') {
           console.error(mustBeBoolean);

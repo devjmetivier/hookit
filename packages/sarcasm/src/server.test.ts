@@ -4,7 +4,7 @@
 
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useSarcasm from './useSarcasm';
+import { useSarcasm } from './useSarcasm';
 
 describe('useSarcasm SSR', () => {
   it('does this', () => {

@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
+
 import { consoleError, consoleLog } from '../../../mocks/console';
 
 import { usePermissions, PermissionsProvider, TPermissions, TRules } from './usePermissions';

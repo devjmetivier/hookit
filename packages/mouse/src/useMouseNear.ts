@@ -11,9 +11,9 @@ type Return = {
 
 export const useMouseNear = (
   elementRef: React.MutableRefObject<HTMLElement | undefined>,
-  threshold: number = 20,
+  threshold = 20,
   // default to 24fps: 1000 / 24 = 41.66...7
-  throttle: number = 41.67,
+  throttle = 41.67,
 ): Return => {
   const [, { x, y }, setState] = useThrottledState<PositionState>({ x: null, y: null }, throttle);
   const [isOver, setIsOver] = React.useState<boolean>(false);

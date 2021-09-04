@@ -4,7 +4,7 @@
 
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useWhyDidYouUpdate from './useWhyDidYouUpdate';
+import { useWhyDidYouUpdate } from './useWhyDidYouUpdate';
 
 describe('useWhyDidYouUpdate SSR', () => {
   it('returns undefined', () => {

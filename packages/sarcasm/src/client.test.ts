@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 
-import useSarcasm from './useSarcasm';
+import { useSarcasm } from './useSarcasm';
 
 describe('useSarcasm CSR', () => {
   it('does sarcasm', () => {

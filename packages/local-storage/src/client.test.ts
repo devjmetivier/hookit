@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useLocalStorage from './useLocalStorage';
+
+import { useLocalStorage } from './useLocalStorage';
 
 const getItem = jest.spyOn(Storage.prototype, 'getItem');
 const setItem = jest.spyOn(Storage.prototype, 'setItem');

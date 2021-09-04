@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 
-import useWhyDidYouUpdate, { Name, Props } from './useWhyDidYouUpdate';
+import { useWhyDidYouUpdate, Name, Props } from './useWhyDidYouUpdate';
 
 const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
 

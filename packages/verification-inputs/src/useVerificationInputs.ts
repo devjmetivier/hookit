@@ -62,7 +62,7 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
   const inputRefs = React.useRef<HTMLInputElement[]>([]);
 
   function getValues() {
-    let values: string[] = [];
+    const values: string[] = [];
     inputRefs.current.forEach((input, i) => (values[i] = input.value));
 
     return values;

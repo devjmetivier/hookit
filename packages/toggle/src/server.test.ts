@@ -3,9 +3,10 @@
  */
 
 import { act } from '@testing-library/react-hooks';
+
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useToggle from './useToggle';
+import { useToggle } from './useToggle';
 
 describe('useToggle SSR', () => {
   it('has initial state of false', () => {

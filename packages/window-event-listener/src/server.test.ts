@@ -3,6 +3,7 @@
  */
 
 import renderHookServer from '../../../utils/renderHookServer';
+
 import { useWindowEventListener } from './useWindowEventListener';
 
 const event = 'languagechange';

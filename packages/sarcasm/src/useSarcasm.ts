@@ -6,7 +6,7 @@ export const useSarcasm = () => {
 
     return string
       .split('')
-      .map((character: string, i: number) => {
+      .map((character: string) => {
         if (character === ' ') {
           return character;
         }

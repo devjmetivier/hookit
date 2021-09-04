@@ -1,5 +1,6 @@
-import { prompt } from 'inquirer';
 import fs from 'fs';
+
+import { prompt } from 'inquirer';
 import Listr from 'listr';
 
 import { createScript, readDirAsync, writeFileAsync } from './utils';
