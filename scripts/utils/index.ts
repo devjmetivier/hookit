@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { promisify } from 'util';
+
 import chalk from 'chalk';
 
 export const readDirAsync = promisify(fs.readdir);

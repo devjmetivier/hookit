@@ -8,13 +8,13 @@ const delay = 100;
 const nextVal = 1;
 const nextValArr = [1, 2, 3, 4];
 
-const advance = (ms: number = 101) => {
+const advance = (ms = 101) => {
   act(() => {
     jest.advanceTimersByTime(ms);
   });
 };
 
-const advanceUnder = (ms: number = 50) => {
+const advanceUnder = (ms = 50) => {
   act(() => {
     jest.advanceTimersByTime(ms);
   });

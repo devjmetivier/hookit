@@ -3,9 +3,10 @@
  */
 
 import { act } from '@testing-library/react-hooks';
+
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useUndo from './useUndo';
+import { useUndo } from './useUndo';
 
 describe('useUndo SSR', () => {
   it('sets initial state', () => {

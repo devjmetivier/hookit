@@ -1,5 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks';
-import useNetworkStatus from './useNetworkStatus';
+
+import { useNetworkStatus } from './useNetworkStatus';
 
 const addEventListener = jest.spyOn(window, 'addEventListener');
 const removeEventListener = jest.spyOn(window, 'removeEventListener');

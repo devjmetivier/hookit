@@ -38,7 +38,7 @@ type Return = {
   getPosition: () => void;
 };
 
-export const useGeoLocation = (watch: boolean = false, options?: PositionOptions): Return => {
+export const useGeoLocation = (watch = false, options?: PositionOptions): Return => {
   const [{ geoLocation, error }, dispatch] = React.useReducer(geoLocationReducer, {
     geoLocation: undefined,
     error: undefined,

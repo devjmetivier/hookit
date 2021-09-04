@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import { ICliArgs } from '../newPackage';
 
 export default ({ packageDir, keywords, description }: ICliArgs) => `{

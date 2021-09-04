@@ -29,4 +29,3 @@ export const useWhyDidYouUpdate = (name: Name, props: { [key: string]: any }) =>
     prevProps.current = props;
   }, [name, props]);
 };
-

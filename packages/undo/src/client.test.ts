@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 
-import useUndo from './useUndo';
+import { useUndo } from './useUndo';
 
 describe('useUndo CSR', () => {
   it('sets initial state', () => {

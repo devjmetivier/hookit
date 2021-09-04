@@ -4,7 +4,7 @@
 
 import renderHookServer from '../../../utils/renderHookServer';
 
-import useVerificationInputs from './useVerificationInputs';
+import { useVerificationInputs } from './useVerificationInputs';
 
 describe('useVerificationInputs SSR', () => {
   it('returns proper elements from hook', () => {

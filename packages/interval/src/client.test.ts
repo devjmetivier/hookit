@@ -1,5 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
-import useInterval from './useInterval';
+
+import { useInterval } from './useInterval';
 
 describe('useInterval CSR', () => {
   const callback = jest.fn().mockName('mock callback');

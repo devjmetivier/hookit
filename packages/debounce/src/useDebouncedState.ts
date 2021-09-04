@@ -1,7 +1,8 @@
 import * as React from 'react';
+
 import { useDebounce } from './useDebounce';
 
-export const useDebouncedState = <Value = any>(
+export const useDebouncedState = <Value = unknown>(
   defaultValue: Value,
   delay: number,
 ): [Value, Value, React.Dispatch<React.SetStateAction<Value>>] => {

@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 
-import useMedia from './useMedia';
+import { useMedia } from './useMedia';
 
 const mq = ['(min-width: 1000px)', '(min-width: 500px)', '(min-width: 250px)'];
 const mqValues = [3, 2, 1];

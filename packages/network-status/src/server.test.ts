@@ -3,7 +3,8 @@
  */
 
 import renderHookServer from '../../../utils/renderHookServer';
-import useNetworkStatus from './useNetworkStatus';
+
+import { useNetworkStatus } from './useNetworkStatus';
 
 describe('useNetworkStatus SSR', () => {
   test('returns undefined', () => {
