@@ -1,0 +1,30 @@
+# useInterval
+
+Executes a callback on an interval
+
+`useInterval(callback, interval)`
+
+## Usage
+
+```tsx
+const Component = () => {
+  const [state, setState] = React.useState(0);
+
+  useInterval(() => setState((prev) => prev + 1), 1000);
+
+  return <p>{state}</p>;
+};
+```
+
+## Arguments
+
+<br />
+
+| Name     | Type         | Required? |
+| -------- | ------------ | --------- |
+| callback | `() => void` | ✅        |
+| inerval  | `number`     | ✅        |
+
+## Returns
+
+Nothin 🤪
