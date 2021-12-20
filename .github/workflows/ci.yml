@@ -25,5 +25,4 @@ jobs:
 
       - name: Test Packages
         run: |
-          yarn lerna bootstrap
           yarn test

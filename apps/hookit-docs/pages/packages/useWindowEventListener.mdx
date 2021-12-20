@@ -1,0 +1,42 @@
+# useWindowEventListener
+
+Easily add/remove window event listeners
+
+`useWindowEventListener(eventName, callback)`
+
+## Usage
+
+```tsx
+const Component = () => {
+  const [type, setType] = React.useState<string>("");
+  const [x, setX] = React.useState<number>(0);
+  const [y, setY] = React.useState<number>(0);
+
+  useWindowEventListener("mousemove", (e) => {
+    setType(e.type);
+    setX(e.clientX);
+    setY(e.clientY);
+  });
+
+  return (
+    <>
+      <div>Event type: {type}</div>
+      <div>x: {x}</div>
+      <div>y: {y}</div>
+    </>
+  );
+};
+```
+
+## Arguments
+
+<br />
+
+| Name      | Type                                            | Required? |
+| --------- | ----------------------------------------------- | --------- |
+| eventName | `keyof WindowEventMap`                          | ✅        |
+| callback  | `(e: ReturnType<keyof WindowEventMap>) => void` | ✅        |
+
+## Returns
+
+Nothin 🤪

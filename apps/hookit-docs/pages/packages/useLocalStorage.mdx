@@ -1,0 +1,43 @@
+# useLocalStorage
+
+Sets and gets items from local storage
+
+`const [storageItem, setStorageItem] = useLocalStorage(key, initialValue);`
+
+## Usage
+
+```tsx
+const Component = () => {
+  const [storageItem, setStorageItem] = useLocalStorage(
+    "useLocalStorage",
+    "initial"
+  );
+
+  return (
+    <>
+      {storageItem}
+      <button type="button" onClick={() => setStorageItem("new")}>
+        Click Me
+      </button>
+    </>
+  );
+};
+```
+
+## Arguments
+
+<br />
+
+| Name         | Type     | Required? |
+| ------------ | -------- | --------- |
+| key          | `string` | ✅        |
+| initialValue | `any`    | ❌        |
+
+## Returns
+
+<br />
+
+| Index | Description                | Type                 |
+| ----- | -------------------------- | -------------------- |
+| 0     | Item from `localStorage`   | `T`                  |
+| 1     | Updater for `localStorage` | `(value: T) => void` |
