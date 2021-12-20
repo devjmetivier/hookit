@@ -28,9 +28,11 @@ ${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}
   ],
   "scripts": {
     "prepublishOnly": "yarn build",
-    "prebuild": "rm -rf esm/ && rm -rf cjs/ && rm -rf types/ && rm -rf dist/",
+"clean": "rm -rf node_modules && rm -rf .turbo && rm -rf esm/ && rm -rf cjs/ && rm -rf types/ && rm -rf dist/",
+"lint": "eslint . --ext .js,.ts,.jsx,.tsx",,
+    "prebuild": "yarn clean",
     "echo:package": "echo \"Building @hookit/${packageDir}...\"",
-    "build": "yarn echo:package && yarn build:esm && yarn build:cjs && yarn build:types",
+    "build": "yarn build:esm && yarn build:cjs && yarn build:types",
     "build:watch": "tsc-watch -p ./tsconfig.json --onSuccess 'yarn build'",
     "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",

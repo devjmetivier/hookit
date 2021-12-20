@@ -12,7 +12,7 @@
   <a aria-label="License" href="https://github.com/devjmetivier/hookit/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/devjmetivier/hookit" />
   </a>
-<p>
+</p>
 
 A collection of useful react hooks.
 
@@ -21,10 +21,6 @@ Features:
 - TypeScript support
 - Fully tested
 - SSR compatibility
-
-## Packages
-
-See [packages](packages) for individual package details.
 
 | Package | Version | Description |
 | ------- | ------- | ----------- |
@@ -44,5 +40,3 @@ See [packages](packages) for individual package details.
 | [@hookit/verification-inputs](packages/verification-inputs) | ![@hookit/verification-inputs npm badge](https://img.shields.io/npm/v/@hookit/verification-inputs) | Helps with verification input features |
 | [@hookit/why-did-you-update](packages/why-did-you-update) | ![@hookit/why-did-you-update npm badge](https://img.shields.io/npm/v/@hookit/why-did-you-update) | Understand why react components are re-rendering |
 | [@hookit/window-event-listener](packages/window-event-listener) | ![@hookit/window-event-listener npm badge](https://img.shields.io/npm/v/@hookit/window-event-listener) | Easily add/remove window event listeners |
-### Other Links
-* [Charts](https://npmcharts.com/compare/@hookit/debounce,@hookit/element-event-listener,@hookit/geo-location,@hookit/interval,@hookit/local-storage,@hookit/media,@hookit/mouse,@hookit/network-status,@hookit/permissions,@hookit/sarcasm,@hookit/throttle,@hookit/toggle,@hookit/undo,@hookit/verification-inputs,@hookit/why-did-you-update,@hookit/window-event-listener?interval=7&minimal=true)

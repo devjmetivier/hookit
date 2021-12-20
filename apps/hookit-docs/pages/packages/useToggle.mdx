@@ -1,0 +1,48 @@
+# useToggle
+
+Toggle a boolean state
+
+## Usage
+
+```tsx
+export const Component = () => {
+  const { on, toggle, setOn, setOff } = useToggle();
+
+  return (
+    <>
+      <p>State: {on ? "on" : "off"}</p>
+
+      <div>
+        <button onClick={() => toggle()} type="button">
+          toggle
+        </button>
+        <button onClick={() => setOn()} type="button">
+          set on
+        </button>
+        <button onClick={() => setOff()} type="button">
+          set off
+        </button>
+      </div>
+    </>
+  );
+};
+```
+
+## Arguments
+
+<br />
+
+| Name         | Type      | Required? |
+| ------------ | --------- | --------- |
+| initialState | `boolean` | ❌        |
+
+## Returns
+
+<br />
+
+| Name   | Description                                             | Type         |
+| ------ | ------------------------------------------------------- | ------------ |
+| on     | State of the hook                                       | `boolean`    |
+| toggle | Function that toggles current state of the hook         | `() => void` |
+| setOn  | Function that sets current state of the hook to `true`  | `() => void` |
+| setOff | Function that sets current state of the hook to `false` | `() => void` |

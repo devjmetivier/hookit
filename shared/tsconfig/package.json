@@ -1,0 +1,12 @@
+{
+  "files": [
+    "base.json"
+  ],
+  "main": "index.js",
+  "name": "tsconfig",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf node_modules && rm -rf .turbo"
+  },
+  "version": "0.0.0"
+}
