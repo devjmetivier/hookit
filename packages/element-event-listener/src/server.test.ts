@@ -14,7 +14,7 @@ const handler = () => true;
 describe('useElementEventListener SSR', () => {
   test('returns undefined', () => {
     const result = renderHookServer(() =>
-      useElementEventListener((0 as unknown) as React.MutableRefObject<HTMLDivElement>, event, handler),
+      useElementEventListener(0 as unknown as React.MutableRefObject<HTMLDivElement>, event, handler),
     );
 
     expect(result).toBe(undefined);
