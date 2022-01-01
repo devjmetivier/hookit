@@ -23,6 +23,8 @@ jobs:
           yarn --frozen-lockfile
           yarn build
 
+      - name: Lint Packages
+        run: yarn lint
+
       - name: Test Packages
-        run: |
-          yarn test
+        run: yarn test

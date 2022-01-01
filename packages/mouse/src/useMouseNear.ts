@@ -29,9 +29,10 @@ export const useMouseNear = (
     return x > left && x < right && y > top && y < bottom;
   }, [elementRef, threshold, x, y]);
 
-  const mouseMoveHandler = React.useCallback((event: MouseEvent) => setState({ x: event.pageX, y: event.pageY }), [
-    setState,
-  ]);
+  const mouseMoveHandler = React.useCallback(
+    (event: MouseEvent) => setState({ x: event.pageX, y: event.pageY }),
+    [setState],
+  );
   const mouseEnterHandler = React.useCallback(() => setIsOver(true), []);
   const mouseLeaveHandler = React.useCallback(() => setIsOver(false), []);
 

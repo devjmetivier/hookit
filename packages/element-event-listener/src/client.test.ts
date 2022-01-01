@@ -45,7 +45,7 @@ describe('useElementEventListener CSR', () => {
   });
 
   it("gracefully fails when `element` argument doesn't support listeners", () => {
-    renderHook(() => useElementEventListener((0 as unknown) as React.MutableRefObject<HTMLDivElement>, event, handler));
+    renderHook(() => useElementEventListener(0 as unknown as React.MutableRefObject<HTMLDivElement>, event, handler));
 
     const clickEvent = addEventListener.mock.calls.filter(([call]) => call === event);
 

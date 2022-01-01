@@ -46,7 +46,7 @@ export function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Re
         if (typeof value === 'object') {
           window.localStorage.setItem(key, JSON.stringify(value));
         } else {
-          window.localStorage.setItem(key, (value as unknown) as string);
+          window.localStorage.setItem(key, value as unknown as string);
         }
       } catch (error) {
         console.error(error);
