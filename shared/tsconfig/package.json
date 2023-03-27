@@ -9,5 +9,5 @@
   "scripts": {
     "clean": "rm -rf node_modules && rm -rf .turbo"
   },
-  "version": "0.0.0"
+  "version": "0.1.0"
 }
