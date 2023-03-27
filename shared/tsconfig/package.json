@@ -1,6 +1,7 @@
 {
   "files": [
-    "base.json"
+    "base.json",
+    "types.json"
   ],
   "main": "index.js",
   "name": "tsconfig",
@@ -8,5 +9,5 @@
   "scripts": {
     "clean": "rm -rf node_modules && rm -rf .turbo"
   },
-  "version": "0.0.0"
+  "version": "0.1.0"
 }
