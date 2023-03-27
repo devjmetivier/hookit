@@ -47,7 +47,7 @@ async function run() {
     })
     .join('\n');
 
-  await writeFileAsync('apps/docs/pages/index.mdx', `${globalTemplate}\n${packages}\n`);
+  await writeFileAsync('apps/hookit-docs/pages/index.mdx', `${globalTemplate}\n${packages}\n`);
 }
 
 run();

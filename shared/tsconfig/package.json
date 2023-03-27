@@ -1,6 +1,7 @@
 {
   "files": [
-    "base.json"
+    "base.json",
+    "types.json"
   ],
   "main": "index.js",
   "name": "tsconfig",

@@ -1,26 +1,33 @@
-name: Publish
+name: Release
 
 on:
   push:
-    branches: [master]
+    branches:
+      - master
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  npm_publish:
+  release:
+    name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v3
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: "14.x"
-          registry-url: "http://registry.npmjs.org"
+          node-version: 16.x
 
-      - name: Publish
-        run: |
-          yarn --frozen-lockfile
-          yarn config set //registry.npmjs.org/:_authToken=$NODE_AUTH_TOKEN
-          yarn publish-packages
+      - name: Install Dependencies
+        run: yarn
+
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          publish: yarn release
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
