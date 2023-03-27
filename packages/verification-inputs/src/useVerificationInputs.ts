@@ -56,6 +56,7 @@ function lastInput(focusAfterRef?: React.MutableRefObject<HTMLElement>, lastInpu
 type Args = {
   focusAfter?: React.MutableRefObject<HTMLElement>;
   lastInputCallback?: () => void;
+  shouldFocusFirstInput?: boolean;
 };
 
 export const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInputElement[]>, () => string[]] => {
@@ -67,6 +68,12 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
 
     return values;
   }
+
+  React.useEffect(() => {
+    if (options?.shouldFocusFirstInput) {
+      inputRefs.current[0].focus();
+    }
+  }, [options?.shouldFocusFirstInput]);
 
   React.useEffect(() => {
     const inputs = inputRefs.current;
