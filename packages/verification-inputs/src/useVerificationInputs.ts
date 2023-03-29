@@ -1,30 +1,58 @@
 import * as React from 'react';
 
-function handleInput(e: Event, inputs: HTMLInputElement[]) {
-  const currentInput = <HTMLInputElement>e.target;
+function handleInput(e: Event, inputElements: HTMLInputElement[], options?: Args) {
+  const currentInputElement = <HTMLInputElement>e.target;
 
-  const nextIndex = inputs.findIndex((input) => input === currentInput) + 1;
-  const next = nextIndex >= inputs.length ? null : inputs[nextIndex];
+  const nextIndex = inputElements.findIndex((input) => input === currentInputElement) + 1;
+  const next = nextIndex >= inputElements.length ? null : inputElements[nextIndex];
+  const nextPlusOne = nextIndex + 1 >= inputElements.length ? null : inputElements[nextIndex + 1];
 
-  const prevIndex = inputs.findIndex((input) => input === currentInput) - 1;
-  const prev = prevIndex < 0 ? null : inputs[prevIndex];
+  const prevIndex = inputElements.findIndex((input) => input === currentInputElement) - 1;
+  const prev = prevIndex < 0 ? null : inputElements[prevIndex];
 
-  if (currentInput.value.length > 1) {
-    currentInput.value = currentInput.value.charAt(1);
+  if (currentInputElement.value.trim().length > 1) {
+    // @ts-ignore
+    e.clipboardData = {
+      getData: () => currentInputElement.value.trim(),
+    };
+    handlePaste(e as ClipboardEvent, inputElements, options);
     return;
   }
 
-  if (prev && prev.localName === 'input' && currentInput.value === '') {
+  if (prev && prev.localName === 'input' && currentInputElement.value === '') {
     prev.focus();
     prev.select();
     return;
   }
 
-  if (next && next.localName === 'input' && currentInput.value !== '') {
+  if (next && next.localName === 'input' && currentInputElement.value !== '') {
+    if (nextPlusOne && nextPlusOne.localName === 'input' && nextPlusOne.value !== '' && options.focusAfter) {
+      options.focusAfter.current.focus();
+      return;
+    }
+
     next.focus();
     next.select();
     return;
   }
+}
+
+function handlePaste(e: ClipboardEvent, inputElements: HTMLInputElement[], options?: Args) {
+  e.preventDefault();
+  const pasteData = e.clipboardData.getData('text').split('');
+
+  inputElements.forEach((input, i) => {
+    input.value = pasteData[i] || '';
+  });
+
+  if (options.lastInputCallback) options.lastInputCallback();
+
+  if (options.focusAfter) {
+    options.focusAfter.current.focus();
+    return;
+  }
+
+  inputElements[inputElements.length - 1].focus();
 }
 
 function handleEmptyBackspace(e: KeyboardEvent, inputs: HTMLInputElement[]) {
@@ -76,7 +104,7 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
   }, [options?.shouldFocusFirstInput]);
 
   React.useEffect(() => {
-    const inputs = inputRefs.current;
+    const inputElements = inputRefs.current;
 
     const handleLastInput = (e: Event) => {
       const input = <HTMLInputElement>e.target;
@@ -86,44 +114,26 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
       }
     };
 
-    function handlePaste(e: ClipboardEvent) {
-      e.preventDefault();
-      const pasteData = e.clipboardData.getData('text').split('');
-
-      inputRefs.current.forEach((input, i) => {
-        input.value = pasteData[i] || '';
-      });
-
-      if (options.lastInputCallback) options.lastInputCallback();
-
-      if (options.focusAfter) {
-        options.focusAfter.current.focus();
-        return;
-      }
-
-      inputRefs.current[inputRefs.current.length - 1].focus();
-    }
-
-    inputs.forEach((inputRef) => {
-      inputRef.addEventListener('input', (e) => handleInput(e, inputs));
-      inputRef.addEventListener('keydown', (e) => handleEmptyBackspace(e, inputs));
-      inputRef.addEventListener('click', handleClick);
+    inputElements.forEach((inputElement) => {
+      inputElement.addEventListener('input', (e) => handleInput(e, inputElements, options));
+      inputElement.addEventListener('keydown', (e) => handleEmptyBackspace(e, inputElements));
+      inputElement.addEventListener('click', handleClick);
     });
 
-    inputs[0].addEventListener('paste', handlePaste);
-    inputs[inputs.length - 1].addEventListener('input', handleLastInput);
+    inputElements[0].addEventListener('paste', (e) => handlePaste(e, inputElements, options));
+    inputElements[inputElements.length - 1].addEventListener('input', handleLastInput);
 
     return () => {
-      inputs.forEach((inputRef) => {
-        if (inputRef) {
-          inputRef.removeEventListener('input', (e) => handleInput(e, inputs));
-          inputRef.removeEventListener('keydown', (e) => handleEmptyBackspace(e, inputs));
-          inputRef.removeEventListener('click', handleClick);
+      inputElements.forEach((inputElement) => {
+        if (inputElement) {
+          inputElement.removeEventListener('input', (e) => handleInput(e, inputElements, options));
+          inputElement.removeEventListener('keydown', (e) => handleEmptyBackspace(e, inputElements));
+          inputElement.removeEventListener('click', handleClick);
         }
       });
 
-      inputs[0]?.removeEventListener('paste', handlePaste);
-      inputs[inputs.length - 1]?.removeEventListener('input', handleLastInput);
+      inputElements[0]?.removeEventListener('paste', (e) => handlePaste(e, inputElements, options));
+      inputElements[inputElements.length - 1]?.removeEventListener('input', handleLastInput);
     };
   }, [options]);
 

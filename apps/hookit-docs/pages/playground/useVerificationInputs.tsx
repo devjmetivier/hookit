@@ -3,11 +3,12 @@ import * as React from 'react';
 import { useVerificationInputs } from '@hookit/verification-inputs';
 
 const UseVerificationInputsPage = () => {
-  const focusRef = React.useRef<HTMLElement>(null) as React.MutableRefObject<HTMLButtonElement>;
+  const submitButtonRef = React.useRef<HTMLElement>(null) as React.MutableRefObject<HTMLButtonElement>;
 
   const [inputRefs, getValues] = useVerificationInputs({
-    focusAfter: focusRef,
+    focusAfter: submitButtonRef,
     lastInputCallback: () => {
+      document.getElementsByTagName('body')[0].style.backgroundColor = 'red';
       console.log('lastInputCallback executed');
     },
     shouldFocusFirstInput: true,
@@ -32,7 +33,7 @@ const UseVerificationInputsPage = () => {
       </div>
 
       <div>
-        <button onClick={() => console.log(getValues())} ref={focusRef} type='button'>
+        <button onClick={() => console.log(getValues())} ref={submitButtonRef} type='button'>
           Get Values
         </button>
       </div>
