@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import * as React from 'react';
+
 import { useVerificationInputs } from '@hookit/verification-inputs';
 
 const UseVerificationInputsPage = () => {
