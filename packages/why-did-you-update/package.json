@@ -5,8 +5,8 @@
   },
   "description": "Understand why react components are re-rendering",
   "devDependencies": {
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "files": [
     "cjs",

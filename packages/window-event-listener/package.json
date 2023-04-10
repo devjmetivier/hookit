@@ -5,8 +5,8 @@
   },
   "description": "Easily add/remove window event listeners",
   "devDependencies": {
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "files": [
     "cjs",

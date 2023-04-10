@@ -11,11 +11,12 @@ function handleInput(e: Event, inputElements: HTMLInputElement[], options?: Args
   const prev = prevIndex < 0 ? null : inputElements[prevIndex];
 
   if (currentInputElement.value.trim().length > 1) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     e.clipboardData = {
       getData: () => currentInputElement.value.trim(),
     };
-    handlePaste(e as ClipboardEvent, inputElements, options);
+    handlePasteOuter(e as ClipboardEvent, inputElements, options);
     return;
   }
 
@@ -37,7 +38,7 @@ function handleInput(e: Event, inputElements: HTMLInputElement[], options?: Args
   }
 }
 
-function handlePaste(e: ClipboardEvent, inputElements: HTMLInputElement[], options?: Args) {
+function handlePasteOuter(e: ClipboardEvent, inputElements: HTMLInputElement[], options?: Args) {
   e.preventDefault();
   const pasteData = e.clipboardData.getData('text').split('');
 
@@ -88,23 +89,28 @@ type Args = {
 };
 
 export const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInputElement[]>, () => string[]] => {
-  const inputRefs = React.useRef<HTMLInputElement[]>([]);
+  const inputElementRefs = React.useRef<HTMLInputElement[]>([]);
 
   function getValues() {
     const values: string[] = [];
-    inputRefs.current.forEach((input, i) => (values[i] = input.value));
+    inputElementRefs.current.forEach((input, i) => (values[i] = input.value));
 
     return values;
   }
 
+  const handlePasteInner = React.useCallback(
+    (e: ClipboardEvent) => handlePasteOuter(e, inputElementRefs.current, options),
+    [options],
+  );
+
   React.useEffect(() => {
     if (options?.shouldFocusFirstInput) {
-      inputRefs.current[0].focus();
+      inputElementRefs.current[0].focus();
     }
   }, [options?.shouldFocusFirstInput]);
 
   React.useEffect(() => {
-    const inputElements = inputRefs.current;
+    const inputElements = inputElementRefs.current;
 
     const handleLastInput = (e: Event) => {
       const input = <HTMLInputElement>e.target;
@@ -120,7 +126,7 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
       inputElement.addEventListener('click', handleClick);
     });
 
-    inputElements[0].addEventListener('paste', (e) => handlePaste(e, inputElements, options));
+    inputElements[0].addEventListener('paste', handlePasteInner);
     inputElements[inputElements.length - 1].addEventListener('input', handleLastInput);
 
     return () => {
@@ -132,10 +138,10 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
         }
       });
 
-      inputElements[0]?.removeEventListener('paste', (e) => handlePaste(e, inputElements, options));
+      inputElements[0]?.removeEventListener('paste', handlePasteInner);
       inputElements[inputElements.length - 1]?.removeEventListener('input', handleLastInput);
     };
-  }, [options]);
+  }, [handlePasteInner, options]);
 
-  return [inputRefs, getValues];
+  return [inputElementRefs, getValues];
 };

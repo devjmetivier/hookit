@@ -5,8 +5,8 @@
   },
   "description": "Utilize media queries in components",
   "devDependencies": {
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "files": [
     "cjs",

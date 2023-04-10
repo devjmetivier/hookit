@@ -5,8 +5,8 @@
   },
   "description": "Layer user permissions into your application with hooks",
   "devDependencies": {
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "files": [
     "cjs",

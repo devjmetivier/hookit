@@ -5,8 +5,8 @@
   },
   "description": "Throttle fast-changing state",
   "devDependencies": {
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "files": [
     "cjs",

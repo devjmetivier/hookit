@@ -4,7 +4,7 @@
     "types.json"
   ],
   "main": "index.js",
-  "name": "tsconfig",
+  "name": "@hookit/tsconfig",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && rm -rf .turbo"

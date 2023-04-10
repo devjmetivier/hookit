@@ -2888,7 +2888,7 @@ escodegen@^2.0.0:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-devjmetivier@^2.4.0:
+eslint-config-devjmetivier@^2.5.3:
   version "2.5.3"
   resolved "https://registry.yarnpkg.com/eslint-config-devjmetivier/-/eslint-config-devjmetivier-2.5.3.tgz#fb7e6ea33a95ff9ee6181edc8589ec868f7a0399"
   integrity sha512-F89jqx8Giq4BOtxBYtnyNtaNelsX62tV+IQ2atHwOqwQA6Vj6XrcJmTRqTq3P5sOddpgK+OHsClha8K4HYP2+Q==

@@ -1,1 +1,1 @@
-module.exports = require('eslint-config/eslint-preset');
+module.exports = require('@hookit/eslint-config');

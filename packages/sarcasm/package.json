@@ -5,8 +5,8 @@
   },
   "description": "sO yOu WaNnA uSe SoMe HoOkS hUh???",
   "devDependencies": {
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "files": [
     "cjs",

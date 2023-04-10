@@ -9,8 +9,8 @@
   },
   "devDependencies": {
     "@types/react": "17.0.37",
-    "eslint-config": "*",
-    "tsconfig": "*"
+    "@hookit/eslint-config": "*",
+    "@hookit/tsconfig": "*"
   },
   "name": "hookit-docs",
   "private": true,

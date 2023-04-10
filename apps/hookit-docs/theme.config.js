@@ -3,7 +3,7 @@
 export default {
   projectLink: 'https://github.com/devjmetivier/hookit', // GitHub link in the navbar
   docsRepositoryBase: 'https://github.com/devjmetivier/hookit/blob/master', // base URL for the docs repository
-  titleSuffix: ' – hookit',
+  titleSuffix: ' - hookit',
   nextLinks: false,
   prevLinks: false,
   search: true,

@@ -1,4 +1,0 @@
-{
-  "extends": "devjmetivier",
-  "ignorePatterns": ["**/cjs/*", "**/dist/*", "**/esm/*", "**/types/*"]
-}

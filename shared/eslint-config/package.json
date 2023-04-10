@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "eslint-config-devjmetivier": "^2.4.0"
+    "eslint-config-devjmetivier": "^2.5.3"
   },
   "devDependencies": {
     "typescript": "^4.4.3"
@@ -10,7 +10,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "eslint-config",
+  "name": "@hookit/eslint-config",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && rm -rf .turbo"
