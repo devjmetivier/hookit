@@ -2,7 +2,7 @@
   "compilerOptions": {
     "declarationDir": "types"
   },
-  "extends": "@hookit/tsconfig/types.json",
+  "extends": "@hookit-local/tsconfig/types.json",
   "include": ["src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["node_modules", "**/*.test.ts", "**/*.test.tsx"]
 }

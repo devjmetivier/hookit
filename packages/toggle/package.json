@@ -5,14 +5,13 @@
   },
   "description": "Toggle a boolean state",
   "devDependencies": {
-    "@hookit/eslint-config": "*",
-    "@hookit/tsconfig": "*"
+    "@hookit-local/eslint-config": "*",
+    "@hookit-local/tsconfig": "*",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "react": "latest",
+    "tsup": "latest"
   },
-  "files": [
-    "cjs",
-    "esm",
-    "types"
-  ],
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/toggle#readme",
   "keywords": [
     "react",
@@ -21,8 +20,8 @@
     "boolean"
   ],
   "license": "MIT",
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "name": "@hookit/toggle",
   "peerDependencies": {
     "react": ">=16.8"
@@ -32,16 +31,14 @@
     "url": "git+https://github.com/devjmetivier/hookit.git"
   },
   "scripts": {
-    "build": "yarn build:esm && yarn build:cjs && yarn build:types",
-    "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
-    "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
-    "build:types": "tsc --project tsconfig.types.json",
-    "build:watch": "tsc-watch -p ./tsconfig.json --onSuccess 'yarn build'",
-    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf esm/ && rm -rf cjs/ && rm -rf types/ && rm -rf dist/",
+    "build": "tsup src/index.ts --format esm,cjs --dts --minify",
+    "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "prebuild": "yarn clean",
-    "prepublishOnly": "yarn build"
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "prebuild": "pnpm clean",
+    "prepublishOnly": "pnpm build"
   },
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "version": "0.2.0"
 }

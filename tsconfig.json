@@ -3,6 +3,6 @@
     "outDir": "./dist",
     "moduleResolution": "node"
   },
-  "extends": "@hookit/tsconfig/base.json",
+  "extends": "@hookit-local/tsconfig/base.json",
   "exclude": ["node_modules"]
 }

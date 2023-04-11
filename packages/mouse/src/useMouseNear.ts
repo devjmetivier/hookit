@@ -1,7 +1,8 @@
 import * as React from 'react';
+
 import { useElementEventListener } from '@hookit/element-event-listener';
-import { useWindowEventListener } from '@hookit/window-event-listener';
 import { useThrottledState } from '@hookit/throttle';
+import { useWindowEventListener } from '@hookit/window-event-listener';
 
 type PositionState = { x: number; y: number };
 type Return = {

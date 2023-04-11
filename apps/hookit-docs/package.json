@@ -2,20 +2,22 @@
   "dependencies": {
     "@hookit/verification-inputs": "*",
     "next": "latest",
-    "nextra": "^1.1.0",
-    "nextra-theme-docs": "^1.2.6",
+    "nextra": "^2.3.0",
+    "nextra-theme-docs": "^2.3.0",
     "react": "latest",
     "react-dom": "latest"
   },
   "devDependencies": {
-    "@types/react": "17.0.37",
-    "@hookit/eslint-config": "*",
-    "@hookit/tsconfig": "*"
+    "@hookit-local/eslint-config": "*",
+    "@hookit-local/tsconfig": "*",
+    "@types/react": "~18.0.34",
+    "@types/react-dom": "~18.0.11"
   },
   "name": "hookit-docs",
   "private": true,
   "scripts": {
     "build": "next build",
+    "clean": "rm -rf .turbo node_modules",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"

@@ -1,6 +1,6 @@
-import { ICliArgs } from '../newPackage';
+import { CliArgs } from '../newPackage';
 
-export default ({ hookName }: ICliArgs) => `import { renderHook } from '@testing-library/react-hooks';
+export default ({ hookName }: CliArgs) => `import { renderHook } from '@testing-library/react-hooks';
 
 import { ${hookName} } from './${hookName}';
 

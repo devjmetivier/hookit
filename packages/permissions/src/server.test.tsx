@@ -4,11 +4,11 @@
 
 import React from 'react';
 
-import renderHookServer from '../../../utils/renderHookServer';
 import { consoleError, consoleLog } from '../../../mocks/console';
+import renderHookServer from '../../../utils/renderHookServer';
 
-import { usePermissions, TPermissions, TRules } from './usePermissions';
 import * as Messages from './messages';
+import { usePermissions, TPermissions, TRules } from './usePermissions';
 
 type Permissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
 type Roles = 'admin' | 'normal' | 'free';

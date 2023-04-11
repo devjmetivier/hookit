@@ -1,5 +1,5 @@
-import { useWindowEventListener } from '@hookit/window-event-listener';
 import { useThrottledState } from '@hookit/throttle';
+import { useWindowEventListener } from '@hookit/window-event-listener';
 
 type PositionState = Partial<Omit<MouseEvent, 'getModifierState' | 'initMouseEvent'>>;
 

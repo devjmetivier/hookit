@@ -2,8 +2,8 @@
  * @jest-environment node
  */
 
-import renderHookServer from '../../../utils/renderHookServer';
 import { consoleError } from '../../../mocks/console';
+import renderHookServer from '../../../utils/renderHookServer';
 
 import { useLocalStorage } from './useLocalStorage';
 

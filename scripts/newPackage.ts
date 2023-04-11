@@ -1,42 +1,35 @@
 import fs from 'fs';
 
-import { prompt } from 'inquirer';
+import inquirer from 'inquirer';
 import Listr from 'listr';
 
 import { createScript, readDirAsync, writeFileAsync } from './utils';
 
-export interface ICliArgs {
-  packageDir: string;
+export type CliArgs = {
+  description: string;
   hookName: string;
   keywords: string[];
-  description: string;
-}
+  packageDir: string;
+};
 
 const script = createScript({
   name: 'Create new package',
   task: async () => {
     const packagesDir = './packages';
-    const storiesDir = './stories';
     const validatePackageName = /^[a-z-?]+$/g;
     const validateHookName = /^[a-z]+((\d)|([A-Z0-9][a-z0-9]+))*([A-Z])?/g;
 
-    const existingPackages = await readDirAsync(packagesDir, {
-      withFileTypes: true,
-    });
+    const existingPackages = await readDirAsync(packagesDir, { withFileTypes: true });
     const existingPackageNames = existingPackages.filter((item) => item.isDirectory()).map(({ name }) => name);
 
-    const { packageDir, description, keywords, hookName } = await prompt<ICliArgs>([
+    const { description, hookName, keywords, packageDir } = await inquirer.prompt<CliArgs>([
       {
         name: 'packageDir',
         message: 'What should the package directory be called?',
         validate: (value) => {
-          if (existingPackageNames.includes(value)) {
-            return `Package '${value}' already exists, try another name.`;
-          }
+          if (existingPackageNames.includes(value)) return `Package '${value}' already exists, try another name.`;
 
-          if (!validatePackageName.test(value)) {
-            return 'Should not contain spaces or special characters';
-          }
+          if (!validatePackageName.test(value)) return 'Should not contain spaces or special characters';
 
           return true;
         },
@@ -45,9 +38,7 @@ const script = createScript({
         name: 'hookName',
         message: 'What should the hook be called?',
         validate: (value) => {
-          if (!validateHookName.test(value)) {
-            return 'Hook name should be camelcase.';
-          }
+          if (!validateHookName.test(value)) return 'Hook name should be camelcase.';
 
           return true;
         },
@@ -70,7 +61,6 @@ const script = createScript({
     ]);
 
     const packagePath = `${packagesDir}/${packageDir}`;
-    const storyPath = `${storiesDir}/${hookName}`;
     const packageSrcPath = `${packagesDir}/${packageDir}/src`;
     const nonSrc = ['package', 'tsconfig', 'README'];
 
@@ -79,15 +69,12 @@ const script = createScript({
         title: 'Creating directories',
         task: () => {
           fs.mkdirSync(packageSrcPath, { recursive: true });
-          fs.mkdirSync(storyPath, { recursive: true });
         },
       },
       {
         title: 'Creating files',
         task: async () => {
-          const templateDir = await readDirAsync(`${__dirname}/templates`, {
-            withFileTypes: true,
-          });
+          const templateDir = await readDirAsync(`${__dirname}/templates`, { withFileTypes: true });
 
           const templateTasks = await Promise.all(
             templateDir
@@ -99,26 +86,14 @@ const script = createScript({
                 const filePath = isSrcFile ? `src/${fileName}` : fileName;
 
                 const content = await import(`${__dirname}/templates/${name}`)
-                  .then((fn: { default: (args: ICliArgs) => void }) =>
-                    fn.default({
-                      packageDir,
-                      description,
-                      keywords,
-                      hookName,
-                    }),
+                  .then((fn: { default: (args: CliArgs) => any }) =>
+                    fn.default({ packageDir, description, keywords, hookName }),
                   )
                   .then((content) => ({
                     title: filePath,
                     task: () => {
-                      if (fileName.includes('stories') && fileName.includes('mdx')) {
-                        return writeFileAsync(`${storyPath}/${hookName}.stories.mdx`, content);
-                      }
-                      if (fileName.includes('stories')) {
-                        return writeFileAsync(`${storyPath}/${hookName}.stories.tsx`, content);
-                      }
-                      if (fileName.includes('use')) {
-                        return writeFileAsync(`${packagePath}/src/${hookName}.ts`, content);
-                      }
+                      if (fileName.includes('use')) return writeFileAsync(`${packagePath}/src/${hookName}.ts`, content);
+
                       return writeFileAsync(`${packagePath}/${filePath}`, content);
                     },
                   }));

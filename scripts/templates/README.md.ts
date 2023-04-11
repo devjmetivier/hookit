@@ -1,6 +1,6 @@
-import { ICliArgs } from '../newPackage';
+import { CliArgs } from '../newPackage';
 
-export default ({ packageDir }: ICliArgs) => `# @hookit/${packageDir}
+export default ({ packageDir }: CliArgs) => `# @hookit/${packageDir}
 
 ### Documentation
 

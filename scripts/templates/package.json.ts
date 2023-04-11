@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
-import { ICliArgs } from '../newPackage';
+import { CliArgs } from '../newPackage';
 
-export default ({ packageDir, keywords, description }: ICliArgs) => `{
+export default ({ packageDir, keywords, description }: CliArgs) => `{
   "name": "@hookit/${packageDir}",
   "description": "${description}",
   "version": "0.0.0",
@@ -18,22 +18,19 @@ export default ({ packageDir, keywords, description }: ICliArgs) => `{
   "keywords": [
 ${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}
   ],
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "types": "types/index.d.ts",
-  "files": [
-    "cjs",
-    "esm",
-    "types"
-  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "prepublishOnly": "yarn build",
-"clean": "rm -rf node_modules && rm -rf .turbo && rm -rf esm/ && rm -rf cjs/ && rm -rf types/ && rm -rf dist/",
-"lint": "eslint . --ext .js,.ts,.jsx,.tsx",,
-    "prebuild": "yarn clean",
+    "prepublishOnly": "pnpm build",
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",,
+    "prebuild": "pnpm clean",
     "echo:package": "echo \"Building @hookit/${packageDir}...\"",
-    "build": "yarn build:esm && yarn build:cjs && yarn build:types",
-    "build:watch": "tsc-watch -p ./tsconfig.json --onSuccess 'yarn build'",
+    "build": "tsup src/index.ts --format esm,cjs --dts --minify",
+    "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
+    
     "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
     "build:types": "tsc --d --declarationMap --declarationDir types"

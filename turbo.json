@@ -1,9 +1,12 @@
 {
   "baseBranch": "origin/master",
   "pipeline": {
+    "//#clean": {
+      "cache": false
+    },
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "cjs/**", "dist/**", "esm/**", "types/**"]
+      "outputs": [".next/**", "dist/**"]
     },
     "clean": {
       "cache": false
@@ -13,6 +16,9 @@
     },
     "lint": {
       "outputs": []
+    },
+    "lint:fix": {
+      "cache": false
     },
     "start": {
       "cache": false

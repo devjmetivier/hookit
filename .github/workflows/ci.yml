@@ -18,13 +18,13 @@ jobs:
           node-version: "14.x"
           registry-url: "https://registry.npmjs.org"
 
-      - name: Build Packages
+      - name: Build
         run: |
-          yarn --frozen-lockfile
-          yarn build
+          pnpm install --frozen-lockfile
+          pnpm build
 
-      - name: Lint Packages
-        run: yarn lint
+      - name: Lint
+        run: pnpm lint
 
-      - name: Test Packages
-        run: yarn test
+      - name: Test
+        run: pnpm test

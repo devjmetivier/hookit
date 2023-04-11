@@ -28,8 +28,8 @@ export const useUndo = <T = unknown>(
     canUndo: boolean;
     canRedo: boolean;
     redo: () => void;
-    reset: (newPresent: T) => void;
-    set: (newPresent: T) => void;
+    reset: <T = any>(newPresent: T) => void;
+    set: <T = any>(newPresent: T) => void;
     undo: () => void;
   },
 ] => {
@@ -96,8 +96,8 @@ export const useUndo = <T = unknown>(
   const canUndo = state.past.length !== 0;
 
   const redo = React.useCallback(() => dispatch({ type: Action.REDO }), []);
-  const reset = React.useCallback((newPresent) => dispatch({ type: Action.RESET, payload: { newPresent } }), []);
-  const set = React.useCallback((newPresent) => dispatch({ type: Action.SET, payload: { newPresent } }), []);
+  const reset = React.useCallback((newPresent: any) => dispatch({ type: Action.RESET, payload: { newPresent } }), []);
+  const set = React.useCallback((newPresent: any) => dispatch({ type: Action.SET, payload: { newPresent } }), []);
   const undo = React.useCallback(() => dispatch({ type: Action.UNDO }), []);
 
   return [

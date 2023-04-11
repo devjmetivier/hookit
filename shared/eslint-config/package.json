@@ -10,7 +10,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "name": "@hookit/eslint-config",
+  "name": "@hookit-local/eslint-config",
   "private": true,
   "scripts": {
     "clean": "rm -rf node_modules && rm -rf .turbo"

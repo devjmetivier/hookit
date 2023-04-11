@@ -4,9 +4,7 @@ export const useMedia = <T = any>(queries: string[], values: T[], defaultValue: 
   const mediaQueryLists = queries.map((q) => (typeof window !== 'undefined' ? window.matchMedia(q) : undefined));
 
   const getValue = () => {
-    if (!mediaQueryLists[0]) {
-      return defaultValue;
-    }
+    if (!mediaQueryLists[0]) return defaultValue;
 
     const index = mediaQueryLists.findIndex((mql) => mql.matches);
 

@@ -1,6 +1,6 @@
-import { ICliArgs } from '../newPackage';
+import { CliArgs } from '../newPackage';
 
-export default ({ hookName }: ICliArgs) => `/**
+export default ({ hookName }: CliArgs) => `/**
  * @jest-environment node
  */
 
