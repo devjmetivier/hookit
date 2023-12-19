@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useReducer } from 'react';
 
 type State = { on: boolean };
 
@@ -29,7 +29,7 @@ const toggleReducer: React.Reducer<State, ReducerAction> = ({ on }, { type }) =>
 };
 
 export const useToggle = (initialState = false) => {
-  const [{ on }, dispatch] = React.useReducer(toggleReducer, { on: initialState });
+  const [{ on }, dispatch] = useReducer(toggleReducer, { on: initialState });
 
   const toggle = () => dispatch({ type: Action.TOGGLE });
   const setOn = () => dispatch({ type: Action.ON });

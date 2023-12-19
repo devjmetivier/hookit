@@ -5,7 +5,6 @@
   },
   "description": "Helps with verification input features",
   "devDependencies": {
-    "@hookit-local/eslint-config": "*",
     "@hookit-local/tsconfig": "*",
     "@types/react": "latest",
     "@types/react-dom": "latest",
@@ -14,10 +13,10 @@
   },
   "homepage": "https://github.com/devjmetivier/hookit/tree/master/packages/verification-inputs#readme",
   "keywords": [
-    "react",
     "hooks",
-    "verification",
-    "inputs"
+    "inputs",
+    "react",
+    "verification"
   ],
   "license": "MIT",
   "main": "dist/index.js",
@@ -32,13 +31,11 @@
   },
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --minify",
-    "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
     "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
-    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
+    "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
     "prebuild": "pnpm clean",
     "prepublishOnly": "pnpm build"
   },
   "types": "dist/index.d.ts",
-  "version": "0.3.1"
+  "version": "0.3.2"
 }

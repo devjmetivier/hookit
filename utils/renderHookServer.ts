@@ -1,4 +1,5 @@
 import { createElement } from 'react';
+
 import { renderToString } from 'react-dom/server';
 
 export default function renderHookServer<F>(hook: () => F): F {

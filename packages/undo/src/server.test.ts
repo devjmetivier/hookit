@@ -5,7 +5,6 @@
 import { act } from '@testing-library/react-hooks';
 
 import renderHookServer from '../../../utils/renderHookServer';
-
 import { useUndo } from './useUndo';
 
 describe('useUndo SSR', () => {

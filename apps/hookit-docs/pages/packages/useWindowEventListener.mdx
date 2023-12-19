@@ -8,11 +8,11 @@ Easily add/remove window event listeners
 
 ```tsx
 const Component = () => {
-  const [type, setType] = React.useState<string>("");
+  const [type, setType] = React.useState<string>('');
   const [x, setX] = React.useState<number>(0);
   const [y, setY] = React.useState<number>(0);
 
-  useWindowEventListener("mousemove", (e) => {
+  useWindowEventListener('mousemove', (e) => {
     setType(e.type);
     setX(e.clientX);
     setY(e.clientY);

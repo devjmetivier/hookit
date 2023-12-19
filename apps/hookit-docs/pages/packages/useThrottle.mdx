@@ -5,15 +5,15 @@ Throttle fast-changing state
 ## Usage
 
 ```tsx
-import { useThrottle } from "@hookit/throttle";
+import { useThrottle } from '@hookit/throttle';
 
 export const Component = () => {
-  const [state, setState] = React.useState("");
+  const [state, setState] = React.useState('');
   const throttledValue = useThrottle(state, 1000);
 
   return (
     <>
-      <input onChange={(e) => setState(e.target.value)} type="text" />
+      <input onChange={(e) => setState(e.target.value)} type='text' />
 
       {/* updates immediately */}
       <p>State: {state}</p>
@@ -47,14 +47,14 @@ export const Component = () => {
 # useThrottledState
 
 ```tsx
-import { useThrottledState } from "@hookit/throttle";
+import { useThrottledState } from '@hookit/throttle';
 
 export const Component = () => {
-  const [state, throttledValue, setState] = useThrottledState("", 1000);
+  const [state, throttledValue, setState] = useThrottledState('', 1000);
 
   return (
     <>
-      <input onChange={(e) => setState(e.target.value)} type="text" />
+      <input onChange={(e) => setState(e.target.value)} type='text' />
 
       {/* updates immediately */}
       <p>State: {state}</p>

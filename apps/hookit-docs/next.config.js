@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 /** @type {import('next').NextConfig} */
 const withNextra = require('nextra')({
   theme: 'nextra-theme-docs',
-  themeConfig: './theme.config.js',
-  // optional: add `unstable_staticImage: true` to enable Nextra's auto image import
+  themeConfig: './theme.config.jsx',
 });
 
-module.exports = { reactStrictMode: true, ...withNextra() };
+if (process.env.NODE_ENV === 'development') {
+  console.log('🛜  LAN Url:', `http://${require('address').ip()}:3000`);
+}
+
+module.exports = withNextra();

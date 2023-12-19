@@ -3,7 +3,6 @@
  */
 
 import renderHookServer from '../../../utils/renderHookServer';
-
 import { useWhyDidYouUpdate } from './useWhyDidYouUpdate';
 
 describe('useWhyDidYouUpdate SSR', () => {

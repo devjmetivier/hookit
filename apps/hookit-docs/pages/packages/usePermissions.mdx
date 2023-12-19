@@ -7,7 +7,7 @@ Layer user permissions into your application with hooks
 #### JavaScript
 
 ```tsx
-import { PermissionsProvider, usePermissions } from "@hookit/permissions";
+import { PermissionsProvider, usePermissions } from '@hookit/permissions';
 
 const admin = {
   DoThis: true,
@@ -32,7 +32,7 @@ const rules = {
 export const App = () => {
   return (
     <PermissionsProvider rules={rules}>
-      <Component role="admin" firstArg={1} secondArg={1} />
+      <Component role='admin' firstArg={1} secondArg={1} />
     </PermissionsProvider>
   );
 };
@@ -41,12 +41,12 @@ export const App = () => {
 const Component = ({ role, firstArg, secondArg }) => {
   const { canAccess } = usePermissions(role);
 
-  const canDoThis = canAccess("DoThis", { firstArg, secondArg });
+  const canDoThis = canAccess('DoThis', { firstArg, secondArg });
 
   return (
     <>
       <h3>Current User Role: {role}</h3>
-      <p>canDoThis: {canDoThis ? "✅" : "🚫"}</p>
+      <p>canDoThis: {canDoThis ? '✅' : '🚫'}</p>
     </>
   );
 };
@@ -55,15 +55,10 @@ const Component = ({ role, firstArg, secondArg }) => {
 #### TypeScript
 
 ```tsx
-import {
-  PermissionsProvider,
-  usePermissions,
-  TPermissions,
-  TRules,
-} from "@hookit/permissions";
+import { PermissionsProvider, TPermissions, TRules, usePermissions } from '@hookit/permissions';
 
-type Permissions = "DoThis" | "DoThat" | "GetThis" | "GetThat";
-type Roles = "admin" | "normal" | "free";
+type Permissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
+type Roles = 'admin' | 'normal' | 'free';
 
 // Use types  to help construct permissions
 const admin: TPermissions<Permissions> = {
@@ -92,7 +87,7 @@ const rules: TRules<Permissions, Roles> = {
 export const App: React.FC = () => {
   return (
     <PermissionsProvider rules={rules}>
-      <Component role="admin" />
+      <Component role='admin' />
     </PermissionsProvider>
   );
 };
@@ -105,12 +100,12 @@ const Component: React.FC<{
 }> = ({ role, firstArg, secondArg }) => {
   const { canAccess } = usePermissions<Permissions, Roles>(role);
 
-  const canDoThis = canAccess<ARGS>("DoThis", { firstArg, secondArg });
+  const canDoThis = canAccess<ARGS>('DoThis', { firstArg, secondArg });
 
   return (
     <>
       <h3>Current User Role: {role}</h3>
-      <p>canDoThis: {canDoThis ? "✅" : "🚫"}</p>
+      <p>canDoThis: {canDoThis ? '✅' : '🚫'}</p>
     </>
   );
 };
@@ -123,15 +118,15 @@ You can alternatively use `enums` instead of `unions` to help construct your typ
 // type Roles = 'admin' | 'normal' | 'free';
 
 enum Permissions {
-  DoThis = "DoThis",
-  DoThat = "DoThat",
-  GetThis = "GetThis",
-  GetThat = "GetThat",
+  DoThis = 'DoThis',
+  DoThat = 'DoThat',
+  GetThis = 'GetThis',
+  GetThat = 'GetThat',
 }
 enum Roles {
-  admin = "admin",
-  normal = "normal",
-  free = "free",
+  admin = 'admin',
+  normal = 'normal',
+  free = 'free',
 }
 
 //...

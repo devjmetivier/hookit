@@ -10,7 +10,7 @@ Updates from state:
 const Component = () => {
   const [count, setCount] = React.useState(0);
 
-  useWhyDidYouUpdate("Component", { count });
+  useWhyDidYouUpdate('Component', { count });
 
   return (
     <>
@@ -18,7 +18,7 @@ const Component = () => {
       <code>
         <pre>State: {JSON.stringify({ count }, null, 2)}</pre>
       </code>
-      <button onClick={() => setCount((prev) => prev + 1)} type="button">
+      <button onClick={() => setCount((prev) => prev + 1)} type='button'>
         Click {count}
       </button>
     </>
@@ -30,7 +30,7 @@ Updates from props
 
 ```tsx
 const Component = (props: any) => {
-  useWhyDidYouUpdate("Component", props);
+  useWhyDidYouUpdate('Component', props);
 
   return (
     <>
@@ -48,7 +48,7 @@ export const UpdateProps: Story = () => {
       <code>
         <pre>Props: {JSON.stringify({ count }, null, 2)}</pre>
       </code>
-      <button onClick={() => setCount((prev) => prev + 1)} type="button">
+      <button onClick={() => setCount((prev) => prev + 1)} type='button'>
         Click {count}
       </button>
     </>

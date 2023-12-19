@@ -6,20 +6,17 @@ Undo & redo state changes
 
 ```tsx
 const Component = () => {
-  const [
-    { past, present, future },
-    { canRedo, canUndo, redo, reset, set, undo },
-  ] = useUndo<number>(0);
+  const [{ past, present, future }, { canRedo, canUndo, redo, reset, set, undo }] = useUndo<number>(0);
 
   return (
     <>
       <div
         style={{
-          padding: "1rem",
-          marginBottom: "2rem",
+          padding: '1rem',
+          marginBottom: '2rem',
           height: 250,
-          border: "1px solid black",
-          overflow: "auto",
+          border: '1px solid black',
+          overflow: 'auto',
         }}
       >
         <pre>{JSON.stringify({ past, present, future }, null, 2)}</pre>
@@ -27,22 +24,22 @@ const Component = () => {
 
       <div>
         <p>Count: {present}</p>
-        <button onClick={() => set(present - 1)} type="button">
+        <button onClick={() => set(present - 1)} type='button'>
           -1
         </button>
-        <button onClick={() => set(present + 1)} type="button">
+        <button onClick={() => set(present + 1)} type='button'>
           +1
         </button>
       </div>
 
       <div>
-        <button disabled={!canUndo} onClick={undo} type="button">
+        <button disabled={!canUndo} onClick={undo} type='button'>
           undo
         </button>
-        <button disabled={!canRedo} onClick={redo} type="button">
+        <button disabled={!canRedo} onClick={redo} type='button'>
           redo
         </button>
-        <button onClick={() => reset(past[0] || 0)} type="button">
+        <button onClick={() => reset(past[0] || 0)} type='button'>
           reset
         </button>
       </div>

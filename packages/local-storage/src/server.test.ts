@@ -4,7 +4,6 @@
 
 import { consoleError } from '../../../mocks/console';
 import renderHookServer from '../../../utils/renderHookServer';
-
 import { useLocalStorage } from './useLocalStorage';
 
 const key = 'key';

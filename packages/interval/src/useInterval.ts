@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useRef } from 'react';
 
 type Callback = () => void;
 type Interval = number | null;
@@ -10,15 +10,15 @@ type Return = void;
  * @returns {Return} nothing
  */
 export const useInterval = (callback: Callback, interval: Interval): Return => {
-  const savedCallback = React.useRef<Callback>();
+  const savedCallback = useRef<Callback>();
 
   // Remember the latest callback.
-  React.useEffect(() => {
+  useEffect(() => {
     savedCallback.current = callback;
   }, [callback]);
 
   // Set up the interval.
-  React.useEffect(() => {
+  useEffect(() => {
     function tick() {
       savedCallback.current();
     }

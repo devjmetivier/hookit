@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useReducer } from 'react';
 
 import { useWindowEventListener } from '@hookit/window-event-listener';
 
@@ -24,15 +24,15 @@ const networkStatusReducer: React.Reducer<State, ReducerAction> = (_, action) =>
 
 export const useNetworkStatus = (): State => {
   // grab current online status (null check) and use to intialize state
-  const [state, dispatch] = React.useReducer(
+  const [state, dispatch] = useReducer(
     networkStatusReducer,
     // can reasonably expect to have window.navigator.onLine value if window is present
     typeof window !== 'undefined' ? window.navigator.onLine : undefined,
   );
 
   // memoize callbacks
-  const onlineHandler = React.useCallback(() => dispatch({ type: Action.ONLINE }), [dispatch]);
-  const offlineHandler = React.useCallback(() => dispatch({ type: Action.OFFLINE }), [dispatch]);
+  const onlineHandler = useCallback(() => dispatch({ type: Action.ONLINE }), [dispatch]);
+  const offlineHandler = useCallback(() => dispatch({ type: Action.OFFLINE }), [dispatch]);
 
   // use event listeners
   useWindowEventListener(Action.ONLINE, onlineHandler);

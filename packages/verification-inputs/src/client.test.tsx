@@ -1,8 +1,6 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
-/* eslint-disable jsx-a11y/label-has-for */
 import * as React from 'react';
 
-import { render, fireEvent } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { useVerificationInputs } from './useVerificationInputs';

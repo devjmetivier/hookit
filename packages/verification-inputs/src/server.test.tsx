@@ -3,7 +3,6 @@
  */
 
 import renderHookServer from '../../../utils/renderHookServer';
-
 import { useVerificationInputs } from './useVerificationInputs';
 
 describe('useVerificationInputs SSR', () => {

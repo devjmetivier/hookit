@@ -3,9 +3,8 @@ import React from 'react';
 import { renderHook } from '@testing-library/react-hooks';
 
 import { consoleError, consoleLog } from '../../../mocks/console';
-
 import * as Messages from './messages';
-import { usePermissions, PermissionsProvider, TPermissions, TRules } from './usePermissions';
+import { PermissionsProvider, TPermissions, TRules, usePermissions } from './usePermissions';
 
 type Permissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
 type Roles = 'admin' | 'normal' | 'free';

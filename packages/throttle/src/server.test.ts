@@ -3,7 +3,6 @@
  */
 
 import renderHookServer from '../../../utils/renderHookServer';
-
 import { useThrottle } from './useThrottle';
 import { useThrottledState } from './useThrottledState';
 

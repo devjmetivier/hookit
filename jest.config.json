@@ -1,22 +1,16 @@
 {
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "packages/*/src/**/*.{js,ts,tsx}",
     "!packages/*/src/**/index.{js,ts,tsx}",
-    "!packages/*/src/**/messages.{js,ts,tsx}"
+    "!packages/*/src/**/messages.{js,ts,tsx}",
+    "packages/*/src/**/*.{js,ts,tsx}"
   ],
-  "coveragePathIgnorePatterns": [
-    "/node_modules/",
-    "/utils",
-    "/cjs",
-    "/esm",
-    "/types"
-  ],
+  "coveragePathIgnorePatterns": ["/cjs", "/esm", "/node_modules/", "/types", "/utils"],
   "moduleFileExtensions": ["js", "json", "ts", "tsx"],
   "reporters": ["default"],
   "roots": ["<rootDir>/packages"],
   "setupFilesAfterEnv": ["<rootDir>/setupTests.ts"],
-  "testPathIgnorePatterns": ["/node_modules/", "/cjs", "/esm", "/types"],
+  "testPathIgnorePatterns": ["/cjs", "/esm", "/node_modules/", "/types"],
   "testRegex": "(\\.(test|spec))\\.(ts|tsx)$",
   "timers": "fake",
   "transform": {

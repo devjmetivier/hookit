@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import * as React from 'react';
 
 import { forgotArgs, mustBeBoolean, usePermissionsErrorLabel } from './messages';

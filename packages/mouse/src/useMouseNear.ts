@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { useElementEventListener } from '@hookit/element-event-listener';
 import { useThrottledState } from '@hookit/throttle';
@@ -17,9 +17,9 @@ export const useMouseNear = (
   throttle = 41.67,
 ): Return => {
   const [, { x, y }, setState] = useThrottledState<PositionState>({ x: null, y: null }, throttle);
-  const [isOver, setIsOver] = React.useState<boolean>(false);
+  const [isOver, setIsOver] = useState<boolean>(false);
 
-  const isNear = React.useCallback(() => {
+  const isNear = useCallback(() => {
     if (!elementRef.current) return false;
 
     const left = elementRef.current.offsetLeft - threshold;
@@ -30,10 +30,7 @@ export const useMouseNear = (
     return x > left && x < right && y > top && y < bottom;
   }, [elementRef, threshold, x, y]);
 
-  const mouseMoveHandler = React.useCallback(
-    (event: MouseEvent) => setState({ x: event.pageX, y: event.pageY }),
-    [setState],
-  );
+  const mouseMoveHandler = useCallback((event: MouseEvent) => setState({ x: event.pageX, y: event.pageY }), [setState]);
   const mouseEnterHandler = React.useCallback(() => setIsOver(true), []);
   const mouseLeaveHandler = React.useCallback(() => setIsOver(false), []);
 

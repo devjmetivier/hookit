@@ -15,16 +15,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: "14.x"
-          registry-url: "https://registry.npmjs.org"
+          node-version: '14.x'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Build
         run: |
           pnpm install --frozen-lockfile
           pnpm build
-
-      - name: Lint
-        run: pnpm lint
 
       - name: Test
         run: pnpm test

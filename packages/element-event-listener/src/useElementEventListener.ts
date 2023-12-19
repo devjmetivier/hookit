@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useRef } from 'react';
 
 type Return = void;
 
@@ -7,13 +7,13 @@ export function useElementEventListener<K extends keyof HTMLElementEventMap>(
   eventName: K,
   handler: (event: HTMLElementEventMap[K]) => any,
 ): Return {
-  const savedHandler = React.useRef<(event: HTMLElementEventMap[K]) => any>();
+  const savedHandler = useRef<(event: HTMLElementEventMap[K]) => any>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     savedHandler.current = handler;
   }, [handler]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const current = elementRef.current;
     const isSupported = current && current.addEventListener;
     if (!isSupported || !savedHandler.current) return;

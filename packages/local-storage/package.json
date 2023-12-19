@@ -5,7 +5,6 @@
   },
   "description": "Set and get items from local storage",
   "devDependencies": {
-    "@hookit-local/eslint-config": "*",
     "@hookit-local/tsconfig": "*",
     "@types/react": "latest",
     "@types/react-dom": "latest",
@@ -37,8 +36,6 @@
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
     "build:types": "tsc --declaration --declarationDir types",
     "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
-    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "prebuild": "pnpm clean",
     "prepublishOnly": "pnpm build"
   },

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useReducer } from 'react';
 
 type State<T = any> = {
   past: T[];
@@ -33,7 +33,7 @@ export const useUndo = <T = unknown>(
     undo: () => void;
   },
 ] => {
-  const [state, dispatch] = React.useReducer<
+  const [state, dispatch] = useReducer<
     React.Reducer<State<typeof initialPresent>, ReducerAction<typeof initialPresent>>
   >(
     (state, { type, payload }) => {
@@ -95,10 +95,10 @@ export const useUndo = <T = unknown>(
   const canRedo = state.future.length !== 0;
   const canUndo = state.past.length !== 0;
 
-  const redo = React.useCallback(() => dispatch({ type: Action.REDO }), []);
-  const reset = React.useCallback((newPresent: any) => dispatch({ type: Action.RESET, payload: { newPresent } }), []);
-  const set = React.useCallback((newPresent: any) => dispatch({ type: Action.SET, payload: { newPresent } }), []);
-  const undo = React.useCallback(() => dispatch({ type: Action.UNDO }), []);
+  const redo = useCallback(() => dispatch({ type: Action.REDO }), []);
+  const reset = useCallback((newPresent: any) => dispatch({ type: Action.RESET, payload: { newPresent } }), []);
+  const set = useCallback((newPresent: any) => dispatch({ type: Action.SET, payload: { newPresent } }), []);
+  const undo = useCallback(() => dispatch({ type: Action.UNDO }), []);
 
   return [
     state,

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import { readDirAsync, writeFileAsync } from './utils';
 
 const cwd = process.cwd();

@@ -8,15 +8,12 @@ Sets and gets items from local storage
 
 ```tsx
 const Component = () => {
-  const [storageItem, setStorageItem] = useLocalStorage(
-    "useLocalStorage",
-    "initial"
-  );
+  const [storageItem, setStorageItem] = useLocalStorage('useLocalStorage', 'initial');
 
   return (
     <>
       {storageItem}
-      <button type="button" onClick={() => setStorageItem("new")}>
+      <button type='button' onClick={() => setStorageItem('new')}>
         Click Me
       </button>
     </>

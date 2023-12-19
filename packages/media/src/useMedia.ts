@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useEffect, useState } from 'react';
 
 export const useMedia = <T = any>(queries: string[], values: T[], defaultValue: T) => {
   const mediaQueryLists = queries.map((q) => (typeof window !== 'undefined' ? window.matchMedia(q) : undefined));
@@ -11,9 +11,9 @@ export const useMedia = <T = any>(queries: string[], values: T[], defaultValue: 
     return values?.[index] || defaultValue;
   };
 
-  const [value, setValue] = React.useState<T>(getValue);
+  const [value, setValue] = useState<T>(getValue);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handler = () => setValue(getValue);
 
     mediaQueryLists.forEach((mql) => mql.addEventListener('change', handler));

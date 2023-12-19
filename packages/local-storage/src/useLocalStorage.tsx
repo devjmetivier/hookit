@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useState } from 'react';
 
 type Key = string;
 type InitialValue<T> = T;
@@ -12,7 +12,7 @@ type Return<T> = [T, (value: T) => void];
  */
 export function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Return<T> {
   // Pass function to useState to determine initial state - this way, logic is only executed once
-  const [storedValue, setStoredValue] = React.useState<typeof initialValue>(() => {
+  const [storedValue, setStoredValue] = useState<typeof initialValue>(() => {
     try {
       // Get value from local storage by key
       const item = window.localStorage.getItem(key);
@@ -36,7 +36,7 @@ export function useLocalStorage<T>(key: Key, initialValue?: InitialValue<T>): Re
   });
 
   // Return a wrapped version of useState's setter function that persists the new value to localStorage.
-  const setValue = React.useCallback(
+  const setValue = useCallback(
     (value: typeof initialValue) => {
       try {
         // Save state

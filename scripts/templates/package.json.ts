@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-escape */
 import { CliArgs } from '../newPackage';
 
 export default ({ packageDir, keywords, description }: CliArgs) => `{
@@ -22,18 +21,15 @@ ${keywords.map((keyword) => `    "${keyword}"`).join(',\n')}
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "prepublishOnly": "pnpm build",
-    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
-    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",,
-    "prebuild": "pnpm clean",
-    "echo:package": "echo \"Building @hookit/${packageDir}...\"",
-    "build": "tsup src/index.ts --format esm,cjs --dts --minify",
-    "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
-    
     "build:cjs": "ncc build src/index.ts -o cjs -m -e react",
     "build:esm": "tsc --target ESNext --module ES6 --outDir esm",
-    "build:types": "tsc --d --declarationMap --declarationDir types"
+    "build:types": "tsc --d --declarationMap --declarationDir types",
+    "build": "tsup src/index.ts --format esm,cjs --dts --minify",
+    "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
+    "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
+    "echo:package": "echo \"Building @hookit/${packageDir}...\"",
+    "prebuild": "pnpm clean",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "react": ">=16.8"

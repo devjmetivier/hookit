@@ -7,9 +7,9 @@ Utilize media queries in components
 ```tsx
 export const Component: Story = () => {
   const value = useMedia(
-    ["(min-width: 1000px)", "(min-width: 900px)", "(min-width: 800px)"],
+    ['(min-width: 1000px)', '(min-width: 900px)', '(min-width: 800px)'],
     [12345678, 1234567, 123456],
-    12345
+    12345,
   );
 
   return (
@@ -28,16 +28,14 @@ type MediaValue = { mq: string };
 
 export const Component: Story = () => {
   const { mq } = useMedia(
-    ["(min-width: 1000px)", "(min-width: 900px)", "(min-width: 800px)"],
-    [{ mq: "extra" }, { mq: "large" }, { mq: "medium" }],
-    { mq: "small" }
+    ['(min-width: 1000px)', '(min-width: 900px)', '(min-width: 800px)'],
+    [{ mq: 'extra' }, { mq: 'large' }, { mq: 'medium' }],
+    { mq: 'small' },
   );
 
   return (
     <>
-      <p>
-        Try resizing the story window to print a different value from an object.
-      </p>
+      <p>Try resizing the story window to print a different value from an object.</p>
       <p>Value: {mq}</p>
     </>
   );

@@ -1,25 +1,24 @@
-/* eslint-disable jsx-a11y/control-has-associated-label */
 import * as React from 'react';
 
 import { useVerificationInputs } from '@hookit/verification-inputs';
 
 const UseVerificationInputsPage = () => {
-  const submitButtonRef = React.useRef<HTMLElement>(null) as React.MutableRefObject<HTMLButtonElement>;
+  const [results, setResults] = React.useState<string[]>();
+  const resetButtonRef = React.useRef<HTMLElement>(null) as React.MutableRefObject<HTMLButtonElement>;
 
   const [inputRefs, getValues] = useVerificationInputs({
-    focusAfter: submitButtonRef,
+    focusAfter: resetButtonRef,
     lastInputCallback: () => {
-      document.getElementsByTagName('body')[0].style.backgroundColor = 'red';
-      console.log('lastInputCallback executed');
+      setResults(getValues());
     },
     shouldFocusFirstInput: true,
   });
 
   return (
-    <div>
+    <div style={{ fontFamily: 'sans-serif' }}>
       <h1>useVerificationInputs</h1>
 
-      <div>
+      <div style={{ marginBottom: 12 }}>
         {Array.from({ length: 6 }, (_, i) => `item-${i}`).map((item, i) => (
           <input
             inputMode='numeric'
@@ -33,9 +32,16 @@ const UseVerificationInputsPage = () => {
         ))}
       </div>
 
+      {results && (
+        <div style={{ marginBottom: 12 }}>
+          <pre>Array: {JSON.stringify(results, null)}</pre>
+          <pre>String: {results?.join('')}</pre>
+        </div>
+      )}
+
       <div>
-        <button onClick={() => console.log(getValues())} ref={submitButtonRef} type='button'>
-          Get Values
+        <button ref={resetButtonRef} onClick={() => window.location.reload()}>
+          Reset
         </button>
       </div>
     </div>

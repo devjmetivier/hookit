@@ -12,21 +12,18 @@ export const Component = () => {
 
   return (
     <>
-      <button onClick={getPosition} type="button">
+      <button onClick={getPosition} type='button'>
         Get location data
       </button>
 
       <h3>Location data:</h3>
-      <p>accuracy: {geoLocation?.coords.accuracy || "¯\\_(ツ)_/¯"}</p>
-      <p>altitude: {geoLocation?.coords.altitude || "¯\\_(ツ)_/¯"}</p>
-      <p>
-        altitudeAccuracy:{" "}
-        {geoLocation?.coords.altitudeAccuracy || "¯\\_(ツ)_/¯"}
-      </p>
-      <p>heading: {geoLocation?.coords.heading || "¯\\_(ツ)_/¯"}</p>
-      <p>latitude: {geoLocation?.coords.latitude || "¯\\_(ツ)_/¯"}</p>
-      <p>longitude: {geoLocation?.coords.longitude || "¯\\_(ツ)_/¯"}</p>
-      <p>speed: {geoLocation?.coords.speed || "¯\\_(ツ)_/¯"}</p>
+      <p>accuracy: {geoLocation?.coords.accuracy || '¯\\_(ツ)_/¯'}</p>
+      <p>altitude: {geoLocation?.coords.altitude || '¯\\_(ツ)_/¯'}</p>
+      <p>altitudeAccuracy: {geoLocation?.coords.altitudeAccuracy || '¯\\_(ツ)_/¯'}</p>
+      <p>heading: {geoLocation?.coords.heading || '¯\\_(ツ)_/¯'}</p>
+      <p>latitude: {geoLocation?.coords.latitude || '¯\\_(ツ)_/¯'}</p>
+      <p>longitude: {geoLocation?.coords.longitude || '¯\\_(ツ)_/¯'}</p>
+      <p>speed: {geoLocation?.coords.speed || '¯\\_(ツ)_/¯'}</p>
     </>
   );
 };
@@ -43,16 +40,13 @@ export const Component = () => {
       <p>The information below should update somewhat frequently</p>
 
       <h3>Location data:</h3>
-      <p>accuracy: {geoLocation?.coords.accuracy || "¯\\_(ツ)_/¯"}</p>
-      <p>altitude: {geoLocation?.coords.altitude || "¯\\_(ツ)_/¯"}</p>
-      <p>
-        altitudeAccuracy:{" "}
-        {geoLocation?.coords.altitudeAccuracy || "¯\\_(ツ)_/¯"}
-      </p>
-      <p>heading: {geoLocation?.coords.heading || "¯\\_(ツ)_/¯"}</p>
-      <p>latitude: {geoLocation?.coords.latitude || "¯\\_(ツ)_/¯"}</p>
-      <p>longitude: {geoLocation?.coords.longitude || "¯\\_(ツ)_/¯"}</p>
-      <p>speed: {geoLocation?.coords.speed || "¯\\_(ツ)_/¯"}</p>
+      <p>accuracy: {geoLocation?.coords.accuracy || '¯\\_(ツ)_/¯'}</p>
+      <p>altitude: {geoLocation?.coords.altitude || '¯\\_(ツ)_/¯'}</p>
+      <p>altitudeAccuracy: {geoLocation?.coords.altitudeAccuracy || '¯\\_(ツ)_/¯'}</p>
+      <p>heading: {geoLocation?.coords.heading || '¯\\_(ツ)_/¯'}</p>
+      <p>latitude: {geoLocation?.coords.latitude || '¯\\_(ツ)_/¯'}</p>
+      <p>longitude: {geoLocation?.coords.longitude || '¯\\_(ツ)_/¯'}</p>
+      <p>speed: {geoLocation?.coords.speed || '¯\\_(ツ)_/¯'}</p>
     </>
   );
 };

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
 function handleInput(e: Event, inputElements: HTMLInputElement[], options?: Args) {
   const currentInputElement = <HTMLInputElement>e.target;
@@ -11,7 +11,6 @@ function handleInput(e: Event, inputElements: HTMLInputElement[], options?: Args
   const prev = prevIndex < 0 ? null : inputElements[prevIndex];
 
   if (currentInputElement.value.trim().length > 1) {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     e.clipboardData = {
       getData: () => currentInputElement.value.trim(),
@@ -82,6 +81,16 @@ function lastInput(focusAfterRef?: React.MutableRefObject<HTMLElement>, lastInpu
   }
 }
 
+function recursiveHandleFocus(e: FocusEvent, inputIndex: number, inputs: HTMLInputElement[], options?: Args) {
+  if (inputIndex > 0 && inputs[inputIndex - 1].value === '') {
+    const nextFocus = inputIndex - 1;
+    inputs[nextFocus].focus();
+    if (nextFocus !== 0) {
+      recursiveHandleFocus(e, inputIndex - 1, inputs, options);
+    }
+  }
+}
+
 type Args = {
   focusAfter?: React.MutableRefObject<HTMLElement>;
   lastInputCallback?: () => void;
@@ -89,7 +98,7 @@ type Args = {
 };
 
 export const useVerificationInputs = (options?: Args): [React.MutableRefObject<HTMLInputElement[]>, () => string[]] => {
-  const inputElementRefs = React.useRef<HTMLInputElement[]>([]);
+  const inputElementRefs = useRef<HTMLInputElement[]>([]);
 
   function getValues() {
     const values: string[] = [];
@@ -98,13 +107,13 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
     return values;
   }
 
-  const handlePasteInner = React.useCallback(
+  const handlePaste = useCallback(
     (e: ClipboardEvent) => handlePasteOuter(e, inputElementRefs.current, options),
     [options],
   );
 
-  React.useEffect(() => {
-    if (options?.shouldFocusFirstInput) {
+  useEffect(() => {
+    if (typeof options.shouldFocusFirstInput === 'undefined' || options.shouldFocusFirstInput) {
       inputElementRefs.current[0].focus();
     }
   }, [options?.shouldFocusFirstInput]);
@@ -120,13 +129,14 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
       }
     };
 
-    inputElements.forEach((inputElement) => {
+    inputElements.forEach((inputElement, i) => {
       inputElement.addEventListener('input', (e) => handleInput(e, inputElements, options));
       inputElement.addEventListener('keydown', (e) => handleEmptyBackspace(e, inputElements));
       inputElement.addEventListener('click', handleClick);
+      inputElement.addEventListener('focus', (e) => recursiveHandleFocus(e, i, inputElements, options));
     });
 
-    inputElements[0].addEventListener('paste', handlePasteInner);
+    inputElements[0].addEventListener('paste', handlePaste);
     inputElements[inputElements.length - 1].addEventListener('input', handleLastInput);
 
     return () => {
@@ -138,10 +148,10 @@ export const useVerificationInputs = (options?: Args): [React.MutableRefObject<H
         }
       });
 
-      inputElements[0]?.removeEventListener('paste', handlePasteInner);
+      inputElements[0]?.removeEventListener('paste', handlePaste);
       inputElements[inputElements.length - 1]?.removeEventListener('input', handleLastInput);
     };
-  }, [handlePasteInner, options]);
+  }, [handlePaste, options]);
 
   return [inputElementRefs, getValues];
 };

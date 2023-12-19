@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 
 type State = {
   geoLocation: GeolocationPosition;
@@ -39,7 +39,7 @@ type Return = {
 };
 
 export const useGeoLocation = (watch = false, options?: PositionOptions): Return => {
-  const [{ geoLocation, error }, dispatch] = React.useReducer(geoLocationReducer, {
+  const [{ geoLocation, error }, dispatch] = useReducer(geoLocationReducer, {
     geoLocation: undefined,
     error: undefined,
   });
@@ -48,12 +48,12 @@ export const useGeoLocation = (watch = false, options?: PositionOptions): Return
     dispatch({ type: Action.LOCATION, payload: { geoLocation } });
   const handleError = (error: GeolocationPositionError) => dispatch({ type: Action.ERROR, payload: { error } });
 
-  const getPosition = React.useCallback(
+  const getPosition = useCallback(
     () => navigator.geolocation.getCurrentPosition(handleSuccess, handleError, options),
     [options],
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     let id: number;
 
     if (watch) {

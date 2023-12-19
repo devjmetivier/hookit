@@ -5,15 +5,15 @@ Debounce fast-changing state
 ## Usage
 
 ```tsx
-import { useDebounce } from "@hookit/debounce";
+import { useDebounce } from '@hookit/debounce';
 
 export const Component = () => {
-  const [state, setState] = React.useState("");
+  const [state, setState] = React.useState('');
   const debouncedValue = useDebounce(state, 1000);
 
   return (
     <>
-      <input onChange={(e) => setState(e.target.value)} type="text" />
+      <input onChange={(e) => setState(e.target.value)} type='text' />
 
       {/* updates immediately */}
       <p>State: {state}</p>
@@ -47,14 +47,14 @@ export const Component = () => {
 # useDebouncedState
 
 ```tsx
-import { useDebouncedState } from "@hookit/debounce";
+import { useDebouncedState } from '@hookit/debounce';
 
 export const Component = () => {
-  const [state, debouncedValue, setState] = useDebouncedState("", 1000);
+  const [state, debouncedValue, setState] = useDebouncedState('', 1000);
 
   return (
     <>
-      <input onChange={(e) => setState(e.target.value)} type="text" />
+      <input onChange={(e) => setState(e.target.value)} type='text' />
 
       {/* updates immediately */}
       <p>State: {state}</p>

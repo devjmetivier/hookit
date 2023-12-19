@@ -5,7 +5,6 @@
   },
   "description": "Execute code on an interval",
   "devDependencies": {
-    "@hookit-local/eslint-config": "*",
     "@hookit-local/tsconfig": "*",
     "@types/react": "latest",
     "@types/react-dom": "latest",
@@ -35,8 +34,6 @@
     "build": "tsup src/index.ts --format esm,cjs --dts --minify",
     "dev": "tsup src/index.ts --format esm,cjs --sourcemap --minify --watch",
     "clean": "rm -rf node_modules && rm -rf .turbo && rm -rf dist/",
-    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
-    "lint:fix": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "prebuild": "pnpm clean",
     "prepublishOnly": "pnpm build"
   },

@@ -1,12 +1,12 @@
-import * as React from 'react';
+import { useEffect, useRef } from 'react';
 
 export type Name = string;
 export type Props = { [key: string]: any };
 
 export const useWhyDidYouUpdate = (name: Name, props: { [key: string]: any }) => {
-  const prevProps = React.useRef<typeof props>();
+  const prevProps = useRef<typeof props>();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (prevProps.current) {
       const allKeys = Object.keys({ ...prevProps.current, ...props });
 

@@ -3,7 +3,6 @@
  */
 
 import renderHookServer from '../../../utils/renderHookServer';
-
 import { useInterval } from './useInterval';
 
 describe('useInterval SSR', () => {

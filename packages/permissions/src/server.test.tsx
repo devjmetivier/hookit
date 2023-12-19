@@ -6,9 +6,8 @@ import React from 'react';
 
 import { consoleError, consoleLog } from '../../../mocks/console';
 import renderHookServer from '../../../utils/renderHookServer';
-
 import * as Messages from './messages';
-import { usePermissions, TPermissions, TRules } from './usePermissions';
+import { TPermissions, TRules, usePermissions } from './usePermissions';
 
 type Permissions = 'DoThis' | 'DoThat' | 'GetThis' | 'GetThat';
 type Roles = 'admin' | 'normal' | 'free';

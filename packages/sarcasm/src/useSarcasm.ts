@@ -1,7 +1,7 @@
-import * as React from 'react';
+import { useCallback } from 'react';
 
 export const useSarcasm = () => {
-  const sarcasm = React.useCallback((string: string) => {
+  const sarcasm = useCallback((string: string) => {
     let lastAction: 'upper' | 'lower' = 'upper';
 
     return string

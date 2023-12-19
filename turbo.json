@@ -14,12 +14,6 @@
     "dev": {
       "cache": false
     },
-    "lint": {
-      "outputs": []
-    },
-    "lint:fix": {
-      "cache": false
-    },
     "start": {
       "cache": false
     }

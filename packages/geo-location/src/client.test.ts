@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 import { act, renderHook } from '@testing-library/react-hooks';
 
 import { useGeoLocation } from './useGeoLocation';

@@ -15,7 +15,7 @@ const Component = () => {
   const [inputRefs, getValues] = useVerificationInputs({
     focusAfter: focusRef,
     lastInputCallback: () => {
-      console.log("lastInputCallback executed");
+      console.log('lastInputCallback executed');
     },
   });
 
@@ -31,16 +31,12 @@ const Component = () => {
             key={item}
             ref={(input) => (inputRefs.current[i] = input)}
             style={defaultStyles}
-            type="text"
+            type='text'
           />
         </>
       ))}
 
-      <button
-        onClick={() => console.log(getValues())}
-        ref={focusRef}
-        type="button"
-      >
+      <button onClick={() => console.log(getValues())} ref={focusRef} type='button'>
         Get Values
       </button>
     </>
@@ -51,9 +47,7 @@ const Component = () => {
 Forwarding `ref` to a component:
 
 ```tsx
-const InputComponent = React.forwardRef((props, ref) => (
-  <input ref={ref} {...props} />
-));
+const InputComponent = React.forwardRef((props, ref) => <input ref={ref} {...props} />);
 
 const Component = () => {
   const focusRef = React.useRef();
@@ -61,7 +55,7 @@ const Component = () => {
   const [inputRefs, getValues] = useVerificationInputs({
     focusAfter: focusRef,
     lastInputCallback: () => {
-      console.log("lastInputCallback executed");
+      console.log('lastInputCallback executed');
     },
   });
 
@@ -77,16 +71,12 @@ const Component = () => {
             key={item}
             ref={(input) => (inputRefs.current[i] = input)}
             style={defaultStyles}
-            type="text"
+            type='text'
           />
         </>
       ))}
 
-      <button
-        onClick={() => console.log(getValues())}
-        ref={focusRef}
-        type="button"
-      >
+      <button onClick={() => console.log(getValues())} ref={focusRef} type='button'>
         Get Values
       </button>
     </>
